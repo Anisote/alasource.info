@@ -1,0 +1,31 @@
+#table_id_filter{
+  display:none;
+}
+
+#searchBox{
+  color: red;
+  border-color:#f67e7d;
+}
+
+#searchBox::placeholder{
+  color: #f67e7d;
+}
+
+#searchBar{
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+#content{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+p{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.bg-light {
+  background-color: white !important; 
+}
