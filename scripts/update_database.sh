@@ -13,4 +13,9 @@ echo $USERNAME
 echo $PASSWORD
 echo $DATABASE
 
-mysql -u $USERNAME -p$PASSWORD $DATABASE > ../database.sql
+set -x
+mysql -u $USERNAME -p$PASSWORD -e "DROP DATABASE $DATABASE;"
+
+mysql -u $USERNAME -p$PASSWORD -e "CREATE DATABASE $DATABASE;"
+
+mysql -u $USERNAME -p$PASSWORD $DATABASE < ./database.sql

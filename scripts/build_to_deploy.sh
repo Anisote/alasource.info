@@ -13,8 +13,9 @@ echo $USERNAME
 echo $PASSWORD
 echo $DATABASE
 
+# dump databas
+set -x
+mysqldump -u $USERNAME -p$PASSWORD $DATABASE > database.sql
+
 # clean metadata
 find ../themes/pictures/ -type f -exec exiftool -overwrite_original -all=  "{}" \;
-
-# dump databas
-mysqldump -u $USERNAME -p$PASSWORD $DATABASE > ../database.sql
