@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>
     <script type="text/javascript" src="library/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js "></script>
 
     <link href="library/bootstrap.min.css" rel="stylesheet">
     <script src="library/bootstrap.bundle.min.js"></script>

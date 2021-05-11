@@ -9,7 +9,7 @@
       Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici. Bonne découverte
     </p>
 
-    <nav class="navbar navbar-light bg-light navbar-expand" id="searchBar">
+    <!--nav class="navbar navbar-light bg-light navbar-expand" id="searchBar">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -79,13 +79,14 @@
       </form>
       </div>
     </div>
-    </nav>
+    </nav> <!-->
     <?php
 
-    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, CategoryMedia.description as cateMediadesc,CategoryAuthor.description as cateAuthdesc, link FROM Information
+    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,CategoryAuthor.description as cateAuthdesc, link, date_ajout FROM Information
       inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
       inner join Field on field = Field.idField
-      inner join CategoryAuthor on categoryAuthor = CategoryAuthor.idCategoryAuthor
+      inner join Author on Author = Author.idAutor
+      inner join CategoryAuthor on CategoryAuthor.idCategoryAuthor = Author.categoryAuthor
       order by field ;
       ";
     if($result = mysqli_query($link, $sql)){
@@ -97,7 +98,9 @@
                     echo "<th>Domaine</th>";
                     echo "<th>Description</th>";
                     echo "<th>Média</th>";
+                    echo "<th>Auteur</th>";
                     echo "<th>Profession de l'auteur</th>";
+                    echo "<th>Date d'ajoût</th>";
                 echo "</tr>";
            echo "</thead>";
            echo "<tbody>";
@@ -107,7 +110,9 @@
                     echo "<td>" . $row['fielddesc'] . "</td>";
                     echo "<td><a href='" . $row['link'] . "' target='_blank'>" . $row['infodesc'] . "</a></td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
                     echo "<td>" . $row['cateAuthdesc'] . "</td>";
+                    echo "<td>" . $row['date_ajout'] . "</td>";
                 echo "</tr>";
             }
             echo "</tbody>";
@@ -122,13 +127,38 @@
       }
     ?>
       <script>$(document).ready( function () {
-          $('#table_id').DataTable({
+        
+          $('#table_id thead tr').clone(true).appendTo( '#table_id thead' );
+	  $('#table_id thead tr:eq(1) th').each( function (i) {
+ 	      var title = $(this).text();
+              $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+      
+              $( 'input', this ).on( 'keyup change', function () {
+                  if ( table.column(i).search() !== this.value ) {
+                      table
+                          .column(i)
+                          .search( this.value )
+                          .draw();
+                  }
+              } );
+          } );
+
+          var table = $('#table_id').DataTable({
                 SearchPanes : true,
                 responsive: true,
+                orderCellsTop: true,
+                fixedHeader: true,
                 "pageLength": 25,
-                "dom": '<"top">rt<"bottom"flpi><"clear">',
+                "dom": '<"top">rt<"bottom"flp><"clear">',
           });
+
       } );
+
+      function searchColumn(data){
+        var table = $('#table_id').DataTable();
+        table.column(1).search(data).draw();
+
+      }
 
       function search(field){
         var table = $('#table_id').DataTable();

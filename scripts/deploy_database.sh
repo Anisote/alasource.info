@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [[ $EUID = 0 ]]; then
-   echo "This script must not be run as root"
-   exit 1
-fi
+#if [[ $EUID = 0 ]]; then
+#   echo "This script must not be run as root"
+#   exit 1
+#fi
 
 USERNAME=$(grep -oP '(?<=strUserName = ").*?(?=")' ../config/config.php)
 PASSWORD=$(grep -oP '(?<=strPassword = ").*?(?=")' ../config/config.php)
