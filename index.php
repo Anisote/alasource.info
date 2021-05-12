@@ -79,7 +79,7 @@
               initComplete: function () {
                 this.api().columns().every( function () {
                 var column = this;
-                var select = $('<select><option value=""></option></select>')
+                var select = $('<select onclick="event.stopPropagation();"><option value=""></option></select>')
                   .appendTo( $(column.header()) )
                   .on( 'change', function () {
                     console.log("test")
