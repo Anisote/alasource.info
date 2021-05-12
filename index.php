@@ -26,7 +26,7 @@
                     echo "<th>ID</th>";
                     echo "<th>Domaine</th>";
                     echo "<th>Description</th>";
-                    echo "<th>Média</th>";
+                    echo "<th>Type de média</th>";
                     echo "<th>Auteur</th>";
                     echo "<th>Profession de l'auteur</th>";
                     echo "<th>Date d'ajoût</th>";
@@ -55,32 +55,35 @@
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
       }
     ?>
-      <script>$(document).ready( function () {
-        
-          $('#table_id thead tr').clone(true).appendTo( '#table_id thead' );
-	  $('#table_id thead tr:eq(1) th').each( function (i) {
- 	      var title = $(this).text();
-              $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-      
-              $( 'input', this ).on( 'keyup change', function () {
-                  if ( table.column(i).search() !== this.value ) {
-                      table
-                          .column(i)
-                          .search( this.value )
+      <script>
+        $(document).ready(function() {
+        var table = $('#table_id').DataTable({
+              SearchPanes : true,
+              responsive: true,
+              orderCellsTop: true,
+              "pageLength": 25,
+              initComplete: function () {
+                this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                  .appendTo( $(column.header()) )
+                  .on( 'change', function () {
+                      var val = $.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                      );
+                      console.log($(this).val())
+                      column
+                          .search( val ? '^'+val+'$' : '', true, false )
                           .draw();
-                  }
-              } );
-          } );
+                  } );
 
-          var table = $('#table_id').DataTable({
-                SearchPanes : true,
-                responsive: true,
-                orderCellsTop: true,
-                fixedHeader: true,
-                "pageLength": 25,
-                "dom": '<"top">rt<"bottom"flp><"clear">',
-          });
-
+                column.data().unique().sort().each( function ( d, j ) {      
+                    var val = $('<div/>').html(d).text();
+                    select.append( '<option value="' + val + '">' + val.substr(0,35) + '</option>' );
+                } );
+            } );
+          }
+        } );
       } );
 
       function searchColumn(data){
