@@ -62,19 +62,34 @@
               responsive: true,
               orderCellsTop: true,
               "pageLength": 25,
+              "language": {
+                  "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                  "zeroRecords": "Aucun résultat trouvé",
+                  "info": "Affichage de la page _PAGE_ sur _PAGES_",
+                  "infoEmpty": "Aucun résultat disponible",
+                  "infoFiltered": "(Filtré à partir de _MAX_ enregistrements totaux)",
+                   "paginate": {
+                        "first":      "Premier",
+                        "last":       "Dernier",
+                        "next":       "Suivant",
+                        "previous":   "Précédent"
+                    },
+              },
+
               initComplete: function () {
                 this.api().columns().every( function () {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                   .appendTo( $(column.header()) )
                   .on( 'change', function () {
-                      var val = $.fn.dataTable.util.escapeRegex(
-                          $(this).val()
-                      );
-                      console.log($(this).val())
-                      column
-                          .search( val ? '^'+val+'$' : '', true, false )
-                          .draw();
+                    console.log("test")
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+                        console.log($(this).val())
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
                   } );
 
                 column.data().unique().sort().each( function ( d, j ) {      
