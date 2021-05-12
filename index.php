@@ -31,11 +31,10 @@
 
     <?php
 
-    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,CategoryAuthor.description as cateAuthdesc, link, date_ajout FROM Information
+    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, date_ajout FROM Information
       inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
       inner join Field on field = Field.idField
-      inner join Author on Author = Author.idAutor
-      inner join CategoryAuthor on CategoryAuthor.idCategoryAuthor = Author.categoryAuthor
+      inner join Author on Author = Author.idAuthor
       order by field ;
       ";
     if($result = mysqli_query($link, $sql)){
@@ -48,7 +47,6 @@
                     echo "<th>Description</th>";
                     echo "<th>Type de média</th>";
                     echo "<th>Auteur</th>";
-                    echo "<th>Profession de l'auteur</th>";
                     echo "<th>Date d'ajoût</th>";
                 echo "</tr>";
            echo "</thead>";
@@ -60,7 +58,6 @@
                     echo "<td><a href='" . $row['link'] . "' target='_blank'>" . $row['infodesc'] . "</a></td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['cateAuthdesc'] . "</td>";
                     echo "<td>" . $row['date_ajout'] . "</td>";
                 echo "</tr>";
             }
