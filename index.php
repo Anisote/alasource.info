@@ -9,6 +9,26 @@
       Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici. Bonne découverte
     </p>
 
+
+    <nav class="navbar navbar-light bg-light navbar-expand" id="searchBar">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">     
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2 reset" type="search" placeholder="Rechercher" aria-label="Search" oninput='searchBis()' id="searchBox">
+          </form>
+          <li class="nav-item " onclick='clean();'>
+            <a id="reset" class="nav-link active" aria-current="page" href="#">Reset</a>
+          </li>     
+        </ul>
+
+      </div>
+    </div>
+    </nav>
+
     <?php
 
     $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,CategoryAuthor.description as cateAuthdesc, link, date_ajout FROM Information
@@ -79,7 +99,7 @@
               initComplete: function () {
                 this.api().columns().every( function () {
                 var column = this;
-                var select = $('<select onclick="event.stopPropagation();"><option value=""></option></select>')
+                var select = $('<select class="select_filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                   .appendTo( $(column.header()) )
                   .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
@@ -119,6 +139,13 @@
         var table = $('#table_id').DataTable();
 
         document.getElementById("searchBox").value = "";
+
+        /*
+        for (let item of document.getElementsByClassName("select_filter")) {
+            item.selectedIndex=0;
+        }
+        */
+
         table.search("").draw();
       };
       </script>

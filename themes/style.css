@@ -3,13 +3,18 @@
 }
 
 #searchBox{
-  color: red;
-  border-color:#f67e7d;
+  background-color: white;
 }
 
-#searchBox::placeholder{
-  color: #f67e7d;
+#reset{
+  margin-left: 8px;
+  border: #05445e;
+  border-style: solid;
+  color: #d4f1f4;
+  background-color: #05445e;
+  line-height: 1;
 }
+
 
 #searchBar{
   margin-left: 25%;
