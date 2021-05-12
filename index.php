@@ -82,7 +82,6 @@
                 var select = $('<select onclick="event.stopPropagation();"><option value=""></option></select>')
                   .appendTo( $(column.header()) )
                   .on( 'change', function () {
-                    console.log("test")
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
