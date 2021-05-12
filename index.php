@@ -86,13 +86,12 @@
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
-                        console.log($(this).val())
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
                   } );
 
-                column.data().unique().sort().each( function ( d, j ) {      
+                column.order('asc').draw(false).data().unique().each( function ( d, j ) { 
                     var val = $('<div/>').html(d).text();
                     select.append( '<option value="' + val + '">' + val.substr(0,35) + '</option>' );
                 } );
