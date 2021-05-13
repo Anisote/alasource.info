@@ -30,12 +30,16 @@
 	$message = htmlspecialchars($_POST['message']);
 	$formcontent=" From: $name and $email\n Website: $website \n Message: $message";
 	$recipient = "contact@alasource.info";
-	$subject = "Formulaire de contact - $description";
+	$subject = "Formulaire de contact - $description\n";
 	$mailheader = "From: user@alasource.info \r\n";
 
 	var_dump($_POST);
 	if (isset($name, $website, $description, $message, )) {
-		mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
+		# mail not yet enabled on the server 
+		# mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
+		$myfile = fopen("mail/contact.txt", "a");
+		$content = "From: $name and $email\nWebsite: $website\nMessage: $message\nFormulaire de contact - $description\n$message\n------------------------------------\n";
+		fwrite($myfile, $content); 
 	}else{
 		echo "Merci de bien vouloir saisir tous les champs obligatoires";
 	}
