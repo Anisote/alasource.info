@@ -5,19 +5,18 @@
 
 <body>
   <div id="content">
-	Vous pouvez utiliser ce formulaire afin de me contacter.
+  	<p>Vous pouvez utiliser ce formulaire afin de me contacter.</p>
 
 	<form action="contact.php" method="POST">
-	<p>Nom</p> <input required type="text" name="name">
-	<p>Email</p> <input type="email" name="email">
+	<p>Nom : <br/><input required type="text" name="name" maxlength="50" size="45"></p>
+	<p>Email : <br/><input type="email" name="email" maxlength="50" size="45"></p>
 
-	<p>Site internet</p> <input required type="text" name="website">
+	<p>Site internet : <br/><input required type="text" name="website" maxlength="50" size="45"></p>
 
+	<p>Description de la demande : <br/><input required type="text" name="description" maxlength="100" size="90"></p>
 
-	<p>Description courte de la demande</p> <input required type="text" name="description">
-
-	<p>Message</p><textarea required name="message" rows="6" cols="25"></textarea><br />
-	<input type="submit" value="Send"><input type="reset" value="Clear">
+	<p>Message :<br/><textarea required name="message" rows="8" cols="90" maxlength="350"></textarea></p>
+	<p><input type="submit" value="Send"><input type="reset" value="Clear"></p>
 	</form>
 
 
@@ -37,7 +36,7 @@
 		# mail not yet enabled on the server 
 		# mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
 		$myfile = fopen("mail/contact.txt", "a");
-		$content = "From: $name and $email\nWebsite: $website\nMessage: $message\nFormulaire de contact - $description\n$message\n------------------------------------\n";
+		$content = mb_strimwidth("From: $name and $email\nWebsite: $website\nMessage: $message\nFormulaire de contact - $description\n$message\n------------------------------------\n", 0, 600, "...");;
 		fwrite($myfile, $content); 
 		echo "Merci pour votre message !";
 	}else{
