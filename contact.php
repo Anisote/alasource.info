@@ -39,6 +39,7 @@
 		$myfile = fopen("mail/contact.txt", "a");
 		$content = "From: $name and $email\nWebsite: $website\nMessage: $message\nFormulaire de contact - $description\n$message\n------------------------------------\n";
 		fwrite($myfile, $content); 
+		echo "Merci pour votre message !";
 	}else{
 		echo "Merci de bien vouloir saisir tous les champs obligatoires";
 	}
