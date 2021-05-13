@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install apache2 libapache2-mod-php php-mysql mariadb-server
+sudo apt install apache2 libapache2-mod-php php-mysql php-gd php-mbstring mariadb-server
 
 sudo systemctl start mariadb-server
 
