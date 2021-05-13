@@ -33,7 +33,6 @@
 	$subject = "Formulaire de contact - $description\n";
 	$mailheader = "From: user@alasource.info \r\n";
 
-	var_dump($_POST);
 	if (isset($name, $website, $description, $message, )) {
 		# mail not yet enabled on the server 
 		# mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
