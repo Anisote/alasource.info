@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <link rel="stylesheet" type="text/css" href="library/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="themes/style.css"/>
 
     <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2-->
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>
-    <script src="library/datatables.min.js"></script>
 
     <title>Alasource.info</title>
 </head>
@@ -36,4 +34,5 @@
       </ul>
     </div>
   </div>
+  <script src="library/datatables.min.js"></script>
 </nav>
