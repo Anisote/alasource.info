@@ -3,11 +3,11 @@
 <head>
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>
     <script type="text/javascript" src="library/datatables.min.js"></script>
-    <script type="text/javascript" src="library/dataTables.fixedHeader3.1.8.min.js"></script>
-    <script type="text/javascript" src="library/jquery.dataTables1.10.24.min.js"></script>
+    <script type="text/javascript" defer src="library/dataTables.fixedHeader3.1.8.min.js"></script>
+    <script type="text/javascript" defer src="library/jquery.dataTables1.10.24.min.js"></script>
 
+    <script defer src="library/bootstrap.bundle.min.js"></script>
     <link href="library/bootstrap.min.css" rel="stylesheet">
-    <script src="library/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="themes/style.css"/>
 
@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" >
-          <a class="nav-link active" aria-current="page" href="/"><img src="themes/pictures/perso_version_finale1.png" height="80px" width="300px"></img></a>
+          <a class="nav-link active" aria-current="page" href="/"><img src="themes/pictures/logo.png" height="80px" width="300px"></img></a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
