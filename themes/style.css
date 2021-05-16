@@ -4,6 +4,10 @@
 
 #searchBox{
   background-color: white;
+  display: inline-block;
+  border-radius: .25rem;
+  border: 1px solid #ced4da;
+  padding: .375rem .75rem;
 }
 
 #reset{
@@ -13,12 +17,17 @@
   color: #d4f1f4;
   background-color: #05445e;
   line-height: 1;
+  display: inline-block;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
 
 #searchBar{
   margin-left: 25%;
   margin-right: 25%;
+  text-align: center;
 }
 
 #content{
@@ -34,4 +43,8 @@ p{
 
 .bg-light {
   background-color: white !important; 
+}
+
+.select_filter{
+  display: block;
 }

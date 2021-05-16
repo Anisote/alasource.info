@@ -9,25 +9,12 @@
       Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici. Bonne découverte
     </p>
 
-
-    <nav class="navbar navbar-light bg-light navbar-expand" id="searchBar">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">     
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 reset" type="search" placeholder="Rechercher" aria-label="Search" oninput='searchBis()' id="searchBox">
-          </form>
-          <li class="nav-item " onclick='clean();'>
-            <a id="reset" class="nav-link active" aria-current="page" href="#">Reset</a>
-          </li>     
-        </ul>
-
-      </div>
-    </div>
-    </nav>
+   <div id="searchBar">
+    <form >
+      <input type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='searchBis()' id="searchBox">
+      <a id="reset" aria-current="page" href="#">Reset</a>
+    </form>
+  </div>
 
     <?php
 
