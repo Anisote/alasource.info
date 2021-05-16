@@ -31,9 +31,9 @@
                 echo "<tr>";
                     echo "<th>ID</th>";
                     echo "<th>Domaine</th>";
-                    echo "<th>Description</th>";
                     echo "<th>Type de média</th>";
                     echo "<th>Auteur</th>";
+                    echo "<th>Description</th>";
                     echo "<th>Date d'ajoût</th>";
                 echo "</tr>";
            echo "</thead>";
@@ -41,10 +41,10 @@
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                     echo "<td>" . $row['idInformation'] . "</td>";
-                    echo "<td>" . $row['fielddesc'] . "</td>";
                     echo "<td><a href='" . $row['link'] . "' target='_blank'>" . $row['infodesc'] . "</a></td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['fielddesc'] . "</td>";
                     echo "<td>" . $row['date_ajout'] . "</td>";
                 echo "</tr>";
             }
@@ -106,7 +106,6 @@
       function searchColumn(data){
         var table = $('#table_id').DataTable();
         table.column(1).search(data).draw();
-
       }
 
       function search(field){
