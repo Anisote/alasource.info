@@ -41,10 +41,10 @@
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                     echo "<td>" . $row['idInformation'] . "</td>";
-                    echo "<td><a href='" . $row['link'] . "' target='_blank'>" . $row['infodesc'] . "</a></td>";
+                    echo "<td>" . $row['fielddesc'] . "</td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['fielddesc'] . "</td>";
+                    echo "<td><a href='" . $row['link'] . "' target='_blank'>" . $row['infodesc'] . "</a></td>";
                     echo "<td>" . $row['date_ajout'] . "</td>";
                 echo "</tr>";
             }
