@@ -22,7 +22,7 @@
       inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
       inner join Field on field = Field.idField
       inner join Author on Author = Author.idAuthor
-      order by field ;
+      order by fielddesc;
       ";
     if($result = mysqli_query($link, $sql)){
         if(mysqli_num_rows($result) > 0){
