@@ -116,7 +116,7 @@
       function searchBis(){
         var table = $('#table_id').DataTable();
         var criteria = document.getElementById("searchBox").value;
-        console.log(criteria)
+        console.log(criteria);
         table.search(criteria).draw();
       };
 
