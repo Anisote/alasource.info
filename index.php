@@ -12,7 +12,7 @@
    <div id="searchBar">
     <form >
       <input type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='searchBis()' id="searchBox">
-      <a id="reset" aria-current="page" href="#">Reset</a>
+      <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
     </form>
   </div>
 
