@@ -18,7 +18,7 @@
 
     <?php
 
-    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, date_ajout FROM Information
+    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(date_ajout, '%d/%m/%Y') as dateAjout FROM Information
       inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
       inner join Field on field = Field.idField
       inner join Author on Author = Author.idAuthor
@@ -45,7 +45,7 @@
                     echo "<td>" . $row['name'] . "</td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
                     echo "<td><a href='" . $row['link'] . "' target='_blank'>" . $row['infodesc'] . "</a></td>";
-                    echo "<td>" . date("d/m/Y", strtotime($row['date_ajout'])) . "</td>";
+                    echo "<td>" . $row['dateAjout'] . "</td>";
                 echo "</tr>";
             }
             echo "</tbody>";
@@ -115,7 +115,9 @@
 
       function searchBis(){
         var table = $('#table_id').DataTable();
-        table.search(document.getElementById("searchBox").value).draw();
+        var criteria = document.getElementById("searchBox").value;
+        console.log(criteria)
+        table.search(criteria).draw();
       };
 
       function clean(){
