@@ -34,5 +34,6 @@
       </ul>
     </div>
   </div>
-  <script src="library/datatables.min.js"></script>
+  <script src="library/datatables.min.js"></script>  
+  <script src="library/accent_neutralise.js"></script>
 </nav>
