@@ -42,4 +42,8 @@ Je fais ce site afin de partager des sources que j’estime de qualité et qui p
 
 C’est une référence à l’Anisote de l’Erable et j’aimais bien le fait qu’il y ait la sonorité “sote” dedans.
   </div>
+
+<?php
+	require_once('footer.php');
+?>
 </body>

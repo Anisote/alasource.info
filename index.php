@@ -5,11 +5,11 @@
 
 <body>
   <div id="content">
-    <p>
+    <p class ="center15">
       Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici. Bonne découverte
     </p>
 
-   <div id="searchBar">
+   <div class="center25">
     <form >
       <input type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='searchBis()' id="searchBox">
       <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
@@ -132,7 +132,13 @@
         table.search("").draw();
       };
       </script>
+
+      <?php
+        require_once('footer.php');
+      ?>
 </div>
+
+
 </body>
 
 </html>

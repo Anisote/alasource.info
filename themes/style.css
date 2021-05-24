@@ -23,10 +23,19 @@
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
+.paddingbot5px{
+  padding-bottom: 5px;
+}
 
-#searchBar{
+.center25{
   margin-left: 25%;
   margin-right: 25%;
+  text-align: center;
+}
+
+.center15{
+  margin-left: 15%;
+  margin-right: 15%;
   text-align: center;
 }
 
