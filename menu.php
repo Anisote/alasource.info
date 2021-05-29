@@ -6,7 +6,8 @@
 
     <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2 -->
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>
-    <meta name="description" content="Source données informations bibliothèque références crédibilité fiabilité debunkage vérité réalité analyse recherche data truth reality analyze search">
+    <meta name="description" content="Alasource.info est un site qui référence uniquement les contenus que l'auteur juge intéressant et de qualité.">
+    <link rel="canonical" href="https://alasource.info">
 
     <title>Alasource.info</title>
 </head>
@@ -19,7 +20,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" >
-          <a class="nav-link active" aria-current="page" href="/"><img src="themes/pictures/logo.png" height="80px" width="300px"></img></a>
+          <h1>
+            <a class="nav-link active" aria-current="page" href="/"><img src="themes/pictures/logo.png" alt="logo" height="80px" width="300px"></img></a>
+          </h1>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">

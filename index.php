@@ -6,7 +6,7 @@
 <body>
   <div id="content">
     <p class ="center15">
-      Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici. Bonne découverte
+      Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici, bonne découverte.
     </p>
 
    <div class="center25">
@@ -44,7 +44,7 @@
                     echo "<td>" . $row['fielddesc'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
-                    echo "<td><a href='" . $row['link'] . "' target='_blank'>" . $row['infodesc'] . "</a></td>";
+                    echo "<td><a href='" . $row['link'] . "' target='_blank' rel='nofollow'>" . $row['infodesc'] . "</a></td>";
                     echo "<td>" . $row['dateAjout'] . "</td>";
                 echo "</tr>";
             }

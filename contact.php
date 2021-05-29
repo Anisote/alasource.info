@@ -29,6 +29,7 @@
 
 <body>
   <div id="content">
+	<h2>Formulaire de contact</h2>
   	<p>Vous pouvez utiliser ce formulaire afin de me contacter.</p>
 
 	<form action="contact.php" method="POST">
