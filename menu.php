@@ -6,6 +6,7 @@
 
     <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2 -->
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>
+    <meta name="description" content="Source données informations bibliothèque références crédibilité fiabilité debunkage vérité réalité analyse recherche data truth reality analyze search">
 
     <title>Alasource.info</title>
 </head>
