@@ -11,7 +11,7 @@
 
    <div class="center25">
     <form >
-      <input type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='searchBis()' id="searchBox">
+      <input type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='search()' id="searchBox">
       <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
     </form>
   </div>
@@ -81,48 +81,9 @@
               },
 
               initComplete: function () {
-                var api = this.api();
-                var selects = [];
+                api = this.api();
                 api.columns().every( function () {
                   var column = this;
-                  var refreshSelect = function(selectData, others) {
-                    var $select = selectData.$select;
-                    var data = api.rows().data().filter(d => others.every(o => {
-                      return !o.value || d[o.dataIndex] === o.value
-                    }));
-                    var $options = $select.children('option');
-
-                    var optionsToDisplay = [];
-
-                    for(var i = 0; i < data.length; ++i) {
-                      var row = data[i];
-                      var cellValue = row[selectData.dataIndex];
-
-                      var option;
-                      for(var j = 0; j < $options.length; ++j) {
-                        if($($options[j]).attr('value') === cellValue) {
-                          option = $options[j];
-                          break;
-                        }
-                      }
-
-                      if(option && !optionsToDisplay.includes(option)) {
-                        optionsToDisplay.push(option);
-                      }
-                    }
-
-                    for(var j = 0; j < $options.length; ++j) {
-                      var option = $options[j];
-                      if($(option).attr('value')) {
-                        if(optionsToDisplay.includes(option)) {
-                          $(option).show();
-                        } else {
-                          $(option).hide();
-                        }
-                      }
-                    }
-                  }
-
                   var select;
                   if (column.index() != 4){
 
@@ -136,12 +97,7 @@
                           .search( val ? '^'+val+'$' : '', true, false )
                           .draw();
 
-                        var selectsData = selects.filter(s => s).map(s => ({
-                          $select: s,
-                          value: s.val(),
-                          dataIndex: selects.indexOf(s)
-                        }))
-                        selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
+                        refreshDropdowns();
                       })
 
                     column.order('asc').draw(false).data().unique().each( function ( d, j ) {
@@ -155,17 +111,56 @@
         } );
       } );
 
-      function searchColumn(data){
-        var table = $('#table_id').DataTable();
-        table.column(1).search(data).draw();
+      var api;
+      function refreshSelect(selectData, others) {
+        var $select = selectData.$select;
+        var data = api.rows().data().filter(d => others.every(o => {
+          return !o.value || d[o.dataIndex] === o.value
+        }));
+        var $options = $select.children('option');
+
+        var optionsToDisplay = [];
+
+        for(var i = 0; i < data.length; ++i) {
+          var row = data[i];
+          var cellValue = row[selectData.dataIndex];
+
+          var option;
+          for(var j = 0; j < $options.length; ++j) {
+            if($($options[j]).attr('value') === cellValue) {
+              option = $options[j];
+              break;
+            }
+          }
+
+          if(option && !optionsToDisplay.includes(option)) {
+            optionsToDisplay.push(option);
+          }
+        }
+
+        for(var j = 0; j < $options.length; ++j) {
+          var option = $options[j];
+          if($(option).attr('value')) {
+            if(optionsToDisplay.includes(option)) {
+              $(option).show();
+            } else {
+              $(option).hide();
+            }
+          }
+        }
       }
 
-      function search(field){
-        var table = $('#table_id').DataTable();
-        table.search(field).draw();
-      };
+      var selects = [];
+      function refreshDropdowns() {
+        var selectsData = selects.filter(s => s).map(s => ({
+          $select: s,
+          value: s.val(),
+          dataIndex: selects.indexOf(s)
+        }))
+        selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
+      }
 
-      function searchBis(){
+      function search(){
         var table = $('#table_id').DataTable();
         var criteria = document.getElementById("searchBox").value;
         console.log(criteria);
