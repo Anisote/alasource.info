@@ -81,24 +81,76 @@
               },
 
               initComplete: function () {
-                this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select class="select_filter" onclick="event.stopPropagation();"><option value=""></option></select>')
-                  .appendTo( $(column.header()) )
-                  .on( 'change', function () {
+                var api = this.api();
+                var selects = [];
+                api.columns().every( function () {
+                  var column = this;
+                  var refreshSelect = function(selectData, others) {
+                    var $select = selectData.$select;
+                    var data = api.rows().data().filter(d => others.every(o => {
+                      return !o.value || d[o.dataIndex] === o.value
+                    }));
+                    var $options = $select.children('option');
+
+                    var optionsToDisplay = [];
+
+                    for(var i = 0; i < data.length; ++i) {
+                      var row = data[i];
+                      var cellValue = row[selectData.dataIndex];
+
+                      var option;
+                      for(var j = 0; j < $options.length; ++j) {
+                        if($($options[j]).attr('value') === cellValue) {
+                          option = $options[j];
+                          break;
+                        }
+                      }
+
+                      if(option && !optionsToDisplay.includes(option)) {
+                        optionsToDisplay.push(option);
+                      }
+                    }
+
+                    for(var j = 0; j < $options.length; ++j) {
+                      var option = $options[j];
+                      if($(option).attr('value')) {
+                        if(optionsToDisplay.includes(option)) {
+                          $(option).show();
+                        } else {
+                          $(option).hide();
+                        }
+                      }
+                    }
+                  }
+
+                  var select;
+                  if (column.index() != 4){
+
+                    select = $('<select class="select_filter" onclick="event.stopPropagation();"><option value=""></option></select>')
+                      .appendTo( $(column.header()) )
+                      .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
+                          $(this).val()
                         );
                         column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                  } );
+                          .search( val ? '^'+val+'$' : '', true, false )
+                          .draw();
 
-                column.order('asc').draw(false).data().unique().each( function ( d, j ) { 
-                    var val = $('<div/>').html(d).text();
-                    select.append( '<option value="' + val + '">' + val.substr(0,35) + '</option>' );
-                } );
-            } );
+                        var selectsData = selects.filter(s => s).map(s => ({
+                          $select: s,
+                          value: s.val(),
+                          dataIndex: selects.indexOf(s)
+                        }))
+                        selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
+                      })
+
+                    column.order('asc').draw(false).data().unique().each( function ( d, j ) {
+                        var val = $('<div/>').html(d).text();
+                        select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' );
+                    } );
+                  }                  
+                  selects.push(select);
+              } );
           }
         } );
       } );
