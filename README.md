@@ -6,3 +6,4 @@ Tâches à faire :
 - ajouter une page de blog
 - peupler la bdd
 - Implémenter les tags (à réfléchir)
+- Improve date filter order
