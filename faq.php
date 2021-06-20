@@ -28,7 +28,7 @@
       Je ne suis malheureusement qu'un homme avec des ressources limitées.
     </p>
 
-    </br></br><h2>L'auteur</h2></br>
+    </br><h2>L'auteur</h2></br>
     
     <p>
       <b>Qui suis-je ?</b></br>
