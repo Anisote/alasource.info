@@ -9,12 +9,36 @@
       Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici, bonne découverte.
     </p>
 
-   <div class="center25">
-    <form >
-      <input type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='search()' id="searchBox">
-      <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
-    </form>
-  </div>
+    <div class="center25">
+        <form >
+            <input list="tags-fields" type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='search()' id="searchBox" />
+            <datalist id="tags-fields">
+                <?php
+                    $sql = "SELECT description AS name FROM Field as field WHERE EXISTS (SELECT idInformation FROM Information AS info WHERE field.idField = info.field) UNION (SELECT name FROM Tag as tag WHERE idTag IN (SELECT idTag FROM Information_tag)) ORDER BY name ASC;";
+
+                    $options = Array();
+                    if($result = mysqli_query($link, $sql)) {
+                        if(mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_array($result)) {
+                                $options[] = $row['name'];
+                            }
+                            
+                            mysqli_free_result($result);
+                        } else {
+                            echo "No records matching your query were found.";
+                        }
+                    } else {
+                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+                    }
+
+                    foreach($options as $option) {
+                        echo '<option value="' . $option . '"></option>';
+                    }
+                ?>
+            </datalist>
+          <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
+        </form>
+    </div>
 
     <?php
 
@@ -94,6 +118,7 @@
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
       }
     ?>
+
       <script>
         $(document).ready(function() {
         var table = $('#table_id').DataTable({
