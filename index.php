@@ -10,34 +10,32 @@
     </p>
 
     <div class="center25">
-        <form >
-            <input list="tags-fields" type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='search()' id="searchBox" />
-            <datalist id="tags-fields">
-                <?php
-                    $sql = "SELECT description AS name FROM Field as field WHERE EXISTS (SELECT idInformation FROM Information AS info WHERE field.idField = info.field) UNION (SELECT name FROM Tag as tag WHERE idTag IN (SELECT idTag FROM Information_tag)) ORDER BY name ASC;";
+      <input list="tags-fields" type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='search()' id="searchBox" />
+      <datalist id="tags-fields">
+          <?php
+              $sql = "SELECT description AS name FROM Field as field WHERE EXISTS (SELECT idInformation FROM Information AS info WHERE field.idField = info.field) UNION (SELECT name FROM Tag as tag WHERE idTag IN (SELECT idTag FROM Information_tag)) ORDER BY name ASC;";
 
-                    $options = Array();
-                    if($result = mysqli_query($link, $sql)) {
-                        if(mysqli_num_rows($result) > 0){
-                            while($row = mysqli_fetch_array($result)) {
-                                $options[] = $row['name'];
-                            }
-                            
-                            mysqli_free_result($result);
-                        } else {
-                            echo "No records matching your query were found.";
-                        }
-                    } else {
-                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-                    }
+              $options = Array();
+              if($result = mysqli_query($link, $sql)) {
+                  if(mysqli_num_rows($result) > 0){
+                      while($row = mysqli_fetch_array($result)) {
+                          $options[] = $row['name'];
+                      }
+                      
+                      mysqli_free_result($result);
+                  } else {
+                      echo "No records matching your query were found.";
+                  }
+              } else {
+                  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+              }
 
-                    foreach($options as $option) {
-                        echo '<option value="' . $option . '"></option>';
-                    }
-                ?>
-            </datalist>
-          <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
-        </form>
+              foreach($options as $option) {
+                  echo '<option value="' . $option . '"></option>';
+              }
+          ?>
+      </datalist>
+      <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
     </div>
 
     <?php
@@ -97,14 +95,14 @@
                 $tagsStr = join(', ', $tags);
 
                 echo "<tr>";
-                    echo "<td class='center'>" . $id . "</td>";
-                    echo "<td>" . $row['fielddesc'] . "</td>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['cateMediadesc'] . "</td>";
+                    echo "<td class='center'><span>" . $id . "</span></td>";
+                    echo "<td><span>" . $row['fielddesc'] . "</span></td>";
+                    echo "<td><span>" . $row['name'] . "</span></td>";
+                    echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
                     echo "<td><a href='" . $row['link'] . "' target='_blank' rel='nofollow'>" . $row['infodesc'] . "</a></td>";
                     echo "<td class='center'>" . $row['datePublication'] . "</td>";
                     echo "<td class='center'>" . $row['dateAjout'] . "</td>";
-                    echo "<td class='hidden'>" . $tagsStr . "</td>";
+                    echo "<td class='hidden'><span>" . $tagsStr . "</span></td>";
                 echo "</tr>";
             }
             echo "</tbody>";
@@ -120,6 +118,21 @@
     ?>
 
       <script>
+        var _div = document.createElement('div');
+        jQuery.fn.dataTable.ext.type.search.html = function(data) {
+          _div.innerHTML = data;
+          return (_div.textContent ? _div.textContent : _div.innerText)
+            .replace(/[áÁàÀâÂäÄãÃåÅæÆ]/g, 'a')
+            .replace(/[çÇ]/g, 'c')
+            .replace(/[éÉèÈêÊëË]/g, 'e')
+            .replace(/[íÍìÌîÎïÏîĩĨĬĭ]/g, 'i')
+            .replace(/[ñÑ]/g, 'n')
+            .replace(/[óÓòÒôÔöÖœŒ]/g, 'o')
+            .replace(/[ß]/g, 's')
+            .replace(/[úÚùÙûÛüÜ]/g, 'u')
+            .replace(/[ýÝŷŶŸÿ]/g, 'y');
+        }
+
         $(document).ready(function() {
         var table = $('#table_id').DataTable({
               SearchPanes : true,
@@ -234,7 +247,9 @@
       function search(){
         var table = $('#table_id').DataTable();
         var criteria = document.getElementById("searchBox").value;
-        console.log(criteria);
+
+        criteria = jQuery.fn.dataTable.ext.type.search.html(criteria);
+
         table.search(criteria).draw();
       };
 

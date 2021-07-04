@@ -6,6 +6,6 @@ Tâches à faire :
 - ~~Afficher la liste des tags disponibles lorsque l'on clique sur la fonction rechercher - 04/07/2021~~
 - ~~robots.txt avec sitemap.xml - 04/07/2021~~
 - ~~Ordonner les dates des selects du plus récent au plus ancien - 04/07/2021~~
-- Améliorer la fonction rechercher https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data
+- ~~Améliorer la fonction rechercher https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data - 04/07/2021~~
 - Ajouter un passage sur la licence
 - Ajouter une page de blog
