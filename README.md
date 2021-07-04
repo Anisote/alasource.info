@@ -1,9 +1,11 @@
 Tâches à faire :
-- améliorer la fonction rechercher https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data
-- ajouter un passage sur la licence
-- ~~lorque l'on filtre sur un champs, faire en sorte qu'il ne soit visible dans les autres filtres que les options disponibles~~
-- ~~ajouter un footer sur le site en indiquant le lien github~~ réalisé
-- ajouter une page de blog
-- peupler la bdd
-- Implémenter les tags (à réfléchir)
+- ~~Lorque l'on filtre sur un champs, faire en sorte qu'il ne soit visible dans les autres filtres que les options disponibles~~
+- ~~Ajouter un footer sur le site en indiquant le lien github~~
+- ~~Implémenter les tags - 04/07/2021~~
+- ~~Ajoûter date de publication aux informations - 04/07/2021~~
+- Améliorer la fonction rechercher https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data
+- Ajouter un passage sur la licence
+- Ajouter une page de blog
 - Improve date filter order
+- Afficher la liste des tags disponibles lorsque l'on clique sur la fonction rechercher
+- robots.txt avec sitemap.xml
