@@ -1,0 +1,8 @@
+User-agent: *
+
+Disallow: /config/
+Disallow: /library/
+Disallow: /mail/
+Disallow: /scripts/
+Disallow: /securimage/
+Disallow: /themes/
