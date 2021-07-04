@@ -4,8 +4,8 @@ Tâches à faire :
 - ~~Implémenter les tags - 04/07/2021~~
 - ~~Ajoûter date de publication aux informations - 04/07/2021~~
 - ~~Afficher la liste des tags disponibles lorsque l'on clique sur la fonction rechercher - 04/07/2021~~
+- ~~robots.txt avec sitemap.xml - 04/07/2021~~
+- ~~Ordonner les dates des selects du plus récent au plus ancien - 04/07/2021~~
 - Améliorer la fonction rechercher https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data
 - Ajouter un passage sur la licence
 - Ajouter une page de blog
-- Improve date filter order
-- robots.txt avec sitemap.xml

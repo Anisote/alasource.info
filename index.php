@@ -81,8 +81,8 @@
                     echo "<th>Auteur</th>";
                     echo "<th>Type de média</th>";
                     echo "<th>Description</th>";
-                    echo "<th>Date de publication</th>";
-                    echo "<th>Date d'ajoût</th>";
+                    echo "<th data-type='date'>Date de publication</th>";
+                    echo "<th data-type='date'>Date d'ajoût</th>";
                     echo "<th class='hidden'>Tags</th>";
                 echo "</tr>";
            echo "</thead>";
@@ -146,7 +146,6 @@
                   var column = this;
                   var select;
                   if (column.index() != 4){
-
                     select = $('<select class="select_filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -160,10 +159,22 @@
                         refreshDropdowns();
                       })
 
-                    column.order('asc').draw(false).data().unique().each( function ( d, j ) {
-                        var val = $('<div/>').html(d).text();
-                        select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' );
-                    } );
+                    const dataType = select.parent().data('type');
+
+                    const data = column.order('asc').draw(false).data().unique();
+                    let values = [];
+                    for(var i = 0; i < data.length; ++i) {
+                      values.push($('<div/>').html(data[i]).text());
+                    }
+
+                    if(dataType === 'date') {
+                      const dateToNumber = (dateStr) => parseInt(dateStr.split('/').reverse().join(''));
+                      values = values.sort((a, b) => dateToNumber(b) - dateToNumber(a));
+                    }
+
+                    for(var val of values) {
+                      select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' );
+                    }
                   }                  
                   selects.push(select);
               } );
