@@ -101,7 +101,8 @@ CREATE TABLE `Information` (
   `field` int(11) NOT NULL,
   `categoryMedia` int(11) NOT NULL,
   `author` int(11) NOT NULL DEFAULT 0,
-  `date_ajout` date NOT NULL DEFAULT '0000-00-00',
+  `insert_date` date NOT NULL DEFAULT '0000-00-00',
+  `release_date` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`idInformation`),
   KEY `fk_Information_1` (`field`),
   KEY `fk_Information_2` (`categoryMedia`),
@@ -118,8 +119,59 @@ CREATE TABLE `Information` (
 
 LOCK TABLES `Information` WRITE;
 /*!40000 ALTER TABLE `Information` DISABLE KEYS */;
-INSERT INTO `Information` VALUES (3,'L’agroalimentaire vu de l’intérieur – intoxication ?','https://www.youtube.com/watch?v=lXXp-PVQ0HQ',2,3,9,'2021-02-12'),(4,'Si vous ne comprenez rien à la finance et à l\'économie','https://www.youtube.com/c/HeurekaFinanceEco/featured',1,2,1,'2021-02-12'),(5,'Le blog de Cyrille Borne','https://cyrille-borne.com/',3,1,2,'2021-02-12'),(6,'Environnement, d\'économie et du lien entre les deux','https://www.youtube.com/channel/UC1EacOJoqsKaYxaDomTCTEQ',4,2,3,'2021-02-12'),(7,'La méthode Delavier – volume 1 et 2','http://www.methode-delavier.com/',5,4,4,'2021-02-12'),(8,'Nutrition de la force','https://www.julienvenesson.fr/nutrition-de-la-force/',5,4,10,'2021-02-12'),(9,'Un mélange dynamique de sport, de fitness et de conseils pour rester en bonne santé','https://www.youtube.com/channel/UCPZv08N85_20nB1VFstRqhg',5,2,5,'2021-02-12'),(11,'Victor Ferry','https://www.youtube.com/channel/UCcueC-4NWGuPFQKzQWn5heA',6,2,8,'2021-02-12'),(12,'Donner matière à pensée','https://www.youtube.com/c/LePr%C3%A9cepteurOfficiel/featured',7,2,6,'2021-02-12'),(13,'Culture populaire (ciné, séries, jeux, littératures ou macramé) avec le couteau entre les dents','https://www.youtube.com/user/bolchegeek',7,2,7,'2021-02-12'),(14,'Bernays – Comment manipuler l’opinion','https://www.youtube.com/watch?v=UvkhFpb7M7Y',7,3,6,'2021-02-12'),(15,'Le contrat social – John Wick','https://www.youtube.com/watch?v=XXKnLJGq6sw',7,3,7,'2021-02-12'),(17,'Ne pas maigrir malgré un déficité calorique ? (les pièges du total calorique et du régime)','https://www.youtube.com/watch?v=iHCnuGQcUmo&list=LL&index=2&t=14s',2,3,5,'2021-05-12'),(18,'Ecart salarial : réponse à Heu?reka...','https://www.youtube.com/watch?v=Kd00wyflCFY&list=LL&index=4',9,3,12,'2021-05-12'),(19,'Une expérience sociale avec 1200 abonnés','https://www.youtube.com/watch?v=ppSrAHoGwrI&list=LL&index=20&t=11s',7,3,13,'2021-05-12'),(20,'Comprendre et se sortir du surendettement','https://www.youtube.com/watch?v=x9z65AZ9JuM&list=LL&index=22',1,3,1,'2021-05-12'),(21,'Les leçons rhétoriques de Nietzsche','https://www.youtube.com/watch?v=WV34-7hpKLE&list=LL&index=23',6,3,8,'2021-05-12'),(22,'L\'amputation de la miss Olympia Melissa Coates','https://www.youtube.com/watch?v=t7ignKx9UM8&list=LL&index=45',5,3,5,'2021-05-12'),(23,'La Séance de Marty - Rétine et Pupille (Avec François Theurel)','https://www.youtube.com/watch?v=qPpHf9mMq6k&list=LL&index=55&t=419s',10,3,14,'2021-05-12'),(24,'Zootopia est-il à côté de la plaque ? ','https://www.youtube.com/watch?v=NcShYK-MneM&list=LL&index=59',7,3,7,'2021-05-12'),(25,'Sardoche passe par les 5 étapes du deuil après un permaban','https://www.youtube.com/watch?v=jOtz219T-BM',14,3,21,'2021-05-14'),(26,'Nudge et coronavirus : la manipulation préférée de Macron ?','https://www.youtube.com/watch?v=8wC2njqNwn0',7,3,22,'2021-05-17'),(27,'Ecriture abusive','https://www.youtube.com/watch?v=FViXADQb_k0',6,3,23,'2021-05-17'),(28,'Propagande des médias pour Emmanuel Macron','https://www.youtube.com/watch?v=S72b_XF-Y88',15,3,22,'2021-05-24'),(29,'Etirement et mobilité','https://www.youtube.com/watch?app=desktop&v=0Z9bT-gfw8Y',5,3,24,'2021-06-13'),(30,'Peut-on encore sauver le climat ? avec Pascal Boniface','https://www.youtube.com/watch?v=3Pr577eUfTc',16,3,25,'2021-06-13'),(31,'Présentation des prévisions de tempêrature pour les 100 prochaines années','https://www.youtube.com/watch?v=6Zg1mSPbVBg',16,3,25,'2021-06-13'),(32,'Energie et changement climatique','https://jancovici.com/publications-et-co/cours-mines-paristech-2019/cours-mines-paris-tech-juin-2019',16,8,25,'2021-06-13');
+INSERT INTO `Information` VALUES (3,'L’agroalimentaire vu de l’intérieur – intoxication ?','https://www.youtube.com/watch?v=lXXp-PVQ0HQ',2,3,9,'2021-02-12','0000-00-00'),(4,'Si vous ne comprenez rien à la finance et à l\'économie','https://www.youtube.com/c/HeurekaFinanceEco/featured',1,2,1,'2021-02-12','0000-00-00'),(5,'Le blog de Cyrille Borne','https://cyrille-borne.com/',3,1,2,'2021-02-12','0000-00-00'),(6,'Environnement, d\'économie et du lien entre les deux','https://www.youtube.com/channel/UC1EacOJoqsKaYxaDomTCTEQ',4,2,3,'2021-02-12','0000-00-00'),(7,'La méthode Delavier – volume 1 et 2','http://www.methode-delavier.com/',5,4,4,'2021-02-12','0000-00-00'),(8,'Nutrition de la force','https://www.julienvenesson.fr/nutrition-de-la-force/',5,4,10,'2021-02-12','0000-00-00'),(9,'Un mélange dynamique de sport, de fitness et de conseils pour rester en bonne santé','https://www.youtube.com/channel/UCPZv08N85_20nB1VFstRqhg',5,2,5,'2021-02-12','0000-00-00'),(11,'Victor Ferry','https://www.youtube.com/channel/UCcueC-4NWGuPFQKzQWn5heA',6,2,8,'2021-02-12','0000-00-00'),(12,'Donner matière à pensée','https://www.youtube.com/c/LePr%C3%A9cepteurOfficiel/featured',7,2,6,'2021-02-12','0000-00-00'),(13,'Culture populaire (ciné, séries, jeux, littératures ou macramé) avec le couteau entre les dents','https://www.youtube.com/user/bolchegeek',7,2,7,'2021-02-12','0000-00-00'),(14,'Bernays – Comment manipuler l’opinion','https://www.youtube.com/watch?v=UvkhFpb7M7Y',7,3,6,'2021-02-12','0000-00-00'),(15,'Le contrat social – John Wick','https://www.youtube.com/watch?v=XXKnLJGq6sw',7,3,7,'2021-02-12','0000-00-00'),(17,'Ne pas maigrir malgré un déficité calorique ? (les pièges du total calorique et du régime)','https://www.youtube.com/watch?v=iHCnuGQcUmo&list=LL&index=2&t=14s',2,3,5,'2021-05-12','0000-00-00'),(18,'Ecart salarial : réponse à Heu?reka...','https://www.youtube.com/watch?v=Kd00wyflCFY&list=LL&index=4',9,3,12,'2021-05-12','0000-00-00'),(19,'Une expérience sociale avec 1200 abonnés','https://www.youtube.com/watch?v=ppSrAHoGwrI&list=LL&index=20&t=11s',7,3,13,'2021-05-12','0000-00-00'),(20,'Comprendre et se sortir du surendettement','https://www.youtube.com/watch?v=x9z65AZ9JuM&list=LL&index=22',1,3,1,'2021-05-12','0000-00-00'),(21,'Les leçons rhétoriques de Nietzsche','https://www.youtube.com/watch?v=WV34-7hpKLE&list=LL&index=23',6,3,8,'2021-05-12','0000-00-00'),(22,'L\'amputation de la miss Olympia Melissa Coates','https://www.youtube.com/watch?v=t7ignKx9UM8&list=LL&index=45',5,3,5,'2021-05-12','0000-00-00'),(23,'La Séance de Marty - Rétine et Pupille (Avec François Theurel)','https://www.youtube.com/watch?v=qPpHf9mMq6k&list=LL&index=55&t=419s',10,3,14,'2021-05-12','0000-00-00'),(24,'Zootopia est-il à côté de la plaque ? ','https://www.youtube.com/watch?v=NcShYK-MneM&list=LL&index=59',7,3,7,'2021-05-12','0000-00-00'),(25,'Sardoche passe par les 5 étapes du deuil après un permaban','https://www.youtube.com/watch?v=jOtz219T-BM',14,3,21,'2021-05-14','0000-00-00'),(26,'Nudge et coronavirus : la manipulation préférée de Macron ?','https://www.youtube.com/watch?v=8wC2njqNwn0',7,3,22,'2021-05-17','0000-00-00'),(27,'Ecriture abusive','https://www.youtube.com/watch?v=FViXADQb_k0',6,3,23,'2021-05-17','0000-00-00'),(28,'Propagande des médias pour Emmanuel Macron','https://www.youtube.com/watch?v=S72b_XF-Y88',15,3,22,'2021-05-24','0000-00-00'),(29,'Etirement et mobilité','https://www.youtube.com/watch?app=desktop&v=0Z9bT-gfw8Y',5,3,24,'2021-06-13','0000-00-00'),(30,'Peut-on encore sauver le climat ? avec Pascal Boniface','https://www.youtube.com/watch?v=3Pr577eUfTc',16,3,25,'2021-06-13','0000-00-00'),(31,'Présentation des prévisions de tempêrature pour les 100 prochaines années','https://www.youtube.com/watch?v=6Zg1mSPbVBg',16,3,25,'2021-06-13','0000-00-00'),(32,'Energie et changement climatique','https://jancovici.com/publications-et-co/cours-mines-paristech-2019/cours-mines-paris-tech-juin-2019',16,8,25,'2021-06-13','0000-00-00');
 /*!40000 ALTER TABLE `Information` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Information_tag`
+--
+
+DROP TABLE IF EXISTS `Information_tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Information_tag` (
+  `idInformation` int(11) NOT NULL,
+  `idTag` int(11) NOT NULL,
+  PRIMARY KEY (`idInformation`),
+  KEY `fk_Information_tag_2_idx` (`idTag`),
+  CONSTRAINT `fk_Information_tag_1` FOREIGN KEY (`idInformation`) REFERENCES `Information` (`idInformation`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Information_tag_2` FOREIGN KEY (`idTag`) REFERENCES `Tag` (`idTag`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Information_tag`
+--
+
+LOCK TABLES `Information_tag` WRITE;
+/*!40000 ALTER TABLE `Information_tag` DISABLE KEYS */;
+INSERT INTO `Information_tag` VALUES (9,1),(29,1);
+/*!40000 ALTER TABLE `Information_tag` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Tag`
+--
+
+DROP TABLE IF EXISTS `Tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Tag` (
+  `idTag` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`idTag`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Tag`
+--
+
+LOCK TABLES `Tag` WRITE;
+/*!40000 ALTER TABLE `Tag` DISABLE KEYS */;
+INSERT INTO `Tag` VALUES (1,'Fitness');
+/*!40000 ALTER TABLE `Tag` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -131,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-13 23:20:10
+-- Dump completed on 2021-07-04 12:00:42

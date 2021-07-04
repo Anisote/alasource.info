@@ -24,6 +24,29 @@
       inner join Author on Author = Author.idAuthor
       order by fielddesc;
       ";
+
+    $sqlInformationTag = "SELECT idInformation, name FROM Information_tag NATURAL JOIN Tag;";
+    $informationTag = Array();
+    if($resultInformationTag = mysqli_query($link, $sqlInformationTag)) {
+        if(mysqli_num_rows($resultInformationTag) > 0){
+            while($row = mysqli_fetch_array($resultInformationTag)) {
+                $informationId = $row['idInformation'];
+
+                if(empty($informationTag[$informationId])) {
+                    $informationTag[$informationId] = Array();
+                }
+
+                $informationTag[$informationId][] = $row['name'];
+            }
+            
+            mysqli_free_result($resultInformationTag);
+        } else {
+            echo "No records matching your query were found.";
+        }
+    } else {
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    }
+
     if($result = mysqli_query($link, $sql)){
         if(mysqli_num_rows($result) > 0){
             echo "<table id='table_id' class='display'>";
@@ -36,18 +59,28 @@
                     echo "<th>Description</th>";
                     echo "<th>Date de publication</th>";
                     echo "<th>Date d'ajoût</th>";
+                    echo "<th class='hidden'>Tags</th>";
                 echo "</tr>";
            echo "</thead>";
            echo "<tbody>";
             while($row = mysqli_fetch_array($result)){
+                $id = $row['idInformation'];
+                $tags = $informationTag[$id];
+                if(empty($tags)) {
+                    $tags = Array();
+                }
+
+                $tagsStr = join(', ', $tags);
+
                 echo "<tr>";
-                    echo "<td class='center'>" . $row['idInformation'] . "</td>";
+                    echo "<td class='center'>" . $id . "</td>";
                     echo "<td>" . $row['fielddesc'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
                     echo "<td><a href='" . $row['link'] . "' target='_blank' rel='nofollow'>" . $row['infodesc'] . "</a></td>";
                     echo "<td class='center'>" . $row['datePublication'] . "</td>";
                     echo "<td class='center'>" . $row['dateAjout'] . "</td>";
+                    echo "<td class='hidden'>" . $tagsStr . "</td>";
                 echo "</tr>";
             }
             echo "</tbody>";
