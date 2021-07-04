@@ -18,7 +18,7 @@
 
     <?php
 
-    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(date_ajout, '%d/%m/%Y') as dateAjout FROM Information
+    $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
       inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
       inner join Field on field = Field.idField
       inner join Author on Author = Author.idAuthor
@@ -34,18 +34,20 @@
                     echo "<th>Auteur</th>";
                     echo "<th>Type de média</th>";
                     echo "<th>Description</th>";
+                    echo "<th>Date de publication</th>";
                     echo "<th>Date d'ajoût</th>";
                 echo "</tr>";
            echo "</thead>";
            echo "<tbody>";
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
-                    echo "<td>" . $row['idInformation'] . "</td>";
+                    echo "<td class='center'>" . $row['idInformation'] . "</td>";
                     echo "<td>" . $row['fielddesc'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
                     echo "<td>" . $row['cateMediadesc'] . "</td>";
                     echo "<td><a href='" . $row['link'] . "' target='_blank' rel='nofollow'>" . $row['infodesc'] . "</a></td>";
-                    echo "<td>" . $row['dateAjout'] . "</td>";
+                    echo "<td class='center'>" . $row['datePublication'] . "</td>";
+                    echo "<td class='center'>" . $row['dateAjout'] . "</td>";
                 echo "</tr>";
             }
             echo "</tbody>";

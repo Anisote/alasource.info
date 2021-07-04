@@ -7,7 +7,7 @@
   <div id="content">
     <h2>Le contenu du site</h2>
     <p>
-      <b></br>Pourquoi est-ce qu’une source apparaît ici ?</b></br>
+      <b>Pourquoi est-ce qu’une source apparaît ici ?</b></br>
 
       Pour figurer ici, une source doit répondre à ces différents critères :
       <ul>
