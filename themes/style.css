@@ -66,3 +66,12 @@ th{
 .hidden {
   display: none !important;
 }
+
+
+@media only screen and (min-width : 600px) {
+  .center15{
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}

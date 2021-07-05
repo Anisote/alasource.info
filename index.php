@@ -6,7 +6,8 @@
 <body>
   <div id="content">
     <p class ="center15">
-      Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici, bonne découverte.
+      Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici.</br>
+      Bonne découverte.
     </p>
 
     <div class="center25">
