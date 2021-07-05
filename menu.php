@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" defer href="library/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="themes/style.css?1"/>
+    <link rel="stylesheet" type="text/css" href="themes/style.css?3"/>
 
     <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2 -->
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>

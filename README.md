@@ -7,6 +7,6 @@ Tâches à faire :
 - ~~robots.txt avec sitemap.xml~~ - 04/07/2021
 - ~~Ordonner les dates des selects du plus récent au plus ancien~~ - 04/07/2021
 - ~~Améliorer la fonction rechercher https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data~~ - 04/07/2021
-- ~~Réducation de la marge pour les petites résolutions~~ - 05/07/2021
+- ~~Réduction de la marge pour les petites résolutions~~ - 05/07/2021
 - Ajouter un passage sur la licence
 - Ajouter une page de blog

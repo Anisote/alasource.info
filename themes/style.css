@@ -74,4 +74,10 @@ th{
     margin-left: 2%;
     margin-right: 2%;
   }
+
+  .center25{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+  }
 }
