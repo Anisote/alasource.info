@@ -1,12 +1,12 @@
-Tâches à faire :
-- ~~Lorque l'on filtre sur un champs, faire en sorte qu'il ne soit visible dans les autres filtres que les options disponibles~~
-- ~~Ajouter un footer sur le site en indiquant le lien github~~
-- ~~Implémenter les tags~~ - 04/07/2021
-- ~~Ajoûter date de publication aux informations~~ - 04/07/2021
-- ~~Afficher la liste des tags disponibles lorsque l'on clique sur la fonction rechercher~~ - 04/07/2021
-- ~~robots.txt avec sitemap.xml~~ - 04/07/2021
-- ~~Ordonner les dates des selects du plus récent au plus ancien~~ - 04/07/2021
-- ~~Améliorer la fonction rechercher https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data~~ - 04/07/2021
-- ~~Réduction de la marge pour les petites résolutions~~ - 05/07/2021
-- Ajouter un passage sur la licence
-- Ajouter une page de blog
+TODO list : 
+- ~~When a filter is enable, only displays options in other filters which have data~~
+- ~~Implement a footer with the Github link~~
+- ~~Implement tags~~ - 04/07/2021
+- ~~Implement released dates about data~~ - 04/07/2021
+- ~~Displays the tags list when the search box is selected~~ - 04/07/2021
+- ~~Add a robots.txt file with a sitemap.xml~~ - 04/07/2021
+- ~~Order the dates from the older to the most recent~~ - 04/07/2021
+- ~~Improve the search bar in ignoring accent https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data~~ - 04/07/2021
+- ~~Reduce margin for the small resolutions~~ - 05/07/2021
+- Add some words about the licence
+- Add a blog page
