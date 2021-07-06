@@ -100,7 +100,7 @@
                     echo "<td><span>" . $row['fielddesc'] . "</span></td>";
                     echo "<td><span>" . $row['name'] . "</span></td>";
                     echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
-                    echo "<td><a href='" . $row['link'] . "' target='_blank' rel='nofollow'>" . $row['infodesc'] . "</a></td>";
+                    echo "<td><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
                     echo "<td class='center'>" . $row['datePublication'] . "</td>";
                     echo "<td class='center'>" . $row['dateAjout'] . "</td>";
                     echo "<td class='hidden'><span>" . $tagsStr . "</span></td>";
