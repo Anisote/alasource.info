@@ -1,0 +1,6 @@
+<?php
+  $strHostName = "localhost";
+  $strDbName = "info";
+  $strUserName = "";
+  $strPassword = "";
+?>

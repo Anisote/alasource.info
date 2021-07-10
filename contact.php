@@ -3,13 +3,6 @@
   require_once('config.php');
   require_once('menu.php');
 
-  include_once './securimage/securimage.php';
-  include_once '/securimage/securimage.php';
-
-  $PATH_SECURIMAGE = '/securimage';
-
-  $securimage = new Securimage();
-
   $display = array(
     'name' => '',
     'email' => '',
@@ -42,43 +35,45 @@
 
 	<p>Message :<br/><textarea required name="message" value="<?php echo $display['message']; ?>" rows="8" cols="90" maxlength="350"><?php echo $display['message']; ?></textarea></p>
 
-	<p><img id="captcha" src= '<?php echo "$PATH_SECURIMAGE" ?>/securimage_show.php' alt="CAPTCHA Image" />
-	<a href="#" onclick="document.getElementById('captcha').src = '<?php echo "$PATH_SECURIMAGE" ?>/securimage_show.php?' + Math.random(); return false">[ Image différente ]</a>
-	<input type="text" name="captcha_code" size="10" maxlength="6" /></p>
-
 	<p><input type="submit" value="Send"><input type="reset" value="Clear"></p>
 	</form>
 
 
 	<?php
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {		
-		if ($securimage->check($_POST['captcha_code']) == false) {
-		  echo "Le code de sécurité est incorrecte, merci de réessayer.<br /><br />";
-		}else
-		{
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+	{
+		
+		if (isset($name, $website, $description, $message, )) {	
 			$name = htmlspecialchars($_POST['name']);
 			$email = htmlspecialchars($_POST['email']);
 			$website = htmlspecialchars($_POST['website']);
 			$description = htmlspecialchars($_POST['description']);
 			$message = htmlspecialchars($_POST['message']);
-			$formcontent=" From: $name and $email\n Website: $website \n Message: $message";
+
+			$to = "contact@alasource.info";
+	        $subject = "From: $name and $email\n Website: $website \n Message: $message";
+	                  
+	        $header = "From:contact@alasource.info.\r\n";
+	        $header .= "MIME-Version: 1.0\r\n";
+	        $header .= "Content-type: text/html\r\n";
+	         
+	        $retval = mail ($to,$subject,$message,$header);
+
+	        if( $retval == true ) {
+	       	    echo "Message sent successfully...";
+	        }else {
+	            echo "Message could not be sent...";
+	        }
+			$formcontent="";
 			$recipient = "contact@alasource.info";
 			$subject = "Formulaire de contact - $description\n";
 			$mailheader = "From: user@alasource.info \r\n";
-
-			if (isset($name, $website, $description, $message, )) {		# mail not yet enabled on the server 
-					# mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
-					$myfile = fopen("mail/contact.txt", "a");
-					$content = mb_strimwidth("From: $name and $email\nWebsite: $website\nMessage: $message\nFormulaire de contact - $description\n$message\n------------------------------------\n", 0, 600, "...");;
-					fwrite($myfile, $content); 
-					echo "Merci pour votre message !";
-
-			}else
-			{
-					echo "Merci de bien vouloir saisir tous les champs obligatoires";
-			}
-	
+			echo "Merci pour votre message !";
+		}else
+		{
+			echo "Merci de bien vouloir saisir tous les champs obligatoires";
 		}
+
 	}
 	?>
 
