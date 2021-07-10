@@ -43,32 +43,27 @@
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 	{
 		
+		$name = htmlspecialchars($_POST['name']);
+		$email = htmlspecialchars($_POST['email']);
+		$website = htmlspecialchars($_POST['website']);
+		$description = htmlspecialchars($_POST['description']);
+		$message = htmlspecialchars($_POST['message']);
+		
 		if (isset($name, $website, $description, $message, )) {	
-			$name = htmlspecialchars($_POST['name']);
-			$email = htmlspecialchars($_POST['email']);
-			$website = htmlspecialchars($_POST['website']);
-			$description = htmlspecialchars($_POST['description']);
-			$message = htmlspecialchars($_POST['message']);
-
 			$to = "contact@alasource.info";
-	        $subject = "From: $name and $email\n Website: $website \n Message: $message";
+	        $subject = "Formulaire de contact - $description\n";
 	                  
-	        $header = "From:contact@alasource.info.\r\n";
+	        $header = "From:contact@alasource.info\r\n";
 	        $header .= "MIME-Version: 1.0\r\n";
 	        $header .= "Content-type: text/html\r\n";
 	         
 	        $retval = mail ($to,$subject,$message,$header);
 
 	        if( $retval == true ) {
-	       	    echo "Message sent successfully...";
+				echo "Merci pour votre message !";
 	        }else {
-	            echo "Message could not be sent...";
+	            echo "Erreur dans l'envois du message.";
 	        }
-			$formcontent="";
-			$recipient = "contact@alasource.info";
-			$subject = "Formulaire de contact - $description\n";
-			$mailheader = "From: user@alasource.info \r\n";
-			echo "Merci pour votre message !";
 		}else
 		{
 			echo "Merci de bien vouloir saisir tous les champs obligatoires";
