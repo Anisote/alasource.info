@@ -8,6 +8,6 @@ TODO list :
 - ~~Order the dates from the older to the most recent~~ - 04/07/2021
 - ~~Improve the search bar in ignoring accent https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data~~ - 04/07/2021
 - ~~Reduce margin for the small resolutions~~ - 05/07/2021
-- Implement hcaptcha in the contact form ~~ - 11/07/2021
+- ~~Implement hcaptcha in the contact form~~ - 11/07/2021
 - Add some words about the licence
 - Add a blog page

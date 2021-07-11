@@ -7,4 +7,7 @@
   $HCAPTCHA_SITEKEY = "";
   $HCAPTCHA_SECRET = "";
   $HCAPTCHA_VERIFY_URL = "https://hcaptcha.com/siteverify";
+
+
+  $BASE_URL = "https://alasource.info";
 ?>

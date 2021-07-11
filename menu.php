@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="<?php echo $BASE_URL ?>">
+
     <link rel="stylesheet" type="text/css" defer href="library/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="themes/style.css?3"/>
 
@@ -18,27 +20,29 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" >
             <h1>
-              <a class="nav-link active" aria-current="page" href="/"><img src="themes/pictures/logo.png" alt="logo" height="80px" width="300px"></img></a>
+              <a class="nav-link active" aria-current="page" href="index.php"><img src="themes/pictures/logo.png" alt="logo" id="logo" height="80px"></img></a>
             </h1>
           </li>
         </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav me-auto"></div>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/faq.php">Foire aux questions</a>
+            <a class="nav-link" href="faq.php">Foire aux questions</a>
           </li>        
           <li class="nav-item">
-            <a class="nav-link" href="/contact.php">Contact</a>
+            <a class="nav-link" href="contact.php">Contact</a>
           </li>
         </ul>
       </div>
     </div>
     <script src="library/datatables.min.js"></script>  
     <script src="https://hcaptcha.com/1/api.js"></script>
+    <script src="library/bootstrap.min.js"></script>
   </nav>
