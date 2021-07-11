@@ -35,7 +35,7 @@
 		<p>Message :<br/><textarea required name="message" value="<?php echo $display['message']; ?>" rows="8" cols="90" maxlength="350"><?php echo $display['message']; ?></textarea></p>
 
 		<p>
-			<button class="h-captcha" data-sitekey="<?php echo $HCAPTCHA; ?>" data-callback="onSubmit" >Envoyer</button>
+			<button class="h-captcha" data-sitekey="<?php echo $HCAPTCHA_SITEKEY; ?>" data-callback="onSubmit" >Envoyer</button>
 
 			<button type="reset">Effacer les champs</button>
 		</p>
@@ -51,13 +51,12 @@
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
 			$hcaptchaData = array(
-				"secret" => $HCAPTCHA,
+				"secret" => $HCAPTCHA_SECRET,
 			 	"response" => $_POST['h-captcha-response']
 			);
 
 			$hcaptchaRequest = curl_init();
 
-			curl_setopt($hcaptchaRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
 			curl_setopt($hcaptchaRequest, CURLOPT_URL, $HCAPTCHA_VERIFY_URL);
 			curl_setopt($hcaptchaRequest, CURLOPT_POST, TRUE);
 			curl_setopt($hcaptchaRequest, CURLOPT_POSTFIELDS, http_build_query($hcaptchaData));

@@ -4,6 +4,7 @@
   $strUserName = "";
   $strPassword = "";
 
-  $HCAPTCHA = "";
+  $HCAPTCHA_SITEKEY = "";
+  $HCAPTCHA_SECRET = "";
   $HCAPTCHA_VERIFY_URL = "https://hcaptcha.com/siteverify";
 ?>
