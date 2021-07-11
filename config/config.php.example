@@ -3,4 +3,6 @@
   $strDbName = "info";
   $strUserName = "";
   $strPassword = "";
+
+  $HCAPTCHA = "";
 ?>

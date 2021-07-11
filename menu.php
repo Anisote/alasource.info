@@ -39,6 +39,5 @@
     </div>
   </div>
   <script src="library/datatables.min.js"></script>  
-  <!-- https://datatables.net/plug-ins/filtering/type-based/accent-neutralise -->
-  <!--script src="library/accent_neutralise.js"></script-->
+  <script src="https://hcaptcha.com/1/api.js"></script>
 </nav>

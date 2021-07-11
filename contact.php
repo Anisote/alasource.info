@@ -25,19 +25,28 @@
 	<h2>Formulaire de contact</h2>
   	<p>Vous pouvez utiliser ce formulaire afin de me contacter.</p>
 
-	<form action="contact.php" method="POST">
-	<p>Nom : <br/><input required type="text" name="name" value="<?php echo $display['name']; ?>" maxlength="50" size="45"></p>
-	<p>Email : <br/><input type="email" name="email" value="<?php echo $display['email']; ?>" maxlength="50" size="45"></p>
+	<form id="contact_form" action="contact.php" method="POST">
+		<p>Nom : <br/><input required type="text" name="name" value="<?php echo $display['name']; ?>" maxlength="50" size="45"></p>
+		<p>Email : <br/><input type="email" name="email" value="<?php echo $display['email']; ?>" maxlength="50" size="45"></p>
 
-	<p>Site internet : <br/><input required type="text" name="website" value="<?php echo $display['website']; ?>" maxlength="50" size="45"></p>
+		<p>Site internet : <br/><input required type="text" name="website" value="<?php echo $display['website']; ?>" maxlength="50" size="45"></p>
 
-	<p>Description de la demande : <br/><input required type="text" name="description" value="<?php echo $display['description']; ?>" maxlength="100" size="90"></p>
+		<p>Description de la demande : <br/><input required type="text" name="description" value="<?php echo $display['description']; ?>" maxlength="100" size="90"></p>
 
-	<p>Message :<br/><textarea required name="message" value="<?php echo $display['message']; ?>" rows="8" cols="90" maxlength="350"><?php echo $display['message']; ?></textarea></p>
+		<p>Message :<br/><textarea required name="message" value="<?php echo $display['message']; ?>" rows="8" cols="90" maxlength="350"><?php echo $display['message']; ?></textarea></p>
 
-	<p><input type="submit" value="Send"><input type="reset" value="Clear"></p>
+		<p>
+			<button class="h-captcha" data-sitekey="<?php echo $HCAPTCHA; ?>" data-callback="onSubmit" >Envoyer</button>
+
+			<button type="reset">Effacer les champs</button>
+		</p>
+
+		<script type="text/javascript">
+		  	function onSubmit(token) {
+		    	document.getElementById('contact_form').submit();
+		  	}
+		</script>
 	</form>
-
 
 	<?php
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') 
