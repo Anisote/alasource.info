@@ -50,23 +50,25 @@
 	<?php
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
-				$captcha = $_SERVER['h-captcha-response'];
-				$hcaptchaData = array("secret" => $HCAPTCHA, "response" => token);
+			$hcaptchaData = array(
+				"secret" => $HCAPTCHA,
+			 	"response" => $_SERVER['h-captcha-response']
+			);
 
 			$hcaptchaRequest = curl_init();
 
 			curl_setopt($hcaptchaRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
 			curl_setopt($hcaptchaRequest, CURLOPT_URL, $HCAPTCHA_VERIFY_URL);
 			curl_setopt($hcaptchaRequest, CURLOPT_POST, TRUE);
-			curl_setopt($hcaptchaRequest, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($hcaptchaRequest, CURLOPT_POSTFIELDS, http_build_query($hcaptchaData));
+			curl_setopt($hcaptchaRequest, CURLOPT_RETURNTRANSFER, TRUE);
 
-				$hcaptchaResponse = curl_exec($hcaptchaRequest);
-				curl_close($hcaptchaRequest);
+			$hcaptchaResponse = curl_exec($hcaptchaRequest);
+			curl_close($hcaptchaRequest);
 
-				$verified = json_decode($hcaptchaResponse);
+			$verified = json_decode($hcaptchaResponse);
 
-				if($verified->success) {
+			if($verified->success) {
 				$name = htmlspecialchars($_POST['name']);
 				$email = htmlspecialchars($_POST['email']);
 				$website = htmlspecialchars($_POST['website']);
