@@ -12,32 +12,33 @@
     <title>Alasource.info</title>
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item" >
-          <h1>
-            <a class="nav-link active" aria-current="page" href="/"><img src="themes/pictures/logo.png" alt="logo" height="80px" width="300px"></img></a>
-          </h1>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="faq.php">Foire aux questions</a>
-        </li>        
-        <li class="nav-item">
-          <a class="nav-link" href="contact.php">Contact</a>
-        </li>
-      </ul>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" >
+            <h1>
+              <a class="nav-link active" aria-current="page" href="/"><img src="themes/pictures/logo.png" alt="logo" height="80px" width="300px"></img></a>
+            </h1>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/faq.php">Foire aux questions</a>
+          </li>        
+          <li class="nav-item">
+            <a class="nav-link" href="/contact.php">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <script src="library/datatables.min.js"></script>  
-  <script src="https://hcaptcha.com/1/api.js"></script>
-</nav>
+    <script src="library/datatables.min.js"></script>  
+    <script src="https://hcaptcha.com/1/api.js"></script>
+  </nav>

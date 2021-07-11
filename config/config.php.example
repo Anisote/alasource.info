@@ -5,4 +5,5 @@
   $strPassword = "";
 
   $HCAPTCHA = "";
+  $HCAPTCHA_VERIFY_URL = "https://hcaptcha.com/siteverify";
 ?>
