@@ -9,5 +9,7 @@ TODO list :
 - ~~Improve the search bar in ignoring accent https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data~~ - 04/07/2021
 - ~~Reduce margin for the small resolutions~~ - 05/07/2021
 - ~~Implement hcaptcha in the contact form~~ - 11/07/2021
-- Add some words about the licence
-- Add a blog page
+- Fix bug about column filter when a search is done
+- Add a function to create tags and modify tags in the administration panel
+- Edit fields for an information entry 
+- Resize the datable when the zoom changed
