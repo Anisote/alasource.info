@@ -52,7 +52,7 @@
 		{
 			$hcaptchaData = array(
 				"secret" => $HCAPTCHA,
-			 	"response" => $_SERVER['h-captcha-response']
+			 	"response" => $_POST['h-captcha-response']
 			);
 
 			$hcaptchaRequest = curl_init();
