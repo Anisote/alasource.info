@@ -186,7 +186,7 @@
                   }
 
                   for(var val of values) {
-                    select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' );
+                    select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' ); 
                   }
                 }                  
                 selects.push(select);
@@ -199,7 +199,7 @@
     function refreshSelect(selectData, others) {
       var $select = selectData.$select;
       var data = api.rows().data().filter(d => others.every(o => {
-        return !o.value || d[o.dataIndex] === o.value
+        return !o.value || jQuery.fn.dataTable.ext.type.search.html(d[o.dataIndex]) === o.value
       }));
       var $options = $select.children('option');
 
@@ -207,7 +207,7 @@
 
       for(var i = 0; i < data.length; ++i) {
         var row = data[i];
-        var cellValue = row[selectData.dataIndex];
+        var cellValue = jQuery.fn.dataTable.ext.type.search.html(row[selectData.dataIndex]);
 
         var option;
         for(var j = 0; j < $options.length; ++j) {
