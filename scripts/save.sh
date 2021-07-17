@@ -17,5 +17,7 @@ echo $DATABASE
 set -x
 mysqldump -u $USERNAME -p$PASSWORD $DATABASE > database.sql
 
+chmod 440 database.sql
+
 # clean metadata
 find ../themes/pictures/ -type f -exec exiftool -overwrite_original -all=  "{}" \;
