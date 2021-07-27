@@ -162,9 +162,9 @@
                   select = $('<select class="select_filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                     .appendTo( $(column.header()) )
                     .on( 'change', function () {
-                      var val = $.fn.dataTable.util.escapeRegex(
+                      var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
                         $(this).val()
-                      );
+                      ));
                       column
                         .search( val ? '^'+val+'$' : '', true, false )
                         .draw();
@@ -211,7 +211,7 @@
 
         var option;
         for(var j = 0; j < $options.length; ++j) {
-          if($($options[j]).attr('value') === cellValue) {
+          if(jQuery.fn.dataTable.ext.type.search.html($($options[j]).attr('value')) === cellValue) {
             option = $options[j];
             break;
           }
@@ -246,9 +246,7 @@
 
     function search(){
       var table = $('#table_id').DataTable();
-      var criteria = document.getElementById("searchBox").value;
-
-      criteria = jQuery.fn.dataTable.ext.type.search.html(criteria);
+      var criteria = jQuery.fn.dataTable.ext.type.search.html(document.getElementById("searchBox").value);
 
       table.search(criteria).draw();
     };
@@ -257,12 +255,6 @@
       var table = $('#table_id').DataTable();
 
       document.getElementById("searchBox").value = "";
-
-      /*
-      for (let item of document.getElementsByClassName("select_filter")) {
-          item.selectedIndex=0;
-      }
-      */
 
       table.search("").draw();
     };
