@@ -71,6 +71,26 @@ th{
   display: none !important;
 }
 
+.deleteTables tbody {
+  overflow: auto;
+  display: block;
+  height: 100px;
+}
+.deleteTables thead {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+}
+
+.deleteTableInformation tbody {
+  height: 350px;
+}
+
+.row{
+  margin-top : 10px;
+  margin-bottom:  10px;
+}
 
 @media only screen and (min-width : 600px) {
   .center15{
