@@ -238,7 +238,7 @@
     function refreshDropdowns() {
       var selectsData = selects.filter(s => s).map(s => ({
         $select: s,
-        value: s.val(),
+        value: jQuery.fn.dataTable.ext.type.search.html(s.val()),
         dataIndex: selects.indexOf(s)
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
