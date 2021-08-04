@@ -6,3 +6,5 @@ Disallow: /mail/
 Disallow: /scripts/
 Disallow: /securimage/
 Disallow: /themes/
+
+Sitemap: https://alasource.info/sitemap.xml
