@@ -17,6 +17,7 @@ echo $DATABASE
 set -x
 mysqldump -u $USERNAME -p$PASSWORD $DATABASE > database.sql
 
+sudo chown :www-data database.sql
 chmod 440 database.sql
 
 # clean metadata

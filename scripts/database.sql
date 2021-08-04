@@ -26,7 +26,7 @@ CREATE TABLE `Author` (
   `idAuthor` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(90) NOT NULL,
   PRIMARY KEY (`idAuthor`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `Field` (
 
 LOCK TABLES `Field` WRITE;
 /*!40000 ALTER TABLE `Field` DISABLE KEYS */;
-INSERT INTO `Field` VALUES (1,'Economie'),(2,'Alimentation'),(3,'Education'),(4,'Energie'),(5,'Musculation'),(6,'Rhétorique et language'),(7,'Sociologie'),(8,'Développement personnel'),(9,'Relation Homme/Femme'),(10,'Cinéma'),(14,'Psychologie'),(15,'Média'),(16,'Ecologie'),(17,'Technologie'),(18,'Vie privée');
+INSERT INTO `Field` VALUES (1,'Économie 💶'),(2,'Alimentation 🍲'),(3,'Éducation'),(4,'Énergie'),(5,'Musculation'),(6,'Rhétorique et language 🗪'),(7,'Sociologie'),(8,'Développement personnel'),(9,'Relation Homme/Femme ♂♀'),(10,'Cinéma 🎥'),(14,'Psychologie'),(15,'Média'),(16,'Écologie 🍃'),(17,'Technologie 💻'),(18,'Vie privée');
 /*!40000 ALTER TABLE `Field` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `Information` (
   CONSTRAINT `fk_Information_1` FOREIGN KEY (`field`) REFERENCES `Field` (`idField`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `fk_Information_2` FOREIGN KEY (`categoryMedia`) REFERENCES `CategoryMedia` (`idCategoryMedia`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `fk_Information_3` FOREIGN KEY (`author`) REFERENCES `Author` (`idAuthor`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `Tag` (
   `idTag` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`idTag`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-17  9:17:42
+-- Dump completed on 2021-08-04 22:59:56
