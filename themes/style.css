@@ -27,17 +27,17 @@
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
-.paddingbot5px{
+.paddingBot-5{
   padding-bottom: 5px;
 }
 
-.center25{
+.center-25{
   margin-left: 25%;
   margin-right: 25%;
   text-align: center;
 }
 
-.center15{
+.center-15{
   margin-left: 15%;
   margin-right: 15%;
   text-align: center;
@@ -53,7 +53,7 @@
   background-color: white !important; 
 }
 
-.select_filter{
+.select-filter{
   display: block;
   width: 100%;
 }
@@ -76,6 +76,7 @@ th{
   display: block;
   height: 100px;
 }
+
 .deleteTables thead {
   display: table;
   table-layout: fixed;
@@ -92,14 +93,22 @@ th{
   margin-bottom:  10px;
 }
 
+.select-200 {
+  max-width: 200px;
+}
+
+@media only screen and (min-width: 1400px) {
+  max-width: 1600px;
+}
+
 @media only screen and (min-width : 600px) {
-  .center15{
+  .center-15{
     text-align: center;
     margin-left: 2%;
     margin-right: 2%;
   }
 
-  .center25{
+  .center-25{
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;

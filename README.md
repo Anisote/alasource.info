@@ -10,8 +10,7 @@ TODO list :
 - ~~Reduce margin for the small resolutions~~ - 05/07/2021
 - ~~Implement hcaptcha in the contact form~~ - 11/07/2021
 - ~~Fix bug about column filter when a search is done~~ - 12/07/2021
-- Correction of the column order when clicking on a date column title
-- ~~ Add a function to create tags in the administration panel ~~ - 27/07/2021 
-- Add a function to modify tags in the administration paneland 
-- Edit fields for an information entry 
+- Fix the column order when clicking on a date column title
+- ~~Add a function to create tags in the administration panel~~ - 27/07/2021
+- ~~Edit fields for an information entry~~ - 04/08/2021
 - Resize the datable when the zoom changed

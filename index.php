@@ -1,15 +1,14 @@
 <?php
-  require_once('config.php');
   require_once('menu.php');
 ?>
 
 <div id="content">
-  <p class ="center15">
+  <p class ="center-15">
     Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici.</br>
     Bonne découverte.
   </p>
 
-  <div class="center25">
+  <div class="center-25">
     <input list="tags-fields" type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
         <?php
@@ -87,7 +86,7 @@
          echo "<tbody>";
           while($row = mysqli_fetch_array($result)){
               $id = $row['idInformation'];
-              $tags = $informationTag[$id];
+              $tags = isset($informationTag[$id]) ? $informationTag[$id] : NULL;
               if(empty($tags)) {
                   $tags = Array();
               }
@@ -159,7 +158,7 @@
                 var column = this;
                 var select;
                 if (column.index() != 4){
-                  select = $('<select class="select_filter" onclick="event.stopPropagation();"><option value=""></option></select>')
+                  select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                     .appendTo( $(column.header()) )
                     .on( 'change', function () {
                       var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(

@@ -1,7 +1,12 @@
 
-		<div class="center15 paddingbot5px">
+		<div class="center-15 paddingBot-5">
 			<a href="contact.php">Contact</a> | 
 			<a href="mentionslegales.php">Mentions légales</a>
 		</div>
 	</body>
 </html>
+<?php
+	if (isset($link)) {
+		mysqli_close($link);
+	}
+?>
