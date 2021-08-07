@@ -15,6 +15,7 @@ echo $DATABASE
 
 # dump databas
 set -x
+rm database.sql
 mysqldump -u $USERNAME -p$PASSWORD $DATABASE > database.sql
 
 sudo chown :www-data database.sql
