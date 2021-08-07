@@ -10,4 +10,5 @@
 
 
   $BASE_URL = "https://alasource.info";
+  $VERSION = file_get_contents('version');
 ?>
