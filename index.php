@@ -137,6 +137,16 @@
             SearchPanes : true,
             responsive: true,
             orderCellsTop: true,
+            columnDefs: [{
+                targets: [1,3],
+                render: function (data, type, row) {
+                  if (type === 'sort') {
+                    return data.replace(/.*? /,'');
+                  }
+                  return data;
+                }
+              }
+            ],
             "pageLength": 25,
             "language": {
                 "lengthMenu": "Afficher _MENU_ enregistrements par page",

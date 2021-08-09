@@ -59,7 +59,7 @@ CREATE TABLE `CategoryMedia` (
 
 LOCK TABLES `CategoryMedia` WRITE;
 /*!40000 ALTER TABLE `CategoryMedia` DISABLE KEYS */;
-INSERT INTO `CategoryMedia` VALUES (0,'Non saisie'),(1,'Blog 🌐'),(2,'Chaîne vidéo 📹'),(3,'Vidéo 📀'),(4,'Ouvrage 🕮'),(8,'Cours 📖'),(9,'Dossier 📁');
+INSERT INTO `CategoryMedia` VALUES (0,'Non saisie'),(1,'🌐 Blog'),(2,'📹 Chaîne vidéo'),(3,'📀 Vidéo'),(4,'🕮 Ouvrage'),(8,'📖 Cours'),(9,'📁 Dossier');
 /*!40000 ALTER TABLE `CategoryMedia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +83,7 @@ CREATE TABLE `Field` (
 
 LOCK TABLES `Field` WRITE;
 /*!40000 ALTER TABLE `Field` DISABLE KEYS */;
-INSERT INTO `Field` VALUES (1,'Economie 💶'),(2,'Alimentation 🍲'),(3,'Education 🏫'),(4,'Energie ⚡'),(5,'Musculation 💪'),(6,'Rhétorique et language 🗪'),(7,'Sociologie 🧑‍🤝‍🧑'),(8,'Développement personnel 🙋‍♂️'),(9,'Relation Homme/Femme ♂♀'),(10,'Cinéma 🎥'),(14,'Psychologie 💭'),(15,'Média 📰'),(16,'Ecologie 🌳'),(17,'Technologie 💻'),(18,'Vie privée 🔒');
+INSERT INTO `Field` VALUES (1,'💶 Economie'),(2,'🍲 Alimentation'),(3,'🏫 Education'),(4,'⚡ Energie'),(5,'💪 Musculation'),(6,'🗪 Rhétorique et language'),(7,'🧑‍🤝‍🧑 Sociologie'),(8,'🙋‍♂️ Développement personnel'),(9,'♂♀ Relation Homme/Femme'),(10,'🎥 Cinéma'),(14,'💭 Psychologie'),(15,'📰 Média'),(16,'🌳 Ecologie'),(17,'💻 Technologie'),(18,'🔒 Vie privée');
 /*!40000 ALTER TABLE `Field` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-07 12:38:18
+-- Dump completed on 2021-08-09 10:11:21
