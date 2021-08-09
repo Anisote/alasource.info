@@ -1,8 +1,12 @@
 <?php
   $strHostName = "localhost";
   $strDbName = "info";
+  // User which has the right to select on the database
   $strUserName = "";
   $strPassword = "";
+  // User which has the right to create and drop the database
+  $strAdminName = "";
+  $strAdminPassword = "";
 
   $HCAPTCHA_SITEKEY = "";
   $HCAPTCHA_SECRET = "";

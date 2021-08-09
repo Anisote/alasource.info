@@ -5,8 +5,8 @@ if [[ $EUID = 0 ]]; then
    exit 1
 fi
 
-USERNAME=$(grep -oP '(?<=strUserName = ").*?(?=")' ../config/config.php)
-PASSWORD=$(grep -oP '(?<=strPassword = ").*?(?=")' ../config/config.php)
+USERNAME=$(grep -oP '(?<=strAdminName = ").*?(?=")' ../config/config.php)
+PASSWORD=$(grep -oP '(?<=strAdminPassword = ").*?(?=")' ../config/config.php)
 DATABASE=$(grep -oP '(?<=strDbName = ").*?(?=")' ../config/config.php)
 
 echo $USERNAME
