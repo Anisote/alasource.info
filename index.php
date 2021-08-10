@@ -136,7 +136,6 @@
       var table = $('#table_id').DataTable({
             SearchPanes : true,
             responsive: true,
-            orderCellsTop: true,
             columnDefs: [{
                 targets: [1,3],
                 render: function (data, type, row) {
@@ -147,7 +146,7 @@
                 }
               }
             ],
-            "pageLength": 25,
+            "pageLength": 50,
             "language": {
                 "lengthMenu": "Afficher _MENU_ enregistrements par page",
                 "zeroRecords": "Aucun résultat trouvé",
@@ -200,8 +199,10 @@
                 }                  
                 selects.push(select);
             } );
+            
         }
       } );
+      table.order( [ 0, 'asc' ] ).draw();
       /*
       table.on( 'order.dt search.dt', function () {
           table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
