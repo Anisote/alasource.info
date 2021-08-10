@@ -39,11 +39,11 @@
 
   <?php
 
-  $sql = "SELECT idInformation, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
+  $sql = "SELECT indexDisplayed, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
     inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
     inner join Field on field = Field.idField
     inner join Author on Author = Author.idAuthor
-    order by fielddesc;
+    order by indexDisplayed asc;
     ";
 
   $sqlInformationTag = "SELECT idInformation, name FROM Information_tag NATURAL JOIN Tag;";
@@ -85,7 +85,7 @@
          echo "</thead>";
          echo "<tbody>";
           while($row = mysqli_fetch_array($result)){
-              $id = $row['idInformation'];
+              $id = $row['indexDisplayed'];
               $tags = isset($informationTag[$id]) ? $informationTag[$id] : NULL;
               if(empty($tags)) {
                   $tags = Array();
@@ -167,7 +167,7 @@
               api.columns().every( function () {
                 var column = this;
                 var select;
-                if (column.index() != 4){
+                if (column.index() != 4 && column.index() != 0 ){
                   select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                     .appendTo( $(column.header()) )
                     .on( 'change', function () {

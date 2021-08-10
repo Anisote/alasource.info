@@ -78,9 +78,21 @@
 		// Ajout d'une information
 		if (!empty($_POST['description']) && !empty($_POST['link']) && !empty($_POST['fieldDescription']) && !empty($_POST['authorName']) && !empty($_POST['release_date'])) {
 			if ($action === 'insertInformation') {
+				
+				$sql = "SELECT max(indexDisplayed) as indexDisplayed FROM info.Information;";
+				if($result = mysqli_query($link, $sql)) {
+					if(mysqli_num_rows($result) > 0){
+						while($row = mysqli_fetch_array($result)) {
+							$indexDisplayed = $row['indexDisplayed'];
+						}						
+						mysqli_free_result($result);
+					}
+				}
+				
 				$missingValues = false;
+				$indexDisplayed = $indexDisplayed + 1 ;
 
-				$sql = "INSERT INTO info.Information (description, link, field,categoryMedia,author,insert_date, release_date)	VALUES ('" . $_POST["description"] . "', '" . $_POST["link"] . "', '" . $_POST["fieldDescription"] . "', '" . $_POST["categoryMediaDescription"] . "', '" . $_POST["authorName"] . "',  now(), '" . $_POST['release_date'] . "')";
+				$sql = "INSERT INTO info.Information (description, link, field,categoryMedia,author,insert_date, release_date, indexDisplayed)	VALUES ('" . $_POST["description"] . "', '" . $_POST["link"] . "', '" . $_POST["fieldDescription"] . "', '" . $_POST["categoryMediaDescription"] . "', '" . $_POST["authorName"] . "',  now(), '" . $_POST['release_date'] . "', " . $indexDisplayed . ")";
 				var_dump($sql);
 				$result = mysqli_query($link, $sql);
 				$idInformation = mysqli_insert_id($link);
