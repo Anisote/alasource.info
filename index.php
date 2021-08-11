@@ -39,7 +39,7 @@
 
   <?php
 
-  $sql = "SELECT indexDisplayed, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
+  $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
     inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
     inner join Field on field = Field.idField
     inner join Author on Author = Author.idAuthor
@@ -85,7 +85,7 @@
          echo "</thead>";
          echo "<tbody>";
           while($row = mysqli_fetch_array($result)){
-              $id = $row['indexDisplayed'];
+              $id = $row['idInformation'];
               $tags = isset($informationTag[$id]) ? $informationTag[$id] : NULL;
               if(empty($tags)) {
                   $tags = Array();
@@ -94,7 +94,7 @@
               $tagsStr = join(', ', $tags);
 
               echo "<tr>";
-                  echo "<td class='center'><span>" . $id . "</span></td>";
+                  echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
                   echo "<td><span>" . $row['fielddesc'] . "</span></td>";
                   echo "<td><span>" . $row['name'] . "</span></td>";
                   echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
