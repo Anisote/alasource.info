@@ -5,10 +5,10 @@
 <div id="content">
   <p class ="center-15">
     <blockquote>
-    Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions. 
-    J'ai créé ce site afin de vous partager les liens des contenus qui m'ont enrichi et m'ont fait voir les choses différemment. 
-    J'espère qu'ils vous seront aussi profitables qu'à moi.
-  </blockquote>
+      Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions. 
+      J'ai créé ce site afin de vous partager le nom des contenus qui m'ont enrichi intellectuellement et m'ont fait voir les choses différemment. 
+      J'espère qu'ils vous seront aussi profitables qu'à moi.
+    </blockquote>
   </p>
 
   <div class="center-25">
