@@ -4,8 +4,11 @@
 
 <div id="content">
   <p class ="center-15">
-    Ce site contient des liens vers des contenus que j’estime intéressants. Je peux ou non partager les points de vues des auteurs/contenus présents ici.</br>
-    Bonne découverte.
+  <blockquote>Parce qu'il est vital d'avoir des informations d'excellentes qualitées afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions.
+    J'ai créé ce site afin de vous partager les liens des contenus qui m'ont enrichis et m'ont fait voir les choses différement.
+    J'espère qu'ils vous seront aussi profitable qu'à moi.
+    <i>Anisote</i>
+    </blockquote>
   </p>
 
   <div class="center-25">
