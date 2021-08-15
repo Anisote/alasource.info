@@ -4,10 +4,11 @@
 
 <div id="content">
   <p class ="center-15">
-  <blockquote>Parce qu'il est vital d'avoir des informations d'excellentes qualitées afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions.
-    J'ai créé ce site afin de vous partager les liens des contenus qui m'ont enrichis et m'ont fait voir les choses différement.
-    J'espère qu'ils vous seront aussi profitable qu'à moi.
-    <i>Anisote</i>
+    <blockquote>
+      Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions.
+      J'ai créé ce site afin de vous partager les liens des contenus qui m'ont enrichi et m'ont fait voir les choses différemment. 
+      J'espère qu'ils vous seront aussi profitables qu'à moi.
+      Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions. J'ai créé ce site afin de vous partager les liens des contenus qui m'ont enrichi et m'ont fait voir les choses différemment. J'espère qu'ils vous seront aussi profitables qu'à moi.    <i>Anisote</i>
     </blockquote>
   </p>
 
