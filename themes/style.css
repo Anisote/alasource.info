@@ -22,18 +22,21 @@
   margin-bottom: 2%;
 }
 
-.button_search{
+.button-style{
   font-size: 25px;
-  margin-left: 8px;
   border: #05445e;
   border-style: solid;
-  color: #d4f1f4;
+  color: white;
   background-color: #05445e;
   line-height: 1;
   display: inline-block;
   padding: .5rem 1rem;
   text-decoration: none;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.button-style > a:hover {
+  color: white;
 }
 
 .paddingBot-5{

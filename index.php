@@ -29,8 +29,8 @@
             }
         ?>
     </datalist>
-    <a class="button_search" aria-current="page" href="#">Rechercher</a>
-    <a class="button_search" onclick='clean();' aria-current="page" href="#">Reset</a>
+    <a class="button-style" aria-current="page" href="#">Rechercher</a>
+    <a class="button-style" onclick='clean();' aria-current="page" href="#">Reset</a>
   </div>
 
   <?php

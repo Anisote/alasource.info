@@ -34,9 +34,9 @@
 		<p>Message :<br/><textarea required name="message" value="<?php echo $display['message']; ?>" rows="8" cols="90" maxlength="350"><?php echo $display['message']; ?></textarea></p>
 
 		<p>
-			<button class="h-captcha" data-sitekey="<?php echo $HCAPTCHA_SITEKEY; ?>" data-callback="onSubmit" >Envoyer</button>
+			<button class="h-captcha button-style" data-sitekey="<?php echo $HCAPTCHA_SITEKEY; ?>" data-callback="onSubmit" >Envoyer</button>
 
-			<button type="reset">Effacer les champs</button>
+			<button class="button-style" type="reset">Effacer les champs</button>
 		</p>
 
 		<script type="text/javascript">
