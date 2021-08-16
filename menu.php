@@ -5,6 +5,7 @@
 <head>
     <base href="<?php echo $BASE_URL ?>">
 
+    <link rel="shortcut icon" type="image/ico" href="themes/favicon.ico"/>
 
     <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2 -->
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>
