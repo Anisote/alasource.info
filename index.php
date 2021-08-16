@@ -97,11 +97,17 @@
               $tagsStr = join(', ', $tags);
 
               echo "<tr>";
-                  echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
-                  echo "<td><span>" . $row['fielddesc'] . "</span></td>";
-                  echo "<td><span>" . $row['name'] . "</span></td>";
-                  echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
-                  echo "<td><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
+              echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
+              echo "<td><span>" . $row['fielddesc'] . "</span></td>";
+              echo "<td><span>" . $row['name'] . "</span></td>";
+              echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
+
+              if($row['link'] != ""){
+                echo "<td><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
+              }else{
+                echo "<td>" . $row['infodesc'] . "</td>";
+              }
+                  
                   echo "<td class='center'>" . $row['datePublication'] . "</td>";
                   echo "<td class='center'>" . $row['dateAjout'] . "</td>";
                   echo "<td class='hidden'><span>" . $tagsStr . "</span></td>";

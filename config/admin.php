@@ -76,7 +76,7 @@
 		$action = $_POST['action'];
 
 		// Ajout d'une information
-		if (!empty($_POST['description']) && !empty($_POST['link']) && !empty($_POST['fieldDescription']) && !empty($_POST['authorName']) && !empty($_POST['release_date'])) {
+		if (!empty($_POST['description']) && !empty($_POST['fieldDescription']) && !empty($_POST['authorName']) && !empty($_POST['release_date'])) {
 			if ($action === 'insertInformation') {
 				
 				$sql = "SELECT max(indexDisplayed) as indexDisplayed FROM info.Information;";
@@ -92,9 +92,38 @@
 				$missingValues = false;
 				$indexDisplayed = $indexDisplayed + 1 ;
 
-				$sql = "INSERT INTO info.Information (description, link, field,categoryMedia,author,insert_date, release_date, indexDisplayed)	VALUES ('" . $_POST["description"] . "', '" . $_POST["link"] . "', '" . $_POST["fieldDescription"] . "', '" . $_POST["categoryMediaDescription"] . "', '" . $_POST["authorName"] . "',  now(), '" . $_POST['release_date'] . "', " . $indexDisplayed . ")";
-				var_dump($sql);
-				$result = mysqli_query($link, $sql);
+				if($_POST['link'] != ""){
+					$sql = "INSERT INTO info.Information (description, link, field,categoryMedia,author,insert_date, release_date, indexDisplayed)	
+					VALUES (?, ?, ?, ?, ?, now(), ?, ?)";
+					$statement = mysqli_prepare($link, $sql);
+					mysqli_stmt_bind_param($statement,
+						"ssiiisi",
+						$_POST["description"],
+						$_POST["link"],
+						$_POST["fieldDescription"],
+						$_POST["categoryMediaDescription"],
+						$_POST["authorName"],
+						$_POST["release_date"],
+						$indexDisplayed
+					);
+				}else{					
+					$sql = "INSERT INTO info.Information (description, field,categoryMedia,author,insert_date, release_date, indexDisplayed)	
+					VALUES (?, ?, ?, ?, now(), ?, ?)";
+					$statement = mysqli_prepare($link, $sql);
+					mysqli_stmt_bind_param($statement,
+						"siiisi",
+						$_POST["description"],
+						$_POST["fieldDescription"],
+						$_POST["categoryMediaDescription"],
+						$_POST["authorName"],
+						$_POST["release_date"],
+						$indexDisplayed
+					);
+				}				
+				var_dump($statement);
+
+				$result = mysqli_stmt_execute($statement);
+
 				$idInformation = mysqli_insert_id($link);
 
 				$success = true;
