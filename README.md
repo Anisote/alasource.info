@@ -13,6 +13,7 @@ TODO list :
 - Fix the column order when clicking on a date column title
 - ~~Add a function to create tags in the administration panel~~ - 27/07/2021
 - ~~Edit fields for an information entry~~ - 04/08/2021
+- Delete icons in the search menu
 - Allow an information to have multiple authors
 - Allow a field to be displayed as a tag
 - Resize the datable when the zoom changed
