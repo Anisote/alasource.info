@@ -3,16 +3,8 @@
 ?>
 
 <div id="content">
-  <p class ="center-15">
-    <blockquote>
-      Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions. 
-      J'ai créé ce site afin de vous partager le nom des contenus qui m'ont enrichi intellectuellement et m'ont fait voir les choses différemment. 
-      J'espère qu'ils vous seront aussi profitables qu'à moi.<i>Anisote</i>
-    </blockquote>
-  </p>
-
   <div class="center-25">
-    <input list="tags-fields" type="search" placeholder="Rechercher" aria-label="Rechercher" oninput='search()' id="searchBox" />
+    <input list="tags-fields" type="search" placeholder="" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
         <?php
             $sql = "SELECT description AS name FROM Field as field WHERE EXISTS (SELECT idInformation FROM Information AS info WHERE field.idField = info.field) UNION (SELECT name FROM Tag as tag WHERE idTag IN (SELECT idTag FROM Information_tag)) ORDER BY name ASC;";
@@ -37,7 +29,8 @@
             }
         ?>
     </datalist>
-    <a id="reset" onclick='clean();' aria-current="page" href="#">Reset</a>
+    <a class="button_search" aria-current="page" href="#">Rechercher</a>
+    <a class="button_search" onclick='clean();' aria-current="page" href="#">Reset</a>
   </div>
 
   <?php

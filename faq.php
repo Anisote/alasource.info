@@ -2,7 +2,16 @@
   require_once('menu.php');
 ?>
 
+
 <div id="content">
+<p class ="center-15">
+    <blockquote>
+      Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions. 
+      J'ai créé ce site afin de vous partager le nom des contenus qui m'ont enrichi intellectuellement et m'ont fait voir les choses différemment. 
+      J'espère qu'ils vous seront aussi profitables qu'à moi.<i>Anisote</i>
+    </blockquote>
+  </p>
+  
   <h2>Le contenu du site</h2>
   <p>
     <b>Pourquoi est-ce qu’une source apparaît ici ?</b></br>
