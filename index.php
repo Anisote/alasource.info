@@ -101,9 +101,14 @@
                 echo "<td>" . $row['infodesc'] . "</td>";
               }
                   
-                  echo "<td class='center'>" . $row['datePublication'] . "</td>";
-                  echo "<td class='center'>" . $row['dateAjout'] . "</td>";
-                  echo "<td class='hidden'><span>" . $tagsStr . "</span></td>";
+              if($row['datePublication'] != "00/00/0000"){
+                echo "<td class='center'>" . $row['datePublication'] . "</td>";
+              }else{
+                echo "<td class='center'></td>";
+              }
+              
+              echo "<td class='center'>" . $row['dateAjout'] . "</td>";
+              echo "<td class='hidden'><span>" . $tagsStr . "</span></td>";
               echo "</tr>";
           }
           echo "</tbody>";
