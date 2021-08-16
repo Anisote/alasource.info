@@ -5,11 +5,13 @@
 <head>
     <base href="<?php echo $BASE_URL ?>">
 
-    <link rel="stylesheet" type="text/css" defer href="library/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href=<?php echo "\"themes/style.css?$VERSION\""?>/>
 
     <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2 -->
     <link rel="stylesheet" type="text/css" href="library/datatables.min.css"/>
+
+    <link rel="stylesheet" type="text/css" defer href="library/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href=<?php echo "\"themes/style.css?$VERSION\""?>/>
+    
     <meta name="description" content="Alasource.info est un site qui référence uniquement les contenus que l'auteur juge intéressant et de qualité.">
     <link rel="canonical" href="https://alasource.info">
 
@@ -45,6 +47,6 @@
       </div>
     </div>
     <script src="library/datatables.min.js"></script>  
-    <script src="https://hcaptcha.com/1/api.js"></script>
     <script src="library/bootstrap.min.js"></script>
+    <script defer src="https://hcaptcha.com/1/api.js"></script>
   </nav>
