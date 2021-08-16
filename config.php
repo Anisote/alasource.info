@@ -10,3 +10,5 @@ if($link === false){
 }
 
 ?>
+
+<script defer src="https://hcaptcha.com/1/api.js"></script>

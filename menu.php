@@ -48,5 +48,4 @@
     </div>
     <script src="library/datatables.min.js"></script>  
     <script src="library/bootstrap.min.js"></script>
-    <script defer src="https://hcaptcha.com/1/api.js"></script>
   </nav>
