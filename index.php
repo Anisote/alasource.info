@@ -175,7 +175,7 @@
               api.columns().every( function () {
                 var column = this;
                 var select;
-                if (column.index() != 4 && column.index() != 0 ){
+                if (column.index() != 0 && column.index() != 4 && column.index() != 5 && column.index() != 6 ){
                   select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                     .appendTo( $(column.header()) )
                     .on( 'change', function () {
@@ -195,11 +195,6 @@
                   let values = [];
                   for(var i = 0; i < data.length; ++i) {
                     values.push($('<div/>').html(data[i]).text());
-                  }
-
-                  if(dataType === 'date') {
-                    const dateToNumber = (dateStr) => parseInt(dateStr.split('/').reverse().join(''));
-                    values = values.sort((a, b) => dateToNumber(b) - dateToNumber(a));
                   }
 
                   for(var val of values) {
