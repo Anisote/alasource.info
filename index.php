@@ -74,8 +74,8 @@
                   echo "<th>Auteur</th>";
                   echo "<th>Type de média</th>";
                   echo "<th>Description</th>";
-                  echo "<th data-type='date'>Date de publication</th>";
-                  echo "<th data-type='date'>Date d'ajoût</th>";
+                  echo "<th>Date de publication</th>";
+                  echo "<th>Date d'ajoût</th>";
                   echo "<th class='hidden'>Tags</th>";
               echo "</tr>";
          echo "</thead>";
@@ -140,6 +140,8 @@
       }
 
       $(document).ready(function() {
+      $.fn.dataTable.moment( 'DD/MM/YYYY');
+
       var table = $('#table_id').DataTable({
             SearchPanes : true,
             responsive: true,

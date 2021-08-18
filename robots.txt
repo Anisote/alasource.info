@@ -1,7 +1,7 @@
 User-agent: *
 
 Disallow: /config/
-Disallow: /library/
+Disallow: /libraries/
 Disallow: /mail/
 Disallow: /scripts/
 Disallow: /securimage/
