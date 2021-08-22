@@ -7,7 +7,7 @@
     <input list="tags-fields" type="search" placeholder="" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
         <?php
-            $sql = "SELECT description AS name FROM Field as field WHERE EXISTS (SELECT idInformation FROM Information AS info WHERE field.idField = info.field) UNION (SELECT name FROM Tag as tag WHERE idTag IN (SELECT idTag FROM Information_tag)) ORDER BY name ASC;";
+            $sql = "SELECT description AS name FROM Field as field WHERE EXISTS (SELECT idInformation FROM Information AS info WHERE field.idField = info.field) UNION (SELECT name FROM Tag as tag WHERE idTag IN (SELECT idTag FROM Information_tag)) ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 
             $options = Array();
             if($result = mysqli_query($link, $sql)) {
@@ -189,8 +189,6 @@
                       refreshDropdowns();
                     })
 
-                  const dataType = select.parent().data('type');
-
                   const data = column.order('asc').draw(false).data().unique();
                   let values = [];
                   for(var i = 0; i < data.length; ++i) {
@@ -207,13 +205,6 @@
         }
       } );
       table.order( [ 0, 'asc' ] ).draw();
-      /*
-      table.on( 'order.dt search.dt', function () {
-          table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-              cell.innerHTML = i+1;
-          } );
-      } ).draw();
-      */
     } );
 
     var api;
