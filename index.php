@@ -7,7 +7,7 @@
     <input list="tags-fields" type="search" placeholder="" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
         <?php
-            $sql = "SELECT description AS name FROM Field as field WHERE EXISTS (SELECT idInformation FROM Information AS info WHERE field.idField = info.field) UNION (SELECT name FROM Tag as tag WHERE idTag IN (SELECT idTag FROM Information_tag)) ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
+            $sql = "SELECT name FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 
             $options = Array();
             if($result = mysqli_query($link, $sql)) {
@@ -35,12 +35,11 @@
 
   <?php
 
-  $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Field.description as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
-    inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
-    inner join Field on field = Field.idField
-    inner join Author on Author = Author.idAuthor
-    order by indexDisplayed asc;
-    ";
+  $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
+  inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
+  inner join Tag on Information.field = Tag.idTag
+  inner join Author on Author = Author.idAuthor
+  order by indexDisplayed asc;";
 
   $sqlInformationTag = "SELECT idInformation, name FROM Information_tag NATURAL JOIN Tag;";
   $informationTag = Array();

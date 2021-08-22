@@ -244,23 +244,6 @@
 			}
 		}
 
-		// Ajoût d'un domaine
-		if (!empty($_POST['field_description'])) {
-			$missingValues = false;
-
-			$field_description = $_POST['field_description'];
-			$sql = "INSERT INTO info.Field (description) 
-			VALUES ('" . $field_description . "')";
-			$result = mysqli_query($link, $sql);
-			var_dump($sql);
-						
-			if ($result === false) {
-				displayError();
-			}else{
-				displaySuccess();
-			}
-		}
-
 		// Ajoût d'un type de media
 		if (!empty($_POST['typedemedia_description'])) {
 			$missingValues = false;
@@ -344,14 +327,14 @@
 						<br><label for="link">Lien :&nbsp;</label>
 						<input type="text" id="link" name="link">
 						<?php
-							$sql = "SELECT * FROM Field ORDER BY description ASC";
+							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 							$result = mysqli_query($link, $sql);
 
 							echo "<br><label for='fieldDescription'>Domaine :&nbsp;</label>";
 							echo "<select name='fieldDescription'>";
 							echo "<option value=''></option>";
 							while ($row = mysqli_fetch_array($result)) {
-								echo "<option value='" . $row['idField'] . "'>" . $row['description'] . "</option>";
+								echo "<option value='" . $row['idTag'] . "'>" . $row['name'] . "</option>";
 							}
 							echo "</select>";
 
@@ -377,7 +360,7 @@
 							}
 							echo "</select>";
 
-							$sql = "SELECT * FROM info.Tag ORDER BY name ASC;";
+							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 							$result = mysqli_query($link, $sql);
 
 							$tagArray = [];
@@ -444,14 +427,14 @@
 						<br><label for="link">Lien :&nbsp;</label>
 						<input type="text" id="link" name="link">
 						<?php
-							$sql = "SELECT * FROM Field ORDER BY description ASC";
+							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 							$result = mysqli_query($link, $sql);
 
 							echo "<br><label for='fieldDescription'>Domaine :&nbsp;</label>";
 							echo "<select name='fieldDescription'>";
 							echo "<option value=''></option>";
 							while ($row = mysqli_fetch_array($result)) {
-								echo "<option value='" . $row['idField'] . "'>" . $row['description'] . "</option>";
+								echo "<option value='" . $row['idTag'] . "'>" . $row['name'] . "</option>";
 							}
 							echo "</select>";
 
@@ -477,7 +460,7 @@
 							}
 							echo "</select>";
 
-							$sql = "SELECT * FROM info.Tag ORDER BY name ASC;";
+							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 							$result = mysqli_query($link, $sql);
 
 							$tagArray = [];
@@ -521,22 +504,6 @@
 			<div class="col">
 			  	<h2>Suppression d'un auteur</h2>
 				<?php listDelete("Author", "idAuthor", Array("name")); ?>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<h2>Ajoût d'un domaine</h2>
-				<p>
-					<form action="" method="post">
-						<label for="field_description">Nom :&nbsp;</label>
-						<input type="text" id="field_description" name="field_description">
-						<input type="submit" value="Ajouter">
-					</form>
-				</p>
-			</div>
-			<div class="col">
-				<h2>Suppression d'un domaine</h2>
-				<?php listDelete("Field", "idField", Array("description")); ?>
 			</div>
 		</div>
 		<div class="row">
