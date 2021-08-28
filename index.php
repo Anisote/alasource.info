@@ -74,7 +74,6 @@
                   echo "<th>Type de média</th>";
                   echo "<th>Description</th>";
                   echo "<th>Date de publication</th>";
-                  echo "<th>Date d'ajoût</th>";
                   echo "<th class='hidden'>Tags</th>";
               echo "</tr>";
          echo "</thead>";
@@ -104,9 +103,7 @@
                 echo "<td class='center'>" . $row['datePublication'] . "</td>";
               }else{
                 echo "<td class='center'></td>";
-              }
-              
-              echo "<td class='center'>" . $row['dateAjout'] . "</td>";
+              }              
               echo "<td class='hidden'><span>" . $tagsStr . "</span></td>";
               echo "</tr>";
           }
@@ -154,7 +151,7 @@
                 }
               }
             ],
-            "pageLength": 50,
+            "pageLength": 100,
             "language": {
                 "lengthMenu": "Afficher _MENU_ enregistrements par page",
                 "zeroRecords": "Aucun résultat trouvé",
@@ -194,8 +191,13 @@
                     values.push($('<div/>').html(data[i]).text());
                   }
 
+                  // useful when multiple author
                   for(var val of values) {
-                    select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' ); 
+                    const authors = val.split(",");
+                    authors.forEach(item =>{
+                      select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' ); 
+                    });                    
+                    //select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' ); 
                   }
                 }                  
                 selects.push(select);

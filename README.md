@@ -17,3 +17,11 @@ TODO list :
 - Allow an information to have multiple authors
 - Allow a field to be displayed as a tag
 - Resize the datable when the zoom changed
+
+Books to add when multi author is available
+    - le pouvoir de l'engagement total
+    - s'organiser 
+    - sécurité informatique
+    - Réseaux
+
+
