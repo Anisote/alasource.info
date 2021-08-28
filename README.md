@@ -14,8 +14,9 @@ TODO list :
 - ~~Add a function to create tags in the administration panel~~ - 27/07/2021
 - ~~Edit fields for an information entry~~ - 04/08/2021
 - ~~Reorder the search menu tooltip~~ - 22/08/2021
+- ~~Allow a field to be displayed as a tag~~ - 22/08/2021
 - Allow an information to have multiple authors
-- Allow a field to be displayed as a tag
+- Fix issue in the admin panel for author with quote
 - Resize the datable when the zoom changed
 
 Books to add when multi author is available
