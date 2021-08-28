@@ -69,11 +69,11 @@
           echo "<thead>";
               echo "<tr>";
                   echo "<th>ID</th>";
-                  echo "<th>Domaine</th>";
-                  echo "<th>Auteur</th>";
-                  echo "<th>Type de média</th>";
+                  echo "<th class='small_th'>Domaine</th>";
+                  echo "<th class='small_th'>Auteur</th>";
+                  echo "<th class='small_th'>Type de média</th>";
                   echo "<th>Description</th>";
-                  echo "<th>Date de publication</th>";
+                  echo "<th class='small_th'>Date de publication</th>";
                   echo "<th class='hidden'>Tags</th>";
               echo "</tr>";
          echo "</thead>";

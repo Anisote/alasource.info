@@ -116,6 +116,10 @@ th{
   text-align: center;
 }
 
+.small_th{
+  width:125px;
+}
+
 .center{
   text-align: center;
 }
