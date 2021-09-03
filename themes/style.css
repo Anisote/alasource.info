@@ -116,12 +116,24 @@ th{
   text-align: center;
 }
 
+.id_th{
+  width:15px !important;
+}
+
 .small_th{
-  width:125px;
+  width:125px !important;
+}
+
+.star_th{
+  width:50px !important;
 }
 
 .center{
   text-align: center;
+}
+
+.star{
+  font-size: 12px;
 }
 
 .hidden {

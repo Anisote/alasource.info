@@ -1,5 +1,11 @@
 <?php
   require_once('menu.php');
+
+  $tooltip = '
+⭐ : Intéressant
+⭐⭐ : Très intéressant
+⭐⭐⭐ : Extrêmement intéressant
+⭐⭐⭐⭐ : Exceptionnel';
 ?>
 
 <div id="content">
@@ -35,7 +41,7 @@
 
   <?php
 
-  $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
+  $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, mark, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
   inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
   inner join Tag on Information.field = Tag.idTag
   inner join Author on Author = Author.idAuthor
@@ -68,11 +74,12 @@
           echo "<table id='table_id' class='display'>";
           echo "<thead>";
               echo "<tr>";
-                  echo "<th>ID</th>";
+                  echo "<th class='id_th'>ID</th>";
                   echo "<th class='small_th'>Domaine</th>";
                   echo "<th class='small_th'>Auteur</th>";
                   echo "<th class='small_th'>Type de média</th>";
                   echo "<th>Description</th>";
+                  echo "<th class='star_th' data-toggle='tooltip' data-html='true' title='$tooltip'>Note</th>";
                   echo "<th class='small_th'>Date de publication</th>";
                   echo "<th class='hidden'>Tags</th>";
               echo "</tr>";
@@ -97,6 +104,21 @@
                 echo "<td><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
               }else{
                 echo "<td>" . $row['infodesc'] . "</td>";
+              }
+
+              if($row['mark'] == 1){
+                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐</td>";
+              }
+              if ($row['mark'] == 2){
+                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐</td>";
+              }
+              if ($row['mark'] == 3){
+                echo "
+                <td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐</td>";
+              }
+              if ($row['mark'] == 4){
+                echo "
+                <td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐&nbsp;⭐</td>";
               }
                   
               if($row['datePublication'] != "00/00/0000"){

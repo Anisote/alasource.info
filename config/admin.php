@@ -93,29 +93,31 @@
 				$indexDisplayed = $indexDisplayed + 1 ;
 
 				if($_POST['link'] != ""){
-					$sql = "INSERT INTO info.Information (description, link, field,categoryMedia,author,insert_date, release_date, indexDisplayed)	
-					VALUES (?, ?, ?, ?, ?, now(), ?, ?)";
+					$sql = "INSERT INTO info.Information (description, link, field, categoryMedia, author, mark, insert_date, release_date, indexDisplayed)	
+					VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?)";
 					$statement = mysqli_prepare($link, $sql);
 					mysqli_stmt_bind_param($statement,
-						"ssiiisi",
+						"ssiiiisi",
 						$_POST["description"],
 						$_POST["link"],
 						$_POST["fieldDescription"],
 						$_POST["categoryMediaDescription"],
 						$_POST["authorName"],
+						$_POST["mark"],
 						$_POST["release_date"],
 						$indexDisplayed
 					);
 				}else{					
-					$sql = "INSERT INTO info.Information (description, field,categoryMedia,author,insert_date, release_date, indexDisplayed)	
-					VALUES (?, ?, ?, ?, now(), ?, ?)";
+					$sql = "INSERT INTO info.Information (description, field,categoryMedia,author, mark, insert_date, release_date, indexDisplayed)	
+					VALUES (?, ?, ?, ?, ?, now(), ?, ?)";
 					$statement = mysqli_prepare($link, $sql);
 					mysqli_stmt_bind_param($statement,
-						"siiisi",
+						"siiiisi",
 						$_POST["description"],
 						$_POST["fieldDescription"],
 						$_POST["categoryMediaDescription"],
 						$_POST["authorName"],
+						$_POST["mark"],
 						$_POST["release_date"],
 						$indexDisplayed
 					);
@@ -153,22 +155,23 @@
 				$missingValues = false;
 				$idInformation = $_POST["idInformation"];
 
-				$sql = "UPDATE info.Information SET description = ?, link = ?, field = ?, categoryMedia = ?, author = ?, release_date = ? WHERE idInformation = ?;";
+				$sql = "UPDATE info.Information SET description = ?, link = ?, field = ?, categoryMedia = ?, author = ?, mark = ?, release_date = ? WHERE idInformation = ?;";		
 				var_dump($sql);
-
 				$statement = mysqli_prepare($link, $sql);
-				mysqli_stmt_bind_param($statement,
-					"ssiiisi",
+				$request = mysqli_stmt_bind_param($statement,
+					"ssiiiisi",
 					$_POST["description"],
 					$_POST["link"],
 					$_POST["fieldDescription"],
 					$_POST["categoryMediaDescription"],
 					$_POST["authorName"],
+					$_POST["mark"],
 					$_POST["release_date"],
 					$idInformation
 				);
+				
 				$result = mysqli_stmt_execute($statement);
-
+			
 				mysqli_stmt_close($statement);
 
 				$success = true;
@@ -285,7 +288,7 @@
 	function updateInformationSelect(idInformation){
 		const i = document.getElementById('updateInformation');
 		var j = jsArraySelectInformationUpdate[idInformation] || {};
-
+		console.log(j);
 		i.querySelector('[type=submit]').disabled = !idInformation;
 
 		updateValue('description', j.description);
@@ -293,8 +296,8 @@
 		updateValue('fieldDescription', j.infoField);
 		updateValue('categoryMediaDescription', j.infoCategoryMedia);
 		updateValue('authorName', j.infoAuthor);
+		updateValue('mark', j.mark);
 		updateValue('release_date', j.infoReleaseDate);
-		updateValue('description', j.description);
 		updateValue('idInformation', idInformation);
 
 		for(var k = 0; k < <?php echo $NB_TAG_MAX; ?>; k++){
@@ -360,6 +363,14 @@
 							}
 							echo "</select>";
 
+							echo "<br><label for='mark'>Note :&nbsp;</label>";
+							echo "<select class='select-200' name='mark'>";
+							echo "<option value='1'>1</option>";
+							echo "<option value='2'>2</option>";
+							echo "<option value='3'>3</option>";
+							echo "<option value='4'>4</option>";
+							echo "</select>";
+
 							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 							$result = mysqli_query($link, $sql);
 
@@ -409,6 +420,7 @@
 									'infoField' => $row['field'],
 									'infoCategoryMedia' => $row['categoryMedia'],
 									'infoAuthor' => $row['author'],
+									'mark' => $row['mark'],
 									'infoReleaseDate' => $row['release_date'],
 									'tags' => $row['tags']
 								);
@@ -458,6 +470,14 @@
 							while ($row = mysqli_fetch_array($result)) {
 								echo "<option value='" . $row['idAuthor'] . "'>" . $row['name'] . "</option>";
 							}
+							echo "</select>";
+
+							echo "<br><label for='mark'>Note :&nbsp;</label>";
+							echo "<select class='select-200' name='mark'>";
+							echo "<option value='1'>1</option>";
+							echo "<option value='2'>2</option>";
+							echo "<option value='3'>3</option>";
+							echo "<option value='4'>4</option>";
 							echo "</select>";
 
 							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
