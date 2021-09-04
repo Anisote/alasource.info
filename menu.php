@@ -6,6 +6,12 @@
     <base href="<?php echo $BASE_URL ?>">
 
     <link rel="shortcut icon" type="image/ico" href="themes/favicon.ico"/>
+    
+    <script src="libraries/datatables.min.js"></script>  
+    <script src="libraries/bootstrap.min.js"></script>
+    <!-- Moment.js 2.29.1 -->
+    <script src="libraries/moment.min.js"></script>
+    <script src="libraries/datetime-sorting-moment.js"></script>
 
     <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2 -->
     <link rel="stylesheet" type="text/css" href="libraries/datatables.min.css"/>
@@ -47,9 +53,4 @@
         </ul>
       </div>
     </div>
-    <script src="libraries/datatables.min.js"></script>  
-    <script src="libraries/bootstrap.min.js"></script>
-    <!-- Moment.js 2.29.1 -->
-    <script src="libraries/moment.min.js"></script>
-    <script src="libraries/datetime-sorting-moment.js"></script>
   </nav>

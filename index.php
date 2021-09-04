@@ -202,6 +202,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       var table = $('#table_id').DataTable({
             SearchPanes : true,
             responsive: true,
+            "sDom": '<"top"><"bottom"ftrlpi><"clear">',
             columnDefs: [{
                 targets: [1,3],
                 render: function (data, type, row) {
