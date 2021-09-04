@@ -38,7 +38,9 @@
     <a class="button-style" aria-current="page" href="#">Rechercher</a>
     <a class="button-style" onclick='clean();' aria-current="page" href="#">Reset</a>
   </div>
-
+  <div class="center-25 font-size-em0-7">
+      ⭐⭐⭐⭐ : Exceptionnel &nbsp;-&nbsp; ⭐⭐⭐ : Extrêmement intéressant &nbsp;-&nbsp; ⭐⭐ : Très intéressant &nbsp;-&nbsp; ⭐ : Intéressant
+  </div>
   <?php
 
   $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, CategoryMedia.description as cateMediadesc,link, mark, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
@@ -242,7 +244,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         column
                           .search( val ? val: '', true, false )
                           .draw();
-
                         refreshDropdowns();
                       })
                   }
@@ -256,7 +257,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         column
                           .search( val ? '^'+val+'$' : '', true, false )
                           .draw();
-
                         refreshDropdowns();
                       })
                   }
@@ -269,7 +269,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
                   // useful when multiple author
                   for(var val of values) {
-                    const authors = val.split(",");
+                    const authors = val.split(", ");
                     authors.forEach(item =>{
                       select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' ); 
                     }); 
@@ -330,7 +330,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         dataIndex: selects.indexOf(s)
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
-      console.log(selects);
     }
 
     function search(){
