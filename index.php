@@ -2,10 +2,10 @@
   require_once('menu.php');
 
   $tooltip = '
-⭐ : Intéressant
-⭐⭐ : Très intéressant
+⭐⭐⭐⭐ : Exceptionnel
 ⭐⭐⭐ : Extrêmement intéressant
-⭐⭐⭐⭐ : Exceptionnel';
+⭐⭐ : Très intéressant
+⭐ : Intéressant';
 ?>
 
 <div id="content">
@@ -39,7 +39,7 @@
     <a class="button-style" onclick='clean();' aria-current="page" href="#">Reset</a>
   </div>
   <div class="center-25 font-size-em0-7">
-      ⭐⭐⭐⭐ : Exceptionnel &nbsp;-&nbsp; ⭐⭐⭐ : Extrêmement intéressant &nbsp;-&nbsp; ⭐⭐ : Très intéressant &nbsp;-&nbsp; ⭐ : Intéressant
+      ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
   <?php
 
