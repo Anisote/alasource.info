@@ -10,19 +10,12 @@ TODO list :
 - ~~Reduce margin for the small resolutions~~ - 05/07/2021
 - ~~Implement hcaptcha in the contact form~~ - 11/07/2021
 - ~~Fix bug about column filter when a search is done~~ - 12/07/2021
-- ~~Fix the date column sort when clicking on a date column title~~ - 18/08/2021
 - ~~Add a function to create tags in the administration panel~~ - 27/07/2021
 - ~~Edit fields for an information entry~~ - 04/08/2021
+- ~~Fix the date column sort when clicking on a date column title~~ - 18/08/2021
 - ~~Reorder the search menu tooltip~~ - 22/08/2021
 - ~~Allow a field to be displayed as a tag~~ - 22/08/2021
+- ~~Add mark criterias~~ - 03/09/2021
 - Allow an information to have multiple authors
 - Fix issue in the admin panel for author with quote
 - Resize the datable when the zoom changed
-
-Books to add when multi author is available
-    - le pouvoir de l'engagement total
-    - s'organiser 
-    - sécurité informatique
-    - Réseaux
-
-

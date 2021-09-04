@@ -3,6 +3,7 @@
 	require_once('../menu.php');
 
 	$NB_TAG_MAX = 5;
+	$NB_AUTHOR_MAX = 10;
 
 	function error($msg) {
 		echo("<p class='alert-danger alert'>" . $msg . "</p>");
@@ -34,6 +35,30 @@
 		$deleteType = $table;
 		if (isset($_POST['delete-type']) && $_POST['delete-type'] === $deleteType) {
 			$deleteId = $_POST['delete-id'];
+
+
+			if( $idKey == 'idInformation'){
+				$sqlDelete = "DELETE FROM Information_tag WHERE " . $idKey . " = " . $deleteId;
+				$result = mysqli_query($link, $sqlDelete);
+				$missingValues = false;
+
+				if ($result === false) {
+					displayError();
+				} else {
+					displaySuccess();
+				}
+
+				$sqlDelete = "DELETE FROM Information_author WHERE " . $idKey . " = " . $deleteId;
+				$result = mysqli_query($link, $sqlDelete);
+				$missingValues = false;
+
+				if ($result === false) {
+					displayError();
+				} else {
+					displaySuccess();
+				}
+			}
+
 			$sqlDelete = "DELETE FROM " . $table . " WHERE " . $idKey . " = " . $deleteId;
 			$result = mysqli_query($link, $sqlDelete);
 			$missingValues = false;
@@ -76,7 +101,7 @@
 		$action = $_POST['action'];
 
 		// Ajout d'une information
-		if (!empty($_POST['description']) && !empty($_POST['fieldDescription']) && !empty($_POST['authorName']) && !empty($_POST['release_date'])) {
+		if (!empty($_POST['description']) && !empty($_POST['fieldDescription']) && !empty($_POST['release_date'])) {
 			if ($action === 'insertInformation') {
 				
 				$sql = "SELECT max(indexDisplayed) as indexDisplayed FROM info.Information;";
@@ -93,30 +118,28 @@
 				$indexDisplayed = $indexDisplayed + 1 ;
 
 				if($_POST['link'] != ""){
-					$sql = "INSERT INTO info.Information (description, link, field, categoryMedia, author, mark, insert_date, release_date, indexDisplayed)	
-					VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?)";
+					$sql = "INSERT INTO info.Information (description, link, field, categoryMedia, mark, insert_date, release_date, indexDisplayed)	
+					VALUES (?, ?, ?, ?, ?, now(), ?, ?)";
 					$statement = mysqli_prepare($link, $sql);
 					mysqli_stmt_bind_param($statement,
-						"ssiiiisi",
+						"ssiiisi",
 						$_POST["description"],
 						$_POST["link"],
 						$_POST["fieldDescription"],
 						$_POST["categoryMediaDescription"],
-						$_POST["authorName"],
 						$_POST["mark"],
 						$_POST["release_date"],
 						$indexDisplayed
 					);
 				}else{					
-					$sql = "INSERT INTO info.Information (description, field,categoryMedia,author, mark, insert_date, release_date, indexDisplayed)	
-					VALUES (?, ?, ?, ?, ?, now(), ?, ?)";
+					$sql = "INSERT INTO info.Information (description, field,categoryMedia, mark, insert_date, release_date, indexDisplayed)	
+					VALUES (?, ?, ?, ?, now(), ?, ?)";
 					$statement = mysqli_prepare($link, $sql);
 					mysqli_stmt_bind_param($statement,
-						"siiiisi",
+						"siiisi",
 						$_POST["description"],
 						$_POST["fieldDescription"],
 						$_POST["categoryMediaDescription"],
-						$_POST["authorName"],
 						$_POST["mark"],
 						$_POST["release_date"],
 						$indexDisplayed
@@ -138,6 +161,20 @@
 
 						if ($tagId) {
 							$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $tagId . "')";
+							var_dump($sql);
+							$result = mysqli_query($link, $sql);
+
+							if ($result === false) {
+								displayError();
+								$success = false;
+							}
+						}
+					}
+					for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+						$authorId = $_POST['authorName' . $i];
+
+						if ($authorId) {
+							$sql = "INSERT INTO info.Information_author (idInformation, idAuthor)	VALUES ('" . $idInformation . "', '" . $authorId . "')";
 							var_dump($sql);
 							$result = mysqli_query($link, $sql);
 
@@ -180,7 +217,6 @@
 					$success = false;
 				} else {
 					$sql = "DELETE FROM info.Information_tag WHERE idInformation = ?;";
-					var_dump($sql);
 
 					$statement = mysqli_prepare($link, $sql);
 					mysqli_stmt_bind_param($statement,
@@ -205,6 +241,36 @@
 								if ($result === false) {
 									displayError();
 									$success = false;
+								} else {
+									$sql = "DELETE FROM info.Information_author WHERE idInformation = ?;";
+
+									$statement = mysqli_prepare($link, $sql);
+									mysqli_stmt_bind_param($statement,
+										"i",
+										$idInformation
+									);
+									$result = mysqli_stmt_execute($statement);
+									mysqli_stmt_close($statement);
+				
+									if ($result === false) {
+										displayError();
+										$success = false;
+									} else {			
+										for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+											$authorId = $_POST['authorName' . $i];
+				
+											if ($authorId) {
+												$sql = "INSERT INTO info.Information_author (idInformation, idAuthor)	VALUES ('" . $idInformation . "', '" . $authorId . "')";
+												var_dump($sql);
+												$result = mysqli_query($link, $sql);
+				
+												if ($result === false) {
+													displayError();
+													$success = false;
+												}
+											}
+										}
+									}
 								}
 							}
 						}
@@ -295,7 +361,6 @@
 		updateValue('link', j.link);
 		updateValue('fieldDescription', j.infoField);
 		updateValue('categoryMediaDescription', j.infoCategoryMedia);
-		updateValue('authorName', j.infoAuthor);
 		updateValue('mark', j.mark);
 		updateValue('release_date', j.infoReleaseDate);
 		updateValue('idInformation', idInformation);
@@ -307,6 +372,16 @@
 		if (j.tags != null) {
 			j.tags.split(',').forEach(
 				(element,index) => updateValue('tagName' + (index+1), element)
+			);
+		}
+
+		for(var k = 0; k < <?php echo $NB_AUTHOR_MAX; ?>; k++){
+			updateValue('authorName' + (k+1), "")
+		}
+
+		if (j.authors != null) {
+			j.authors.split(',').forEach(
+				(element,index) => updateValue('authorName' + (index+1), element)
 			);
 		}
 
@@ -352,16 +427,22 @@
 							}
 							echo "</select>";
 
-							$sql = "SELECT * FROM info.Author ORDER BY name ASC;";
+							$sql = "SELECT * FROM Author ORDER BY name";
 							$result = mysqli_query($link, $sql);
 
-							echo "<br><label for='authorName'>Nom de l'auteur :&nbsp;</label>";
-							echo "<select class='select-200' name='authorName'>";
-							echo "<option value=''></option>";
+							$authorArray = [];
 							while ($row = mysqli_fetch_array($result)) {
-								echo "<option value='" . $row['idAuthor'] . "'>" . $row['name'] . "</option>";
+								$authorArray[] = Array("id" => $row['idAuthor'], "name" => $row['name']);
 							}
-							echo "</select>";
+							for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+								echo "<br><label for='authorName" . $i . "'>Author " . $i . ": &nbsp;</label>";
+								echo "<select class='small_th' name='authorName" . $i . "'>";
+								echo "<option value=''></option>";
+								foreach ($authorArray as $author) {
+									echo "<option value='" . $author['id'] . "'>" . $author['name'] . "</option>";
+								}
+								echo "</select>&nbsp;";
+							}
 
 							echo "<br><label for='mark'>Note :&nbsp;</label>";
 							echo "<select class='select-200' name='mark'>";
@@ -401,10 +482,11 @@
 					<form action="" method="post" id="updateInformation">
 						<label for="information">Information :&nbsp;</label>
 						<?php
-							$sql = "SELECT Information.*, GROUP_CONCAT(Information_tag.idTag SEPARATOR ',') as tags FROM info.Information
-								left Join Information_tag on Information_tag.idInformation = Information.idInformation
-								group by Information.idInformation
-								ORDER BY Information.idInformation ASC;";
+							$sql = "SELECT Information.*, GROUP_CONCAT(DISTINCT Information_tag.idTag SEPARATOR ',') as tags, GROUP_CONCAT(DISTINCT Information_author.idAuthor SEPARATOR ',') as authors FROM info.Information
+							left Join Information_tag on Information_tag.idInformation = Information.idInformation
+							left Join Information_author on Information_author.idInformation = Information.idInformation
+							group by Information.idInformation
+							ORDER BY Information.idInformation ASC;";
 
 							$result = mysqli_query($link, $sql);
 							echo "<select class='select-200' onChange='updateInformationSelect(this.value)' name='Information'>";
@@ -422,7 +504,8 @@
 									'infoAuthor' => $row['author'],
 									'mark' => $row['mark'],
 									'infoReleaseDate' => $row['release_date'],
-									'tags' => $row['tags']
+									'tags' => $row['tags'],
+									'authors' => $row['authors']
 								);
 							}
 							echo "</select>";
@@ -461,17 +544,25 @@
 							}
 							echo "</select>";
 
-							$sql = "SELECT * FROM info.Author ORDER BY name ASC;";
+							// Author
+							$sql = "SELECT * FROM Author ORDER BY name";
 							$result = mysqli_query($link, $sql);
 
-							echo "<br><label for='authorName'>Nom de l'auteur :&nbsp;</label>";
-							echo "<select class='select-200' name='authorName'>";
-							echo "<option value=''></option>";
+							$authorArray = [];
 							while ($row = mysqli_fetch_array($result)) {
-								echo "<option value='" . $row['idAuthor'] . "'>" . $row['name'] . "</option>";
+								$authorArray[] = Array("id" => $row['idAuthor'], "name" => $row['name']);
 							}
-							echo "</select>";
+							for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+								echo "<br><label for='authorName" . $i . "'>Author " . $i . ": &nbsp;</label>";
+								echo "<select class='small_th' name='authorName" . $i . "'>";
+								echo "<option value=''></option>";
+								foreach ($authorArray as $author) {
+									echo "<option value='" . $author['id'] . "'>" . $author['name'] . "</option>";
+								}
+								echo "</select>&nbsp;";
+							}							
 
+							// Mark
 							echo "<br><label for='mark'>Note :&nbsp;</label>";
 							echo "<select class='select-200' name='mark'>";
 							echo "<option value='1'>1</option>";
@@ -480,6 +571,7 @@
 							echo "<option value='4'>4</option>";
 							echo "</select>";
 
+							// Tags
 							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 							$result = mysqli_query($link, $sql);
 

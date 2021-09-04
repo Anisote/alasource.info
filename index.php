@@ -41,17 +41,37 @@
 
   <?php
 
-  $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, Author.name, CategoryMedia.description as cateMediadesc,link, mark, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
+  $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, CategoryMedia.description as cateMediadesc,link, mark, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
   inner join CategoryMedia on categoryMedia = CategoryMedia.idCategoryMedia
   inner join Tag on Information.field = Tag.idTag
-  inner join Author on Author = Author.idAuthor
   order by indexDisplayed asc;";
+
+$sqlInformationAuthor = "SELECT idInformation, name FROM Information_author NATURAL JOIN Author;";
+$informationAuthor = Array();
+if($result = mysqli_query($link, $sqlInformationAuthor)) {
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_array($result)) {
+            $informationId = $row['idInformation'];
+
+            if(empty($informationAuthor[$informationId])) {
+                $informationAuthor[$informationId] = Array();
+            }
+            $informationAuthor[$informationId][] = $row['name'];
+        }
+        
+        mysqli_free_result($result);
+    } else {
+        echo "No records matching your query were found.";
+    }
+} else {
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
 
   $sqlInformationTag = "SELECT idInformation, name FROM Information_tag NATURAL JOIN Tag;";
   $informationTag = Array();
-  if($resultInformationTag = mysqli_query($link, $sqlInformationTag)) {
-      if(mysqli_num_rows($resultInformationTag) > 0){
-          while($row = mysqli_fetch_array($resultInformationTag)) {
+  if($result = mysqli_query($link, $sqlInformationTag)) {
+      if(mysqli_num_rows($result) > 0){
+          while($row = mysqli_fetch_array($result)) {
               $informationId = $row['idInformation'];
 
               if(empty($informationTag[$informationId])) {
@@ -61,7 +81,7 @@
               $informationTag[$informationId][] = $row['name'];
           }
           
-          mysqli_free_result($resultInformationTag);
+          mysqli_free_result($result);
       } else {
           echo "No records matching your query were found.";
       }
@@ -79,7 +99,7 @@
                   echo "<th class='small_th'>Auteur</th>";
                   echo "<th class='small_th'>Type de média</th>";
                   echo "<th>Description</th>";
-                  echo "<th class='star_th' data-toggle='tooltip' data-html='true' title='$tooltip'>Note</th>";
+                  echo "<th data-toggle='tooltip' data-html='true' title='$tooltip'>Note</th>";
                   echo "<th class='small_th'>Date de publication</th>";
                   echo "<th class='hidden'>Tags</th>";
               echo "</tr>";
@@ -97,7 +117,24 @@
               echo "<tr>";
               echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
               echo "<td><span>" . $row['fielddesc'] . "</span></td>";
-              echo "<td><span>" . $row['name'] . "</span></td>";
+              $authorsDisplayed = "";
+              $i = 0;
+              foreach ($informationAuthor[$row['idInformation']] as $author ){
+                  if($i == 0){
+                    $authorsDisplayed = $author;
+                  }else{
+                    $authorsDisplayed = "$authorsDisplayed, $author";
+                  }
+                  $i = $i +1;
+              }
+
+              if(strlen($authorsDisplayed) > 50){
+                echo "<td><span class='font-size-em0-7'>" . $authorsDisplayed . "</span></td>";
+              }else{              
+                echo "<td><span>" . $authorsDisplayed . "</span></td>";
+              }
+              // echo "<td><span>" . $row['name'] . "</span></td>";
+
               echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
 
               if($row['link'] != ""){
@@ -193,19 +230,36 @@
               api.columns().every( function () {
                 var column = this;
                 var select;
-                if (column.index() != 0 && column.index() != 4 && column.index() != 5 && column.index() != 6 ){
-                  select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
-                    .appendTo( $(column.header()) )
-                    .on( 'change', function () {
-                      var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
-                        $(this).val()
-                      ));
-                      column
-                        .search( val ? '^'+val+'$' : '', true, false )
-                        .draw();
+                if (column.index() != 0 && column.index() != 4 && column.index() != 6 ){
+                  // Disable search by regex for author column
+                  if (column.index() == 2){
+                    select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
+                      .appendTo( $(column.header()) )
+                      .on( 'change', function () {
+                        var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                        ));
+                        column
+                          .search( val ? val: '', true, false )
+                          .draw();
 
-                      refreshDropdowns();
-                    })
+                        refreshDropdowns();
+                      })
+                  }
+                  else{
+                    select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
+                      .appendTo( $(column.header()) )
+                      .on( 'change', function () {
+                        var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                        ));
+                        column
+                          .search( val ? '^'+val+'$' : '', true, false )
+                          .draw();
+
+                        refreshDropdowns();
+                      })
+                  }
 
                   const data = column.order('asc').draw(false).data().unique();
                   let values = [];
@@ -218,8 +272,7 @@
                     const authors = val.split(",");
                     authors.forEach(item =>{
                       select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' ); 
-                    });                    
-                    //select.append( '<option onclick="event.stopPropagation()" value="' + val + '">' + val.substr(0,35) + '</option>' ); 
+                    }); 
                   }
                 }                  
                 selects.push(select);
@@ -277,6 +330,7 @@
         dataIndex: selects.indexOf(s)
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
+      console.log(selects);
     }
 
     function search(){
