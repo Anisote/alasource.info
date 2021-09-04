@@ -31,7 +31,7 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-lg-0">
           <li class="nav-item" >
             <h1>
               <a class="nav-link active" aria-current="page" href="index.php"><img src="themes/pictures/logo.png" alt="logo" id="logo" height="80px"></img></a>
