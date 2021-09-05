@@ -38,7 +38,7 @@
     <a class="button-style" aria-current="page" href="#">Rechercher</a>
     <a class="button-style" onclick='clean();' aria-current="page" href="#">Reset</a>
   </div>
-  <div class="center-25 font-size-em0-7 mt-2">
+  <div class="center-25 font-size-em0-7 mt-1">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
   <?php
