@@ -269,11 +269,19 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   }
 
                   // useful when multiple author
-                  for(var val of values) {
-                    const authors = val.split(", ");
-                    authors.forEach(item =>{
-                      select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' ); 
-                    }); 
+                  var authors = values
+                    .map(v => v.split(', '))
+                    .reduce((p, c) => {
+                      for(var item of c) {
+                        if(!p.includes(item)) {
+                          p.push(item);
+                        }
+                      }
+                      return p;
+                    }, [])
+                    .sort();
+                  for(var item of authors) {
+                    select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' );
                   }
                 }                  
                 selects.push(select);
@@ -288,7 +296,14 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     function refreshSelect(selectData, others) {
       var $select = selectData.$select;
       var data = api.rows().data().filter(d => others.every(o => {
-        return !o.value || jQuery.fn.dataTable.ext.type.search.html(d[o.dataIndex]) === o.value
+        var dataValue = jQuery.fn.dataTable.ext.type.search.html(d[o.dataIndex]);
+        if(o.split) {
+          dataValue = dataValue.split(o.split);
+        } else {
+          dataValue = [dataValue];
+        }
+        console.log(o.value);
+        return !o.value || dataValue.includes(o.value)
       }));
       var $options = $select.children('option');
 
@@ -297,17 +312,25 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       for(var i = 0; i < data.length; ++i) {
         var row = data[i];
         var cellValue = jQuery.fn.dataTable.ext.type.search.html(row[selectData.dataIndex]);
+        if(selectData.split) {
+          cellValue = cellValue.split(selectData.split);
+        } else {
+          cellValue = [cellValue];
+        }
 
-        var option;
+        var option = [];
         for(var j = 0; j < $options.length; ++j) {
-          if(jQuery.fn.dataTable.ext.type.search.html($($options[j]).attr('value')) === cellValue) {
-            option = $options[j];
-            break;
+          if(cellValue.includes(jQuery.fn.dataTable.ext.type.search.html($($options[j]).attr('value')))) {
+            option.push($options[j]);
           }
         }
 
-        if(option && !optionsToDisplay.includes(option)) {
-          optionsToDisplay.push(option);
+        if(option.length > 0) {
+          for(var op of option) {
+            if(!optionsToDisplay.includes(option)) {
+              optionsToDisplay.push(op);
+            }
+          }
         }
       }
 
@@ -328,7 +351,8 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       var selectsData = selects.filter(s => s).map(s => ({
         $select: s,
         value: jQuery.fn.dataTable.ext.type.search.html(s.val()),
-        dataIndex: selects.indexOf(s)
+        dataIndex: selects.indexOf(s),
+        split: selects.indexOf(s) === 2 ? ', ' : undefined
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
     }
