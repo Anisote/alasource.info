@@ -1,8 +1,7 @@
 <?php
   require_once('menu.php');
 
-  $tooltip = '
-⭐⭐⭐⭐ : Exceptionnel
+  $tooltip = '⭐⭐⭐⭐ : Exceptionnel
 ⭐⭐⭐ : Extrêmement intéressant
 ⭐⭐ : Très intéressant
 ⭐ : Intéressant';
@@ -135,7 +134,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               }else{              
                 echo "<td><span>" . $authorsDisplayed . "</span></td>";
               }
-              // echo "<td><span>" . $row['name'] . "</span></td>";
 
               echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
 
@@ -152,12 +150,10 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐</td>";
               }
               if ($row['mark'] == 3){
-                echo "
-                <td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐</td>";
+                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐</td>";
               }
               if ($row['mark'] == 4){
-                echo "
-                <td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐&nbsp;⭐</td>";
+                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐&nbsp;⭐</td>";
               }
                   
               if($row['datePublication'] != "00/00/0000"){
@@ -236,7 +232,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 if (column.index() != 0 && column.index() != 4 && column.index() != 6 ){
                   // Disable search by regex for author column
                   if (column.index() == 2){
-                    select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
+                    select = $('<select class="select-filter text-center" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
                         var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
@@ -249,7 +245,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       })
                   }
                   else{
-                    select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
+                    select = $('<select class="select-filter text-center" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
                         var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
