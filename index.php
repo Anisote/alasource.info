@@ -269,7 +269,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   }
 
                   // useful when multiple author
-                  var authors = values
+                  var columnValues = values
                     .map(v => v.split(', '))
                     .reduce((p, c) => {
                       for(var item of c) {
@@ -278,10 +278,16 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         }
                       }
                       return p;
-                    }, [])
-                    .sort();
-                  for(var item of authors) {
-                    select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' );
+                    }, []);
+
+                  if (column.index() == 2){
+                    columnValues.sort();
+                  }
+
+                  for(var item of columnValues) {
+                    if(item != ""){
+                      select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' );
+                    }
                   }
                 }                  
                 selects.push(select);
