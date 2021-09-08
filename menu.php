@@ -33,8 +33,8 @@
       </button>
         <ul class="navbar-nav me-auto mb-lg-0">
           <li class="nav-item" >
-            <h1>
-              <a class="nav-link active" aria-current="page" href="index.php"><img src="themes/pictures/logo.png" alt="logo" id="logo" height="80px"></img></a>
+            <h1 class="mb-0">
+              <a class="nav-link active pb-0" aria-current="page" href="index.php"><img src="themes/pictures/logo.png" alt="logo" id="logo" height="80px"></img></a>
             </h1>
           </li>
         </ul>
