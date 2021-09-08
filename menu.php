@@ -10,11 +10,11 @@
     <script src=<?php echo "\"libraries/jquery.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/datatables.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/bootstrap.min.js?$VERSION\""?>></script>
+    
     <!-- Moment.js 2.29.1 -->
     <script src=<?php echo "\"libraries/moment.min.js?$VERSION\""?>></script>
     <script src=<?php echo "\"libraries/datetime-sorting-moment.js?$VERSION\""?>></script>
 
-    <!--jQuery 3.3.1, DataTables 1.10.24, FixedHeader 3.1.8, Responsive 2.2.7, SearchPanes 1.2.2 -->
     <link rel="stylesheet" type="text/css" href=<?php echo "\"libraries/datatables.min.css?$VERSION\""?>/>
 
     <link rel="stylesheet" type="text/css" defer href=<?php echo "\"libraries/bootstrap.min.css?$VERSION\""?>/>
@@ -35,7 +35,7 @@
         <ul class="navbar-nav me-auto mb-lg-0">
           <li class="nav-item" >
             <h1 class="mb-0">
-              <a class="nav-link active pb-0" aria-current="page" href="index.php"><img src="themes/pictures/logo.png" alt="logo" id="logo" height="80px"></img></a>
+              <a class="nav-link active pb-0" aria-current="page" href="index.php"><img src="themes/pictures/logo.png" alt="logo" id="logo" height="80px" width="243.2px"></img></a>
             </h1>
           </li>
         </ul>
