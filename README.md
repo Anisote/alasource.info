@@ -16,6 +16,6 @@ TODO list :
 - ~~Reorder the search menu tooltip~~ - 22/08/2021
 - ~~Allow a field to be displayed as a tag~~ - 22/08/2021
 - ~~Add mark criterias~~ - 03/09/2021
-- Allow an information to have multiple authors
+- ~~Allow an information to have multiple authors~~ - 07/09/2021
 - Fix issue in the admin panel for author with quote
 - Resize the datable when the zoom changed
