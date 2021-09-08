@@ -1,12 +1,13 @@
 <?php
   require_once('config.php');
 ?><!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <base href="<?php echo $BASE_URL ?>">
 
     <link rel="shortcut icon" type="image/ico" href="themes/favicon.ico"/>
     
+    <script src=<?php echo "\"libraries/jquery.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/datatables.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/bootstrap.min.js?$VERSION\""?>></script>
     <!-- Moment.js 2.29.1 -->
