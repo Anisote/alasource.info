@@ -232,7 +232,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 if (column.index() != 0 && column.index() != 4 && column.index() != 6 ){
                   // Disable search by regex for author column
                   if (column.index() == 2){
-                    select = $('<select class="select-filter text-center" onclick="event.stopPropagation();"><option value=""></option></select>')
+                    select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
                         var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
@@ -244,8 +244,20 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         refreshDropdowns();
                       })
                   }
-                  else{
+                  else if(column.index() == 5){
                     select = $('<select class="select-filter text-center" onclick="event.stopPropagation();"><option value=""></option></select>')
+                      .appendTo( $(column.header()) )
+                      .on( 'change', function () {
+                        var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                        ));
+                        column
+                          .search( val ? '^'+val+'$' : '', true, false )
+                          .draw();
+                        refreshDropdowns();
+                      })
+                  }else{
+                    select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
                         var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
