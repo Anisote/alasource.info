@@ -276,7 +276,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       return p;
                     }, []);
 
-                  if (column.index() == 2){
+                  if (column.index() == 2 || column.index() == 3){
                     columnValues.sort();
                   }
 

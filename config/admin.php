@@ -192,16 +192,15 @@
 				$missingValues = false;
 				$idInformation = $_POST["idInformation"];
 
-				$sql = "UPDATE info.Information SET description = ?, link = ?, field = ?, categoryMedia = ?, author = ?, mark = ?, release_date = ? WHERE idInformation = ?;";		
+				$sql = "UPDATE info.Information SET description = ?, link = ?, field = ?, categoryMedia = ?, mark = ?, release_date = ? WHERE idInformation = ?;";		
 				var_dump($sql);
 				$statement = mysqli_prepare($link, $sql);
 				$request = mysqli_stmt_bind_param($statement,
-					"ssiiiisi",
+					"ssiiisi",
 					$_POST["description"],
 					$_POST["link"],
 					$_POST["fieldDescription"],
 					$_POST["categoryMediaDescription"],
-					$_POST["authorName"],
 					$_POST["mark"],
 					$_POST["release_date"],
 					$idInformation
@@ -232,43 +231,47 @@
 					} else {
 						for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
 							$tagId = $_POST['tagName' . $i];
+							var_dump($tagId);
 
+							$result = true;
 							if ($tagId) {
 								$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $tagId . "')";
 								var_dump($sql);
 								$result = mysqli_query($link, $sql);
+							}
 
-								if ($result === false) {
-									displayError();
-									$success = false;
-								} else {
-									$sql = "DELETE FROM info.Information_author WHERE idInformation = ?;";
+							if ($result === false) {
+								displayError();
+								$success = false;
+							}
+						}
+						if($success === true){
+							$sql = "DELETE FROM info.Information_author WHERE idInformation = ?;";
 
-									$statement = mysqli_prepare($link, $sql);
-									mysqli_stmt_bind_param($statement,
-										"i",
-										$idInformation
-									);
-									$result = mysqli_stmt_execute($statement);
-									mysqli_stmt_close($statement);
-				
-									if ($result === false) {
-										displayError();
-										$success = false;
-									} else {			
-										for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
-											$authorId = $_POST['authorName' . $i];
-				
-											if ($authorId) {
-												$sql = "INSERT INTO info.Information_author (idInformation, idAuthor)	VALUES ('" . $idInformation . "', '" . $authorId . "')";
-												var_dump($sql);
-												$result = mysqli_query($link, $sql);
-				
-												if ($result === false) {
-													displayError();
-													$success = false;
-												}
-											}
+							$statement = mysqli_prepare($link, $sql);
+							mysqli_stmt_bind_param($statement,
+								"i",
+								$idInformation
+							);
+							$result = mysqli_stmt_execute($statement);
+							mysqli_stmt_close($statement);
+		
+							if ($result === false) {
+								displayError();
+								$success = false;
+							} else {			
+								for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+									$authorId = $_POST['authorName' . $i];
+									var_dump($authorId);
+		
+									if ($authorId) {
+										$sql = "INSERT INTO info.Information_author (idInformation, idAuthor)	VALUES ('" . $idInformation . "', '" . $authorId . "')";
+										var_dump($sql);
+										$result = mysqli_query($link, $sql);
+		
+										if ($result === false) {
+											displayError();
+											$success = false;
 										}
 									}
 								}
@@ -279,16 +282,6 @@
 				if ($success){
 					displaySuccess();
 				}
-				/*
-				if ($result == false) {
-					displayError();
-				} else {
-
-
-					$_POST['tagName1']
-
-					displaySuccess();
-				}*/
 			} else {
 				error("Paramètre POST 'action' est manquant !");
 			}
@@ -501,11 +494,10 @@
 									'link' => $row['link'],
 									'infoField' => $row['field'],
 									'infoCategoryMedia' => $row['categoryMedia'],
-									'infoAuthor' => $row['author'],
+									'authors' => $row['authors'],
 									'mark' => $row['mark'],
-									'infoReleaseDate' => $row['release_date'],
 									'tags' => $row['tags'],
-									'authors' => $row['authors']
+									'infoReleaseDate' => $row['release_date']
 								);
 							}
 							echo "</select>";
@@ -544,7 +536,7 @@
 							}
 							echo "</select>";
 
-							// Author
+							// Authors
 							$sql = "SELECT * FROM Author ORDER BY name";
 							$result = mysqli_query($link, $sql);
 
