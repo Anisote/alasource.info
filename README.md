@@ -18,6 +18,7 @@ TODO list :
 - ~~Add mark criterias~~ - 03/09/2021
 - ~~Allow an information to have multiple authors~~ - 07/09/2021
 - Order authors by alphabetical order
+- Order information by alphabetical order in administration panel
 - Fix issue in the admin panel for author with quote
 - Fix issue in the admin panel when insertion of authors without tags in an information
 - Resize the datable when the zoom changed
