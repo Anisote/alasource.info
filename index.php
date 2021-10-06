@@ -92,7 +92,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
   if($result = mysqli_query($link, $sql)){
       if(mysqli_num_rows($result) > 0){
-          echo "<table id='table_id' class='display'>";
+          echo "<table id='table_id' class='display responsive'>";
           echo "<thead>";
               echo "<tr>";
                   echo "<th class='id_th'>ID</th>";
@@ -207,9 +207,12 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   }
                   return data;
                 }
-              }
+              },
+              { responsivePriority: 10001, targets: [3] },
+              { responsivePriority: 10002, targets: [2] },
+              { responsivePriority: 10003, targets: [0,6] }
             ],
-            "pageLength": 100,
+            "pageLength": 25,
             "language": {
                 "lengthMenu": "Afficher _MENU_ enregistrements par page",
                 "zeroRecords": "Aucun résultat trouvé",
