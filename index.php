@@ -47,7 +47,7 @@
   inner join Tag on Information.field = Tag.idTag
   order by indexDisplayed asc;";
 
-$sqlInformationAuthor = "SELECT idInformation, name FROM Information_author NATURAL JOIN Author;";
+$sqlInformationAuthor = "SELECT idInformation, name FROM Information_author NATURAL JOIN Author ORDER BY name;";
 $informationAuthor = Array();
 if($result = mysqli_query($link, $sqlInformationAuthor)) {
     if(mysqli_num_rows($result) > 0){

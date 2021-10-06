@@ -17,7 +17,7 @@ TODO list :
 - ~~Allow a field to be displayed as a tag~~ - 22/08/2021
 - ~~Add mark criterias~~ - 03/09/2021
 - ~~Allow an information to have multiple authors~~ - 07/09/2021
-- Order authors by alphabetical order
+- ~~Order authors by alphabetical order~~ - 06/10/2021
 - Order information by alphabetical order in administration panel
 - Fix issue in the admin panel for author with quote
 - Fix issue in the admin panel when insertion of authors without tags in an information
