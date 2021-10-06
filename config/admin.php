@@ -24,6 +24,22 @@
 		echo "<p class='alert-warning alert'><b>Aucune requête SQL n'a été executée - Données manquantes !</b></p>";
 	}
 
+	function execPrepareStmt($sql, $params) {
+		global $link;
+
+		var_dump($sql, $params);
+
+		$statement = mysqli_prepare($link, $sql);
+
+		mysqli_stmt_bind_param($statement, ...$params);
+		
+		$result = mysqli_stmt_execute($statement);
+	
+		mysqli_stmt_close($statement);
+
+		return $result;
+	}
+
 	$missingValues = true;
 
 	function listDelete($table, $idKey, $keys, $tableClass = '') {
@@ -115,39 +131,21 @@
 				}
 				
 				$missingValues = false;
-				$indexDisplayed = $indexDisplayed + 1 ;
+				$indexDisplayed = $indexDisplayed + 1;
 
-				if($_POST['link'] != ""){
-					$sql = "INSERT INTO info.Information (description, link, field, categoryMedia, mark, insert_date, release_date, indexDisplayed)	
-					VALUES (?, ?, ?, ?, ?, now(), ?, ?)";
-					$statement = mysqli_prepare($link, $sql);
-					mysqli_stmt_bind_param($statement,
+				$result = execPrepareStmt(
+					"INSERT INTO info.Information (description, link, field, categoryMedia, mark, insert_date, release_date, indexDisplayed) VALUES (?, ?, ?, ?, ?, now(), ?, ?)",
+					[
 						"ssiiisi",
-						$_POST["description"],
-						$_POST["link"],
+						trim($_POST["description"]),
+						trim($_POST['link']) != "" ? trim($_POST["link"]) : null,
 						$_POST["fieldDescription"],
 						$_POST["categoryMediaDescription"],
 						$_POST["mark"],
 						$_POST["release_date"],
 						$indexDisplayed
-					);
-				}else{					
-					$sql = "INSERT INTO info.Information (description, field,categoryMedia, mark, insert_date, release_date, indexDisplayed)	
-					VALUES (?, ?, ?, ?, now(), ?, ?)";
-					$statement = mysqli_prepare($link, $sql);
-					mysqli_stmt_bind_param($statement,
-						"siiisi",
-						$_POST["description"],
-						$_POST["fieldDescription"],
-						$_POST["categoryMediaDescription"],
-						$_POST["mark"],
-						$_POST["release_date"],
-						$indexDisplayed
-					);
-				}				
-				var_dump($statement);
-
-				$result = mysqli_stmt_execute($statement);
+					]
+				);
 
 				$idInformation = mysqli_insert_id($link);
 
@@ -174,9 +172,19 @@
 						$authorId = $_POST['authorName' . $i];
 
 						if ($authorId) {
-							$sql = "INSERT INTO info.Information_author (idInformation, idAuthor)	VALUES ('" . $idInformation . "', '" . $authorId . "')";
+							$sql = "INSERT INTO info.Information_author (idInformation, idAuthor) VALUES (?,?)";
 							var_dump($sql);
-							$result = mysqli_query($link, $sql);
+							
+							$statement = mysqli_prepare($link, $sql);
+							$request = mysqli_stmt_bind_param($statement,
+								"ii",
+								$idInformation,
+								$authorId
+							);
+							
+							$result = mysqli_stmt_execute($statement);
+						
+							mysqli_stmt_close($statement);
 
 							if ($result === false) {
 								displayError();
@@ -192,23 +200,19 @@
 				$missingValues = false;
 				$idInformation = $_POST["idInformation"];
 
-				$sql = "UPDATE info.Information SET description = ?, link = ?, field = ?, categoryMedia = ?, mark = ?, release_date = ? WHERE idInformation = ?;";		
-				var_dump($sql);
-				$statement = mysqli_prepare($link, $sql);
-				$request = mysqli_stmt_bind_param($statement,
-					"ssiiisi",
-					$_POST["description"],
-					$_POST["link"],
-					$_POST["fieldDescription"],
-					$_POST["categoryMediaDescription"],
-					$_POST["mark"],
-					$_POST["release_date"],
-					$idInformation
+				$result = execPrepareStmt(
+					"UPDATE info.Information SET description = ?, link = ?, field = ?, categoryMedia = ?, mark = ?, release_date = ? WHERE idInformation = ?",
+					[
+						"ssiiisi",
+						trim($_POST["description"]),
+						trim($_POST['link']) != "" ? trim($_POST["link"]) : null,
+						$_POST["fieldDescription"],
+						$_POST["categoryMediaDescription"],
+						$_POST["mark"],
+						$_POST["release_date"],
+						$idInformation
+					]
 				);
-				
-				$result = mysqli_stmt_execute($statement);
-			
-				mysqli_stmt_close($statement);
 
 				$success = true;
 				if ($result === false) {
@@ -292,12 +296,11 @@
 			$missingValues = false;
 
 			var_dump($_POST);
-			$author_name = $_POST['name'];
-			$sql = "INSERT INTO info.Author (name) 
-			VALUES ('" . $author_name . "')";
-
-			$result = mysqli_query($link, $sql);
-			var_dump($sql);
+			
+			$result = execPrepareStmt(
+				"INSERT INTO info.Author (name) VALUES (?)",
+				[ "s", $_POST['name'] ]
+			);
 						
 			if ($result === false) {
 				displayError();
@@ -310,11 +313,10 @@
 		if (!empty($_POST['typedemedia_description'])) {
 			$missingValues = false;
 
-			$typedemedia_description = $_POST['typedemedia_description'];
-			$sql = "INSERT INTO info.CategoryMedia (description) 
-			VALUES ('" . $typedemedia_description . "')";
-			$result = mysqli_query($link, $sql) or die(mysqli_error($link));;
-			var_dump($sql);
+			$result = execPrepareStmt(
+				"INSERT INTO info.CategoryMedia (description) VALUES (?)",
+				[ "s", $_POST['typedemedia_description'] ]
+			);
 						
 			if ($result === false) {
 				displayError();
@@ -327,11 +329,10 @@
 		if (!empty($_POST['tag_name'])) {
 			$missingValues = false;
 
-			$tag_name = $_POST['tag_name'];
-			$sql = "INSERT INTO info.Tag (name) 
-			VALUES ('" . $tag_name . "')";
-			$result = mysqli_query($link, $sql);
-			var_dump($sql);
+			$result = execPrepareStmt(
+				"INSERT INTO info.Tag (name) VALUES (?)",
+				[ "s", $_POST['tag_name'] ]
+			);
 						
 			if ($result === false) {
 				displayError();

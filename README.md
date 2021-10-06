@@ -24,9 +24,10 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 - ~~Add mark criterias~~ - 03/09/2021
 - ~~Allow an information to have multiple authors~~ - 07/09/2021
 - ~~Order authors by alphabetical order~~ - 06/10/2021
-- Order information by alphabetical order in administration panel
-- Fix issue in the admin panel for author with quote
+- ~~Order information by alphabetical order in administration panel~~ - canceled
+- ~~Fix issue in the admin panel for author with quote~~ - 06/10/2021
 - Fix issue in the admin panel when insertion of authors without tags in an information
+- Author should be required to add an information
 - Resize the datable when the zoom changed
 
 ## Commit format
