@@ -1,4 +1,10 @@
-TODO list : 
+
+# alasource.info
+
+This is the Git repository of [https://alasource.info](https://alasource.info/).
+
+## TODO list
+
 - ~~When a filter is enable, only displays options in other filters which have data~~
 - ~~Implement a footer with the Github link~~
 - ~~Implement tags~~ - 04/07/2021
@@ -22,3 +28,13 @@ TODO list :
 - Fix issue in the admin panel for author with quote
 - Fix issue in the admin panel when insertion of authors without tags in an information
 - Resize the datable when the zoom changed
+
+## Commit format
+
+|Type|Description|Commit format|
+|----|-----------|-------------|
+|Fix|Fix a bug|Fix ...|
+|Feature|Implementation of a new feature|Add ...|
+|Improvement|Improve something|Improve ...|
+|Database|Populate the database|Populate the database( with ...)|
+|Bump|Bump a dependancy|Bump ...|
