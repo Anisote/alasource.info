@@ -23,6 +23,7 @@
 }
 
 .button-style{
+  cursor:pointer;
   font-size: 25px;
   border: #05445e;
   border-style: solid;
@@ -35,8 +36,10 @@
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
-.button-style > a:hover {
+.button-style:hover {
   color: white;
+  background-color: #0b668b;
+  border-color: #0b668b;
 }
 
 table.dataTable thead .sorting{background-image:none !important}

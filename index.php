@@ -35,7 +35,7 @@
         ?>
     </datalist>
     <a class="button-style" aria-current="page" href="#">Rechercher</a>
-    <a class="button-style" onclick='clean();' aria-current="page" href="#">Reset</a>
+    <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
   </div>
   <div class="center-25 font-size-em0-7 mt-1 mb-3">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
