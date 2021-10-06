@@ -36,6 +36,12 @@
     </datalist>
     <a class="button-style" aria-current="page" href="#">Rechercher</a>
     <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
+    <div style="display:inline-block;">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
+        <label class="form-check-label" for="compactModeSwitch">Mode compact</label>
+      </div>
+    </div>
   </div>
   <div class="center-25 font-size-em0-7 mt-1 mb-3">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
@@ -116,8 +122,8 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               $tagsStr = join(', ', $tags);
 
               echo "<tr>";
-              echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
-              echo "<td><span>" . $row['fielddesc'] . "</span></td>";
+              echo "<td class='center '><span>" . $row['indexDisplayed'] . "</span></td>";
+              echo "<td class='text-nowrap'><span>" . $row['fielddesc'] . "</span></td>";
               $authorsDisplayed = "";
               $i = 0;
               foreach ($informationAuthor[$row['idInformation']] as $author ){
@@ -135,7 +141,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 echo "<td><span>" . $authorsDisplayed . "</span></td>";
               }
 
-              echo "<td><span>" . $row['cateMediadesc'] . "</span></td>";
+              echo "<td class='text-nowrap'><span>" . $row['cateMediadesc'] . "</span></td>";
 
               if($row['link'] != ""){
                 echo "<td><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
@@ -157,7 +163,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               }
                   
               if($row['datePublication'] != "00/00/0000"){
-                echo "<td class='center'>" . $row['datePublication'] . "</td>";
+                echo "<td class='center text-nowrap'>" . $row['datePublication'] . "</td>";
               }else{
                 echo "<td class='center'></td>";
               }              
@@ -208,9 +214,12 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   return data;
                 }
               },
-              { responsivePriority: 10001, targets: [3] },
-              { responsivePriority: 10002, targets: [2] },
-              { responsivePriority: 10003, targets: [0,6] }
+              { responsivePriority: 1, targets: [4, 5] },
+              { responsivePriority: 2, targets: [1] },
+              { responsivePriority: 3, targets: [3] },
+              { responsivePriority: 4, targets: [2] },
+              { responsivePriority: 5, targets: [6] },
+              { responsivePriority: 6, targets: [0] },
             ],
             "pageLength": 25,
             "language": {
@@ -300,10 +309,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' );
                     }
                   }
-                }                  
+                }
                 selects.push(select);
             } );
             
+            setCompactMode($(window).width() <= <?= $COMPACT_MODE_TRIGGER_SCREEN_WIDTH ?>);
         }
       } );
       table.order( [ 0, 'asc' ] ).draw();
@@ -388,6 +398,25 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
       table.search("").draw();
     };
+
+    let compactMode = undefined;
+    function setCompactMode(isCompact) {
+      if(isCompact !== compactMode) {
+        var table = $('#table_id').DataTable();
+        var columnsToHide = [ <?= $COMPACT_MODE_COLUMNS_TO_HIDE ?> ];
+
+        for(const column of columnsToHide) {
+          table.column(column).visible(!isCompact);
+        }
+
+        compactMode = isCompact;
+        
+        document.getElementById('compactModeSwitch').checked = isCompact;
+      }
+    }
+    function toggleCompactMode() {
+      setCompactMode(!compactMode);
+    }
     </script>
 
 </div>
