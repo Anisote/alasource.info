@@ -173,7 +173,7 @@ th{
   max-width: 200px;
 }
 
-@media only screen and (min-width : 600px) {
+@media only screen and (max-width : 800px) {
   .center-15{
     text-align: center;
     margin-left: 2%;
