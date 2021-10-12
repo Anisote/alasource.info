@@ -118,6 +118,10 @@ blockquote i {
   width: 100%;
 }
 
+.field_desc_full{
+  display:inline;
+}
+
 th{
   white-space: nowrap;
   text-align: center;
@@ -180,5 +184,17 @@ th{
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
+  }
+  
+  .font-small-screen{
+    font-size: 25px;
+  }
+
+  .button-style{
+    font-size: 35px;
+  }
+
+  .font-size-em0-7{
+    font-size: 20px;
   }
 }

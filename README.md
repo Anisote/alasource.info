@@ -27,6 +27,7 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 - ~~Order information by alphabetical order in administration panel~~ - canceled
 - ~~Fix issue in the admin panel for author with quote~~ - 06/10/2021
 - ~~Display less columns in a small screen resolution by default and create a button to display all column and reverse~~ - 06/10/2021
+- Fix order of the domaine column in the compact mode
 - Fix issue in the admin panel when insertion of authors without tags in an information
 - Author should be required to add an information
 - Resize the datable when the zoom changed

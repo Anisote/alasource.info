@@ -103,6 +103,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               echo "<tr>";
                   echo "<th class='id_th'>ID</th>";
                   echo "<th class='small_th'>Domaine</th>";
+                  echo "<th class='small_th'>Domaine</th>";
                   echo "<th class='small_th'>Auteur</th>";
                   echo "<th class='small_th'>Type de média</th>";
                   echo "<th>Description</th>";
@@ -123,7 +124,9 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
               echo "<tr>";
               echo "<td class='center '><span>" . $row['indexDisplayed'] . "</span></td>";
-              echo "<td class='text-nowrap'><span>" . $row['fielddesc'] . "</span></td>";
+              $fieldDesc = explode(' ', $row['fielddesc']);
+              echo "<td class='text-nowrap center'><span>" . $fieldDesc[0] . "</span></td>";
+              echo "<td class='text-nowrap '><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
               $authorsDisplayed = "";
               $i = 0;
               foreach ($informationAuthor[$row['idInformation']] as $author ){
@@ -206,7 +209,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
             responsive: true,
             "sDom": '<"top"ftrlpi>',
             columnDefs: [{
-                targets: [1,3],
+                targets: [1,2,4],
                 render: function (data, type, row) {
                   if (type === 'sort') {
                     return data.replace(/.*? /,'');
@@ -214,11 +217,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   return data;
                 }
               },
-              { responsivePriority: 1, targets: [4, 5] },
-              { responsivePriority: 2, targets: [1] },
-              { responsivePriority: 3, targets: [3] },
-              { responsivePriority: 4, targets: [2] },
-              { responsivePriority: 5, targets: [6] },
+              { responsivePriority: 1, targets: [5, 6] },
+              { responsivePriority: 2, targets: [2] },
+              { responsivePriority: 3, targets: [4] },
+              { responsivePriority: 4, targets: [3] },
+              { responsivePriority: 5, targets: [7] },
               { responsivePriority: 6, targets: [0] },
             ],
             "pageLength": 25,
@@ -241,9 +244,9 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               api.columns().every( function () {
                 var column = this;
                 var select;
-                if (column.index() != 0 && column.index() != 4 && column.index() != 6 ){
+                if (column.index() != 0 && column.index() != 5 && column.index() != 7 ){
                   // Disable search by regex for author column
-                  if (column.index() == 2){
+                  if (column.index() == 3){
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -256,7 +259,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         refreshDropdowns();
                       })
                   }
-                  else if(column.index() == 5){
+                  else if(column.index() == 6){
                     select = $('<select class="select-filter text-center" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -300,7 +303,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       return p;
                     }, []);
 
-                  if (column.index() == 2 || column.index() == 3){
+                  if (column.index() == 3 || column.index() == 4){
                     columnValues.sort();
                   }
 
@@ -312,11 +315,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 }
                 selects.push(select);
             } );
-            
-            setCompactMode($(window).width() <= <?= $COMPACT_MODE_TRIGGER_SCREEN_WIDTH ?>);
         }
       } );
+      table.column(1).visible(false);
       table.order( [ 0, 'asc' ] ).draw();
+      setCompactMode($(window).width() <= <?= $COMPACT_MODE_TRIGGER_SCREEN_WIDTH ?>);
     } );
 
     var api;
@@ -407,11 +410,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
         for(const column of columnsToHide) {
           table.column(column).visible(!isCompact);
+          table.column(1).visible(isCompact);
         }
 
-        compactMode = isCompact;
-        
-        document.getElementById('compactModeSwitch').checked = isCompact;
+        compactMode = isCompact;        
+        document.getElementById('compactModeSwitch').checked = isCompact; 
       }
     }
     function toggleCompactMode() {
