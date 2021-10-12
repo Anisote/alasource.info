@@ -16,6 +16,6 @@
   $BASE_URL = "https://alasource.info";
   $VERSION = file_get_contents('version');
 
-  $COMPACT_MODE_COLUMNS_TO_HIDE = "0, 2, 3, 6";
+  $COMPACT_MODE_COLUMNS_TO_HIDE = "0, 2, 3, 4, 7";
   $COMPACT_MODE_TRIGGER_SCREEN_WIDTH = 1024;
 ?>
