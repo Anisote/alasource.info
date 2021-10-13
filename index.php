@@ -418,7 +418,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         if(!isCompact){
           let events = document.getElementsByClassName("description")
           for (let ev of events) {
-              ev.style.fontSize = '50px';
               ev.style.width = '1000px';
           }
 
