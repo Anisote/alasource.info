@@ -201,6 +201,14 @@ th{
   display: inline;
 }
 
+.mobile{
+  display: none;
+}
+
+.desktop{
+  display: inline;
+}
+
 @media only screen and (max-width: 1000px){
   #table_id{
     width: 1400px !important;
@@ -212,7 +220,7 @@ th{
   }
 
   .star{
-    width: 50px;
+    font-size: 40px;
   }
 
   .center-15{
@@ -246,5 +254,13 @@ th{
 
   .font-size-em0-7{
     font-size: 50px;
+  }
+
+  .mobile{
+    display: inline;
+  }
+
+  .desktop{
+    display: none;
   }
 }
