@@ -100,7 +100,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
   if($result = mysqli_query($link, $sql)){
       if(mysqli_num_rows($result) > 0){
-          echo "<table id='table_id' class='display responsive'>";
+          echo "<table id='table_id' class='display'>";
           echo "<thead>";
               echo "<tr>";
                   echo "<th class='id_th'>ID</th>";
@@ -413,6 +413,17 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         for(const column of columnsToHide) {
           table.column(column).visible(!isCompact);
           table.column(1).visible(isCompact);
+        }
+
+        if(!isCompact){
+          let events = document.getElementsByClassName("description")
+          for (let ev of events) {
+              ev.style.fontSize = '50px';
+              ev.style.width = '1000px';
+          }
+
+          // document.getElementById('table_id').style.width = '2000px !important';
+          console.log(document.getElementById('table_id').style.width);
         }
 
         compactMode = isCompact;        
