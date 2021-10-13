@@ -57,9 +57,9 @@ table.dataTable thead .sorting_desc_disabled{background-image:none !important}
   padding-bottom: 5px;
 }
 
-.center-25{
-  margin-left: 25%;
-  margin-right: 25%;
+.center-20{
+  margin-left: 20%;
+  margin-right: 20%;
   text-align: center;
 }
 
@@ -177,24 +177,41 @@ th{
   width:10px !important;
 }
 
-@media only screen and (min-width : 800px) {
+#button{
+  display: inline;
+}
+
+@media only screen and (max-width: 1000px){
+  .description{
+    font-size: 70px;
+  }
+
   .center-15{
     text-align: center;
     margin-left: 2%;
     margin-right: 2%;
   }
 
-  .center-25{
+  .center-20{
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
   }
   
   .font-small-screen{
-    font-size: 60px;
+    font-size: 50px;
   }
 
-  .button-style{
+  #searchBox{
+    display:block;
+  }
+
+  #button{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  #searchBox, .button-style {
     font-size: 80px;
   }
 

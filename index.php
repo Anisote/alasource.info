@@ -8,7 +8,7 @@
 ?>
 
 <div id="content">
-  <div class="center-25">
+  <div class="center-20">
     <input list="tags-fields" type="search" placeholder="" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
         <?php
@@ -34,8 +34,10 @@
             }
         ?>
     </datalist>
-    <a class="button-style" aria-current="page" href="#">Rechercher</a>
-    <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
+    <div id="button">
+      <a class="button-style" aria-current="page" href="#">Rechercher</a>
+      <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
+    </div>
     <div style="display:inline-block;">
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
@@ -43,7 +45,7 @@
       </div>
     </div>
   </div>
-  <div class="center-25 font-size-em0-7 mt-1 mb-3">
+  <div class="center-20 font-size-em0-7 mt-1 mb-3">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
   <?php
@@ -147,9 +149,9 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               echo "<td class='text-nowrap'><span>" . $row['cateMediadesc'] . "</span></td>";
 
               if($row['link'] != ""){
-                echo "<td><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
+                echo "<td class='description'><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
               }else{
-                echo "<td>" . $row['infodesc'] . "</td>";
+                echo "<td class='description'>" . $row['infodesc'] . "</td>";
               }
 
               if($row['mark'] == 1){
@@ -206,7 +208,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
       var table = $('#table_id').DataTable({
             SearchPanes : true,
-            responsive: true,
+            responsive: false,
             "sDom": '<"top"ftrlpi>',
             columnDefs: [{
                 targets: [1,2,4],
