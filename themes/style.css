@@ -182,8 +182,17 @@ th{
 }
 
 @media only screen and (max-width: 1000px){
+  #table_id{
+    width: 1400px !important;
+  }
+  
   .description{
-    font-size: 60px;
+    font-size: 80px;
+    width: 800px;
+  }
+
+  .star{
+    width: 50px;
   }
 
   .center-15{
