@@ -22,6 +22,11 @@
   margin-bottom: 0.5%;
 }
 
+#searchBox::placeholder{
+  color:rgb(255, 0, 0);
+  opacity: 30%;
+}
+
 .button-style{
   cursor:pointer;
   font-size: 25px;

@@ -9,7 +9,7 @@
 
 <div id="content">
   <div class="center-20">
-    <input list="tags-fields" type="search" placeholder="" aria-label="Rechercher" oninput='search()' id="searchBox" />
+    <input list="tags-fields" type="search" placeholder="Cliquer ici" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
         <?php
             $sql = "SELECT name FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
