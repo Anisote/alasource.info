@@ -191,14 +191,14 @@ th{
   }
   
   .font-small-screen{
-    font-size: 40px;
-  }
-
-  .button-style{
     font-size: 60px;
   }
 
+  .button-style{
+    font-size: 80px;
+  }
+
   .font-size-em0-7{
-    font-size: 30px;
+    font-size: 50px;
   }
 }
