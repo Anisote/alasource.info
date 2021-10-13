@@ -177,7 +177,7 @@ th{
   width:10px !important;
 }
 
-@media only screen and (max-width : 800px) {
+@media only screen and (min-width : 800px) {
   .center-15{
     text-align: center;
     margin-left: 2%;
@@ -200,8 +200,5 @@ th{
 
   .font-size-em0-7{
     font-size: 30px;
-  }
-
-  .small_th{
   }
 }
