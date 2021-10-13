@@ -42,9 +42,24 @@
   border-color: #0b668b;
 }
 
+/* Switch button */
+
 .form-check{
   margin-left: 1em;
 }
+
+.form-check-input:checked {
+  background-color: green;
+  border-color: greenyellow;
+}
+
+.form-switch .form-check-input {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='green'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:focus {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='greenyellow'/%3e%3c/svg%3e");
+}
+
 
 table.dataTable thead .sorting{background-image:none !important}
 table.dataTable thead .sorting_asc{background-image:none !important}

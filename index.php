@@ -41,7 +41,7 @@
     <div style="display:inline-block;">
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
-        <label class="form-check-label" for="compactModeSwitch">Mode compact</label>
+        <label class="form-check-label text-success" for="compactModeSwitch">Mode compact</label>
       </div>
     </div>
   </div>
@@ -107,7 +107,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   echo "<th class='smallest_th'>Dom</th>";
                   echo "<th class='small_th'>Domaine</th>";
                   echo "<th class='small_th'>Auteur</th>";
-                  echo "<th class='small_th'>Type de média</th>";
+                  echo "<th class='small_th'>Média</th>";
                   echo "<th>Description</th>";
                   echo "<th data-toggle='tooltip' data-html='true' title='$tooltip'>Note</th>";
                   echo "<th class='small_th'>Date de publication</th>";
