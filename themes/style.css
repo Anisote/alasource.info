@@ -173,6 +173,10 @@ th{
   max-width: 200px;
 }
 
+.smallest_th{
+  width:10px !important;
+}
+
 @media only screen and (max-width : 800px) {
   .center-15{
     text-align: center;
@@ -199,6 +203,5 @@ th{
   }
 
   .small_th{
-    width:50px !important;
   }
 }

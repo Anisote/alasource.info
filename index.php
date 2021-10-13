@@ -102,7 +102,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
           echo "<thead>";
               echo "<tr>";
                   echo "<th class='id_th'>ID</th>";
-                  echo "<th class='small_th'>Domaine</th>";
+                  echo "<th class='smallest_th'>Dom</th>";
                   echo "<th class='small_th'>Domaine</th>";
                   echo "<th class='small_th'>Auteur</th>";
                   echo "<th class='small_th'>Type de média</th>";
