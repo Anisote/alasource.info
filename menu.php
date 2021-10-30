@@ -6,7 +6,7 @@
     <base href="<?php echo $BASE_URL ?>">
 
     <link rel="shortcut icon" type="image/ico" href="themes/favicon.ico"/>
-    <a rel="me" href="https://mastodon.tedomum.net/@anisote">Mastodon</a>
+    <a rel="me" href="https://mastodon.tedomum.net/@anisote"></a>
     
     <script src=<?php echo "\"libraries/jquery.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/datatables.min.js?$VERSION\""?>></script>  
