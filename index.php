@@ -71,7 +71,7 @@
         </div>
     </div>
   </div>
-  <div class="center-20 font-size-em0-7 mt-1 mb-3 desktop">
+  <div class="center-15 font-size-em0-7 mt-1 mb-3 desktop">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
 
