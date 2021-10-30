@@ -6,11 +6,13 @@
     <base href="<?php echo $BASE_URL ?>">
 
     <link rel="shortcut icon" type="image/ico" href="themes/favicon.ico"/>
+    <a rel="me" href="https://mastodon.tedomum.net/@anisote">Mastodon</a>
     
     <script src=<?php echo "\"libraries/jquery.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/datatables.min.js?$VERSION\""?>></script>  
-    <script src=<?php echo "\"libraries/bootstrap.min.js?$VERSION\""?>></script>
-    
+    <script src=<?php echo "\"libraries/bootstrap.bundle.min.js?$VERSION\""?>></script>
+
+        
     <!-- Moment.js 2.29.1 -->
     <script src=<?php echo "\"libraries/moment.min.js?$VERSION\""?>></script>
     <script src=<?php echo "\"libraries/datetime-sorting-moment.js?$VERSION\""?>></script>
@@ -54,4 +56,4 @@
         </ul>
       </div>
     </div>
-  </nav>
+</nav>

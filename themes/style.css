@@ -27,6 +27,25 @@
   opacity: 30%;
 }
 
+.pointer{
+  cursor:pointer;
+}
+
+.inline-block{
+  display:inline-block;
+}
+
+#informationButton{
+  cursor:pointer;
+  color:green;
+  display: inline-block;
+  margin-left:10px;
+}
+
+.svg{
+  width:16px;
+}
+
 .button-style{
   cursor:pointer;
   font-size: 25px;
@@ -217,6 +236,10 @@ th{
   .description{
     font-size: 50px;
     width: 800px;
+  }
+
+  .svg{
+    width:40px;
   }
 
   .star{

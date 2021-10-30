@@ -38,16 +38,43 @@
       <a class="button-style" aria-current="page" href="#">Rechercher</a>
       <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
     </div>
-    <div style="display:inline-block;">
-      <div class="form-check form-switch">
+    <div>
+      <div class="form-check form-switch inline-block">
         <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
-        <label class="form-check-label text-success" for="compactModeSwitch">Mode compact</label>
+        <label class="form-check-label text-success pointer" for="compactModeSwitch">Mode compact</label>        
       </div>
+
+      <?php
+          $sqlInformationTag = "SELECT name FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
+          $tags = Array();
+          if($result = mysqli_query($link, $sqlInformationTag)) {
+              if(mysqli_num_rows($result) > 0){
+                  while($row = mysqli_fetch_array($result)) {
+                      $tags[] = $row['name'];
+                  }
+                  
+                  mysqli_free_result($result);
+              } else {
+                  echo "No records matching your query were found.";
+              }
+          } else {
+              echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+          }
+
+          $tagsPopover = "";
+          foreach($tags as $tag){
+            $tagsPopover = $tagsPopover . $tag . "<br/>";
+          }
+        ?>
+        <di id=informationButton  data-bs-html="true" data-bs-toggle="popover" title="Domaines" data-bs-placement="bottom" data-bs-content="<?php  echo($tagsPopover) ?>" >
+          <svg viewBox="0 0 512 512" class="pointer svg" aria-hidden="true"data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4096 4096"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg> Domaines 
+        </div>
     </div>
   </div>
   <div class="center-20 font-size-em0-7 mt-1 mb-3 desktop">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
+
   <?php
 
   $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, CategoryMedia.description as cateMediadesc,link, mark, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
@@ -436,6 +463,12 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     function toggleCompactMode() {
       setCompactMode(!compactMode);
     }
+
+    // enable popover
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl)
+    });
     </script>
 
 </div>
