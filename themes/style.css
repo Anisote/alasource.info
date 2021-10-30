@@ -261,6 +261,14 @@ th{
     margin-right: 5%;
     text-align: center;
   }
+
+  #button{
+    margin-left: 0%;
+  }
+
+  .form-check{
+    margin-left: 0px;
+  }
   
   .font-small-screen{
     font-size: 50px;
