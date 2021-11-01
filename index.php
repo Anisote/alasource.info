@@ -293,7 +293,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       })
                   }
                   else if(column.index() == 6){
-                    select = $('<select class="select-filter text-center" onclick="event.stopPropagation();"><option value=""></option></select>')
+                    select = $('<select class="select-filter text-center font-size-30" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
                         var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
