@@ -71,7 +71,7 @@
         </div>
     </div>
   </div>
-  <div class="center-15 font-size-em0-7 mt-1 mb-3 desktop">
+  <div class="center-20 font-size-em0-7 mt-1 mb-3 desktop">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
 
@@ -136,7 +136,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   echo "<th class='small_th'>Auteur</th>";
                   echo "<th class='small_th'>Média</th>";
                   echo "<th>Description</th>";
-                  echo "<th data-toggle='tooltip' data-html='true' title='$tooltip'>Note</th>";
+                  echo "<th class='small_th' data-toggle='tooltip' data-html='true' title='$tooltip'>Note</th>";
                   echo "<th class='small_th'>Date de publication</th>";
                   echo "<th class='hidden'>Tags</th>";
               echo "</tr>";
