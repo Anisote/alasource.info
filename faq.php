@@ -24,17 +24,19 @@
 
     <b>Quand est-ce que le site est mis à jour ?</b></br>
 
-    Le site est mis à jour au fil de l'eau.
+    Le site est mis à jour au fil de l'eau.</br></br>
 
-    </br><b></br>Un contenu que j'estime très bon n’est pas présent, est-ce normal ?</b></br>
+    <b>Un contenu que j'estime très bon n’est pas présent, est-ce normal ?</b></br>
 
-    Oui, je n'ai malheureusement que peu de temps à accorder à ce site. N'hésitez pas à me transmettre des liens vers des sources de bonne qualité. Si je partage votre avis, elles figureront probablement ici.
+    Oui, je n'ai malheureusement que peu de temps à accorder à ce site. N'hésitez pas à me transmettre des liens vers des sources de bonne qualité. 
+    Si je partage votre avis, elles figureront probablement ici.</br></br>
 
-    </br><b></br>Un contenu ou un auteur avec lequel je suis en désaccord est présent ici. Est-ce normal ?</b></br>
+    <b>Un contenu ou un auteur avec lequel je suis en désaccord est présent ici. Est-ce normal ?</b></br>
     
-    Oui, c'est également le cas pour moi mais être en désaccord ne veut pas dire que ce n'est pas intéressant. De plus, cela fait évoluer la compréhension du sujet.
+    Oui, c'est également le cas pour moi mais être en désaccord ne veut pas dire que ce n'est pas intéressant. 
+    De plus, cela fait évoluer la compréhension du sujet.</br></br>
 
-    </br><b></br>Un contenu de mauvaise qualité est présent ici. Que puis-je faire pour le faire supprimer ?</b></br>
+    <b>Un contenu de mauvaise qualité est présent ici. Que puis-je faire pour le faire supprimer ?</b></br>
 
     Vous pouvez m'envoyer un contenu de meilleure qualité. Si je partage votre avis, je n'hésiterai pas à mettre à jour la liste, ce qui permettra à tous d'améliorer sa compréhension du sujet.
 
@@ -46,9 +48,9 @@
   <p>
     <b>Qui suis-je ?</b></br>
 
-    Je suis une personne d’une trentaine d’année, je vis en France et je publie sous pseudonymat.
+    Je suis une personne d’une trentaine d’année, je vis en France et je publie sous pseudonymat.</br></br>
 
-    </br><b></br>Pourquoi est-ce que je fais ce site ?</b></br>
+    <b>Pourquoi est-ce que je fais ce site ?</b></br>
 
     Je fais ce site pour plusieurs raisons :     
     
@@ -60,7 +62,7 @@
         <li>Permettre à tous de mieux comprendre certains sujets complexes en ayant en leur disposition des sources d'excellentes qualités</li>
     </ul>
 
-    </br><b></br>Pourquoi avoir choisir le pseudonyme Anisote ?</b></br>
+    <b>Pourquoi avoir choisir le pseudonyme Anisote ?</b></br>
 
     C’est une référence à l’Anisote de l’Érable et j’aimais bien le fait qu’il y ait la sonorité “sote” dedans.
   </p>
