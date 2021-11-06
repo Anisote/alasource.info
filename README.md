@@ -27,6 +27,7 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 - ~~Order information by alphabetical order in administration panel~~ - canceled
 - ~~Fix issue in the admin panel for author with quote~~ - 06/10/2021
 - ~~Display less columns in a small screen resolution by default and create a button to display all column and reverse~~ - 06/10/2021
+- Fix search bugs with tags with more than one word
 - Rewrite the FAQ
 - Add Mastodon Link
 - Forbid the addition of an existing author, media or category
@@ -35,7 +36,6 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 - Resize the datable when the zoom changed
 - Create a rss link
 - Add an explanation video
-- Fix search bugs with some tags
 
 ## Commit format
 
