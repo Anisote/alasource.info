@@ -33,6 +33,9 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 - Fix issue in the admin panel when insertion of authors without tags in an information
 - Author should be required to add an information
 - Resize the datable when the zoom changed
+- Create a rss link
+- Add an explanation video
+- Fix search bugs with some tags
 
 ## Commit format
 
