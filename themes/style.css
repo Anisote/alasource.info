@@ -229,6 +229,11 @@ th{
 }
 
 @media only screen and (max-width: 1000px){
+  .navbar-toggler-icon{
+    width: 100px;
+    height: 100px;
+  }
+
   #table_id{
     width: 1400px !important;
   }
