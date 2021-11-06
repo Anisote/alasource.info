@@ -240,6 +240,10 @@ th{
 }
 
 @media only screen and (max-width: 1000px){
+  h2{
+    font-size: 70px;
+  }
+
   .navbar-toggler-icon{
     width: 100px;
     height: 100px;
