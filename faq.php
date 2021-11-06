@@ -15,20 +15,20 @@
   <p>
     <b>Pourquoi est-ce qu’une source apparaît ici ?</b></br>
 
-    Pour figurer ici, une source réponds à un ou plusieurs des critères ci-dessous : 
+    Pour figurer ici, une source répond à un ou plusieurs des critères ci-dessous : 
     <ul>
         <li>Qualité de l’information (source, cohérence du raisonnement)</li>
         <li>Rareté de l’information dans les informations grand publique</li>
         <li>Expertise de l'auteur reconnue par ses pairs</li>
     </ul>
 
-    <b>Quand est-ce que le site est mis-à-jour ?</b></br>
+    <b>Quand est-ce que le site est mis à jour ?</b></br>
 
-    Le site est mis à jour au fil de l'eau
+    Le site est mis à jour au fil de l'eau.
 
     </br><b></br>Un contenu que j'estime très bon n’est pas présent, est-ce normal ?</b></br>
 
-    Oui, je n'ai malheureusement que peu de temps à accorder à ce site. N'hésitez pas à me transmettre des liens vers des sources de bonnes qualités. Si je les trouve également de bonnes qualités, elles figureront peut-être ici.
+    Oui, je n'ai malheureusement que peu de temps à accorder à ce site. N'hésitez pas à me transmettre des liens vers des sources de bonne qualité. Si je partage votre avis, elles figureront probablement ici.
 
     </br><b></br>Un contenu ou un auteur avec lequel je suis en désaccord est présent ici. Est-ce normal ?</b></br>
     
@@ -36,7 +36,7 @@
 
     </br><b></br>Un contenu de mauvaise qualité est présent ici. Que puis-je faire pour le faire supprimer ?</b></br>
 
-    Vous pouvez m'envoyer un contenu de meilleure qualité. Si je partage votre avis, je n'hésiterai pas à mettre à jour la liste, ce qui permettra à tous d'améliorer sa compréhesion du sujet.
+    Vous pouvez m'envoyer un contenu de meilleure qualité. Si je partage votre avis, je n'hésiterai pas à mettre à jour la liste, ce qui permettra à tous d'améliorer sa compréhension du sujet.
 
 
   </p>
@@ -50,7 +50,7 @@
 
     </br><b></br>Pourquoi est-ce que je fais ce site ?</b></br>
 
-    Je fais ce site pour plusieurs raison :     
+    Je fais ce site pour plusieurs raisons :     
     
     <ul>
         <li>Avoir une liste de sources que j'estime de qualité facilement consultable</li>
