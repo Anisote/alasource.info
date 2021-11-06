@@ -216,11 +216,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
   ?>
-
-  <div class="star mobile"> 
-      ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
-  </div>
-
     <script>
       var _div = document.createElement('div');
       jQuery.fn.dataTable.ext.type.search.html = function(data) {
