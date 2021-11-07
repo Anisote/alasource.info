@@ -159,7 +159,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               echo "<td class='center '><span>" . $row['indexDisplayed'] . "</span></td>";
               $fieldDesc = explode(' ', $row['fielddesc'], 2);
               echo "<td class='text-nowrap center domaine'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
-              echo "<td class='text-nowrap '><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
+              if(strlen($fieldDesc[1]) > 15){
+                echo "<td class='text-nowrap font-size-em0-7'><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
+              }else{
+                echo "<td class='text-nowrap '><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
+              }
               $authorsDisplayed = "";
               $i = 0;
               foreach ($informationAuthor[$row['idInformation']] as $author ){
