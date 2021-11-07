@@ -29,13 +29,16 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 - ~~Display less columns in a small screen resolution by default and create a button to display all column and reverse~~ - 06/10/2021
 - ~~Rewrite the FAQ~~ - 06/11/2021
 - ~~Fix search bugs with tags with more than one word~~ - 07/11/2021
-- Add Mastodon Link
-- Forbid the addition of an existing author, media or category
-- Fix issue in the admin panel when insertion of authors without tags in an information
-- Author should be required to add an information
-- Resize the datable when the zoom changed
-- Create a rss link
-- Add an explanation video
+- Global
+  - Resize the datable when the zoom changed
+- Home Panel
+  - Add Mastodon Link
+  - Create a rss link
+  - Add an explanation video
+- Admin Panel
+  - Forbid the addition of an existing author, media or category
+  - Fix an issue when inserting of authors without tags in an information
+  - Author should be required to add an information
 
 ## Commit format
 
