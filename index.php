@@ -156,7 +156,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
               echo "<tr>";
               echo "<td class='center '><span>" . $row['indexDisplayed'] . "</span></td>";
-              $fieldDesc = explode(' ', $row['fielddesc']);
+              $fieldDesc = explode(' ', $row['fielddesc'], 2);
               echo "<td class='text-nowrap center domaine'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
               echo "<td class='text-nowrap '><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
               $authorsDisplayed = "";
