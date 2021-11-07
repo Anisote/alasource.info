@@ -1,4 +1,5 @@
 <?php
+  $page = 'faq';
   require_once('menu.php');
 ?>
 

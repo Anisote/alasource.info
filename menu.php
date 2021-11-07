@@ -28,7 +28,7 @@
     <title>Alasource.info</title>
 </head>
 
-<body class="font-small-screen">
+<body class="font-small-screen page-<?= $page ?>">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,15 +45,15 @@
         <div class="navbar-nav me-auto"></div>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+            <a class="nav-link <?= $page === 'index' ? 'active' : '' ?>" aria-current="page" href="index.php">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="faq.php">Foire aux questions</a>
+            <a class="nav-link <?= $page === 'faq' ? 'active' : '' ?>" href="faq.php">Foire aux questions</a>
           </li>        
           <li class="nav-item">
-            <a class="nav-link" href="contact.php">Contact</a>
+            <a class="nav-link <?= $page === 'contact' ? 'active' : '' ?>" href="contact.php">Contact</a>
           </li>
         </ul>
       </div>
     </div>
-</nav>
+  </nav>

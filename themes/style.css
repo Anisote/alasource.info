@@ -315,7 +315,16 @@ th{
 
   blockquote {
     font-size: 0.7em;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-left: 3em;
+    padding-right: 3em;
   }
+
+  .page-contact .control-btns {
+    text-align: center;
+  }
+}
+
+.page-contact input,
+.page-contact textarea {
+  max-width: 100%;
 }

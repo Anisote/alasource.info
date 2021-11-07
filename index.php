@@ -1,4 +1,5 @@
 <?php
+  $page = 'index';
   require_once('menu.php');
 
   $tooltip = '⭐⭐⭐⭐ : Exceptionnel

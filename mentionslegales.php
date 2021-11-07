@@ -1,4 +1,5 @@
 <?php
+  $page = 'mentionslegales';
   require_once('menu.php');
 ?>
 

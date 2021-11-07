@@ -1,4 +1,5 @@
 <?php
+  $page = 'contact';
   require_once('menu.php');
 
   $display = array(
@@ -33,7 +34,7 @@
 
 		<p>Message :<br/><textarea required name="message" value="<?php echo $display['message']; ?>" rows="8" cols="90" maxlength="350"><?php echo $display['message']; ?></textarea></p>
 
-		<p>
+		<p class="control-btns">
 			<button class="h-captcha button-style" data-sitekey="<?php echo $HCAPTCHA_SITEKEY; ?>" data-callback="onSubmit" >Envoyer</button>
 
 			<button class="button-style" type="reset">Effacer les champs</button>
