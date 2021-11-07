@@ -3,7 +3,7 @@
 ?>
 
 <div id="content">
-<p class ="center-15">
+  <p>
     <blockquote>
       Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions. 
       J'ai créé ce site afin de vous partager les noms des contenus qui m'ont enrichi intellectuellement et m'ont fait voir les choses différemment. 

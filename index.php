@@ -8,8 +8,8 @@
 ?>
 
 <div id="content">
-  <div class="center-20">
-    <input list="tags-fields" type="search" placeholder="Cliquer ici" aria-label="Rechercher" oninput='search()' id="searchBox" />
+  <div class="center">
+    <input list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
         <?php
             $sql = "SELECT name FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
@@ -74,7 +74,7 @@
         </div>
     </div>
   </div>
-  <div class="center-20 font-size-em0-7 mt-1 mb-3 desktop">
+  <div class="center font-size-em0-7 mt-1 mb-3 desktop">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
 
@@ -157,7 +157,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               echo "<tr>";
               echo "<td class='center '><span>" . $row['indexDisplayed'] . "</span></td>";
               $fieldDesc = explode(' ', $row['fielddesc']);
-              echo "<td class='text-nowrap center font-size-em0-7'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
+              echo "<td class='text-nowrap center domaine'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
               echo "<td class='text-nowrap '><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
               $authorsDisplayed = "";
               $i = 0;
@@ -449,9 +449,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
           for (let ev of events) {
               ev.style.width = '1000px';
           }
-
-          // document.getElementById('table_id').style.width = '2000px !important';
-          console.log(document.getElementById('table_id').style.width);
         }
 
         compactMode = isCompact;        

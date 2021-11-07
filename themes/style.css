@@ -17,14 +17,14 @@
   background-color: white;
   display: inline-block;
   border-radius: .25rem;
-  border: 1px solid #ced4da;
+  border: 1px solid #0b668b;
   padding: .375rem .75rem;
   margin-bottom: 0.5%;
 }
 
 #searchBox::placeholder{
-  color:rgb(255, 0, 0);
-  opacity: 30%;
+  color:#05445e;
+  opacity: 40%;
 }
 
 .pointer{
@@ -102,21 +102,13 @@ table.dataTable thead .sorting_desc{background-image:none !important}
 table.dataTable thead .sorting_asc_disabled{background-image:none !important}
 table.dataTable thead .sorting_desc_disabled{background-image:none !important}
 
+#table_id{
+  width:100%;
+  max-width:100%;
+}
 
 .paddingBot-5{
   padding-bottom: 5px;
-}
-
-.center-20{
-  margin-left: 20%;
-  margin-right: 20%;
-  text-align: center;
-}
-
-.center-15{
-  margin-left: 15%;
-  margin-right: 15%;
-  text-align: center;
 }
 
 #content{
@@ -126,7 +118,7 @@ table.dataTable thead .sorting_desc_disabled{background-image:none !important}
 }
 
 blockquote {
-  font-size: 17px;
+  font-size: 1em;
   min-height: 5em;
   padding   : 0.5em 4em;
   position  : relative;
@@ -236,7 +228,7 @@ th{
 }
 
 .desktop{
-  display: inline;
+  display: block;
 }
 
 @media only screen and (max-width: 1000px){
@@ -248,13 +240,8 @@ th{
     width: 100px;
     height: 100px;
   }
-
-  #table_id{
-    width: 1400px !important;
-  }
   
   .description{
-    font-size: 50px;
     width: 800px;
   }
 
@@ -272,22 +259,6 @@ th{
     width: 525px;
   }
 
-  .star{
-    font-size: 40px;
-  }
-
-  .center-15{
-    text-align: center;
-    margin-left: 0%;
-    margin-right: 0%;
-  }
-
-  .center-20{
-    margin-left: 5%;
-    margin-right: 5%;
-    text-align: center;
-  }
-
   #button{
     margin-left: 0%;
   }
@@ -297,11 +268,15 @@ th{
   }
   
   .font-small-screen{
-    font-size: 50px;
+    font-size: 2rem;
   }
 
   #searchBox{
-    display:block;
+    display: inline-block;
+    width: calc(80% - 24px);
+    margin-left: 12px;
+    margin-right: 12px;
+    font-size: 1.5em;
   }
 
   #button{
@@ -310,11 +285,16 @@ th{
   }
 
   #searchBox, .button-style {
-    font-size: 80px;
+    font-size: 1.5em;
   }
 
-  .font-size-em0-7{
-    font-size: 50px;
+  .domaine {
+    font-size: 1.1em;
+    padding: 0px;
+  }
+
+  .star{
+    font-size: 0.8em;
   }
 
   .mobile{
@@ -327,5 +307,15 @@ th{
 
   .font-size-30{
     font-size: 30px;
+  }
+
+  #content {
+    margin: 0px;
+  }
+
+  blockquote {
+    font-size: 0.7em;
+    padding-left: 2em;
+    padding-right: 2em;
   }
 }

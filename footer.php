@@ -1,6 +1,6 @@
 
 		<footer>
-			<div class="center-15 paddingBot-5">
+			<div class="center paddingBot-5">
 				<a href="contact.php">Contact</a> | 
 				<a href="mentionslegales.php">Mentions légales</a>
 			</div>
