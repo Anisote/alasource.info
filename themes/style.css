@@ -309,7 +309,7 @@ th{
     font-size: 30px;
   }
 
-  #content {
+  #content.no-padding {
     margin: 0px;
   }
 

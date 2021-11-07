@@ -7,7 +7,7 @@
 ⭐ : Intéressant';
 ?>
 
-<div id="content">
+<div id="content" class="no-padding">
   <div class="center">
     <input list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
