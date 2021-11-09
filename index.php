@@ -135,13 +135,13 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
           echo "<thead>";
               echo "<tr>";
                   echo "<th class='id_th'>ID</th>";
-                  echo "<th class='smallest_th'>Dom</th>";
-                  echo "<th class='small_th'>Domaine</th>";
-                  echo "<th class='small_th'>Auteur</th>";
-                  echo "<th class='small_th'>Média</th>";
-                  echo "<th>Description</th>";
-                  echo "<th class='small_th' data-toggle='tooltip' data-html='true' title='$tooltip'>Avis</th>";
-                  echo "<th class='small_th'>Date de publication</th>";
+                  echo "<th class='small-padding'>Dom</th>";
+                  echo "<th class='small-padding'>Domaine</th>";
+                  echo "<th class='small-padding'>Auteur</th>";
+                  echo "<th class='small-padding'>Média</th>";
+                  echo "<th class='small-padding'>Description</th>";
+                  echo "<th class='star small-padding' data-toggle='tooltip' data-html='true' title='$tooltip'>Avis</th>";
+                  echo "<th class='small-padding'>Date de publication</th>";
                   echo "<th class='hidden'>Tags</th>";
               echo "</tr>";
          echo "</thead>";
@@ -158,7 +158,10 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               echo "<tr>";
               echo "<td class='center '><span>" . $row['indexDisplayed'] . "</span></td>";
               $fieldDesc = explode(' ', $row['fielddesc'], 2);
-              echo "<td class='text-nowrap center domaine'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
+              // compact mode
+              echo "<td class='text-nowrap center domaine no-padding'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
+
+              // full mode
               if(strlen($fieldDesc[1]) > 15){
                 echo "<td class='text-nowrap font-size-em0-7'><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
               }else{
@@ -190,16 +193,16 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               }
 
               if($row['mark'] == 1){
-                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐</td>";
+                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐</td>";
               }
               if ($row['mark'] == 2){
-                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐</td>";
+                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐</td>";
               }
               if ($row['mark'] == 3){
-                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐</td>";
+                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐</td>";
               }
               if ($row['mark'] == 4){
-                echo "<td class='center star' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐&nbsp;⭐</td>";
+                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐&nbsp;⭐</td>";
               }
                   
               if($row['datePublication'] != "00/00/0000"){
@@ -296,7 +299,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       })
                   }
                   else if(column.index() == 6){
-                    select = $('<select class="select-filter text-center font-size-30" onclick="event.stopPropagation();"><option value=""></option></select>')
+                    select = $('<select class="select-filter text-center" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
                         var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(

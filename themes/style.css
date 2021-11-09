@@ -1,11 +1,15 @@
-
 #table_id_filter{
   display:none;
 }
 
+.logo{
+  height: 80px;
+  width: 243.2px;
+}
+
 .navbar {
   padding-top: 0%;
-  padding-bottom: 0%;
+  padding-bottom: 1%;
   margin-bottom: 0%;
 }
 
@@ -100,7 +104,7 @@ table.dataTable thead .sorting_asc_disabled{background-image:none !important}
 table.dataTable thead .sorting_desc_disabled{background-image:none !important}
 
 #table_id{
-  width:100%;
+  width:100% !important;
   max-width:100%;
 }
 
@@ -153,7 +157,7 @@ blockquote i {
 
 .select-filter{
   display: block;
-  width: 100%;
+  width:100%;
 }
 
 .field_desc_full{
@@ -169,8 +173,8 @@ th{
   width:15px !important;
 }
 
-.small_th{
-  width:125px !important;
+.th_size{
+  width: 100%;
 }
 
 .center{
@@ -211,10 +215,6 @@ th{
   max-width: 200px;
 }
 
-.smallest_th{
-  width:10px !important;
-}
-
 #button{
   display: inline;
 }
@@ -228,6 +228,12 @@ th{
 }
 
 @media only screen and (max-width: 1000px){
+  .logo{
+    height: 30px;
+    width: 120px;
+  }
+
+
   h2{
     font-size: 70px;
   }
@@ -236,39 +242,16 @@ th{
     margin: 0%;
   }
 
-  .navbar-toggler-icon{
-    width: 100px;
-    height: 100px;
+  .no-padding{
+    padding:0% !important;
   }
   
-  .description{
-    width: 800px;
-  }
-
-  .svg{
-    width:40px;
-  }
-
-  .popover{
-    font-size: 30px !important;
-    max-width: 525px;
-    width: 525px;
-  }
-
-  .popover-body{
-    width: 525px;
-  }
-
   #button{
     margin-left: 0%;
   }
   
   .form-check{
     margin-left: 0px;
-  }
-  
-  .font-small-screen{
-    font-size: 2rem;
   }
 
   #searchBox{
@@ -291,10 +274,12 @@ th{
   .domaine {
     font-size: 1.1em;
     padding: 0px;
+    width:10%;
   }
 
   .star{
     font-size: 0.8em;
+    width: 15% !important;
   }
 
   .mobile{
@@ -303,10 +288,6 @@ th{
 
   .desktop{
     display: none;
-  }
-
-  .font-size-30{
-    font-size: 30px;
   }
 
   blockquote {
@@ -341,4 +322,12 @@ a:active {
 a:hover,
 a:focus {
   color: #022a25;
+}
+
+
+.small-padding{
+  padding-left: 1% !important;
+  padding-right: 1% !important;
+  padding-top: 1% !important;
+  padding-bottom: 1% !important;
 }

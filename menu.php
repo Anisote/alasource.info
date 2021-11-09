@@ -7,6 +7,8 @@
 
     <link rel="shortcut icon" type="image/ico" href="themes/favicon.ico"/>
     <a rel="me" href="https://mastodon.tedomum.net/@anisote"></a>
+
+    <meta name="viewport" content="width=device-width">
     
     <script src=<?php echo "\"libraries/jquery.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/datatables.min.js?$VERSION\""?>></script>  
@@ -28,7 +30,7 @@
     <title>Alasource.info</title>
 </head>
 
-<body class="font-small-screen page-<?= $page ?>">
+<body class="page-<?= $page ?>">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +39,7 @@
         <ul class="navbar-nav me-auto mb-lg-0">
           <li class="nav-item" >
             <h1 class="mb-0">
-              <a class="nav-link active pb-0" aria-current="page" href="index.php"><img src="themes/pictures/logo.png" alt="logo" height="80px" width="243.2px"></img></a>
+              <a class="nav-link active pb-0" aria-current="page" href="index.php"><img class="logo"src="themes/pictures/logo.png" alt="logo"></img></a>
             </h1>
           </li>
         </ul>
