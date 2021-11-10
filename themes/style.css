@@ -227,7 +227,7 @@ th{
   .page-index{
     font-size: 0.8em;
   }
-  
+
   .logo{
     height: 30px;
     width: 120px;
@@ -256,19 +256,18 @@ th{
 
   #searchBox{
     display: inline-block;
-    width: calc(80% - 24px);
+    width: 70%;
     margin-left: 12px;
     margin-right: 12px;
     font-size: 1.5em;
   }
 
-  #button{
-    margin-left: 5%;
-    margin-right: 5%;
+  .button-style{
+    padding: 0.5rem 0.5rem;
   }
 
   #searchBox, .button-style {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   .domaine {
