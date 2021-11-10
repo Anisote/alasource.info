@@ -173,10 +173,6 @@ th{
   width:15px !important;
 }
 
-.th_size{
-  width: 100%;
-}
-
 .center{
   text-align: center;
 }
@@ -235,7 +231,7 @@ th{
 
 
   h2{
-    font-size: 70px;
+    font-size: 2em;
   }
 
   #content.no-padding {
@@ -294,6 +290,13 @@ th{
     font-size: 0.7em;
     padding-left: 3em;
     padding-right: 3em;
+  }
+
+  blockquote::before,
+  blockquote::after {
+    position: absolute;
+    height  : 3rem;
+    font    : 3rem/100% Georgia, "Times New Roman", Times, serif;
   }
 
   .page-contact .control-btns {
