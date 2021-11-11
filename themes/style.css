@@ -235,14 +235,20 @@ th{
   .logo{
     height: 30px;
     width: 120px;
+    margin-left:5%;
   }
 
   .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
     padding:0%;
+    margin: 1%;
   }
 
   .container-fluid{
     margin-bottom: 1%;
+  }
+
+  .navbar-collapse{
+    padding-left:3%;
   }
 
   h2{
