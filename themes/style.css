@@ -173,8 +173,12 @@ th{
   text-align: center;
 }
 
+.width-100{
+  width: 100%;
+}
+
 .id_th{
-  width:15px !important;
+  padding:0% !important;
 }
 
 .center{

@@ -12,6 +12,26 @@
   <div class="center">
     <input list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()' id="searchBox" />
     <datalist id="tags-fields">
+      <?php
+            $sql = "SELECT idtag, count(idTag) FROM info.Information_tag group by idTag;";
+
+            $options = Array();
+            if($result = mysqli_query($link, $sql)) {
+                if(mysqli_num_rows($result) > 0){
+                  
+                    
+                    mysqli_free_result($result);
+                } else {
+                    echo "No records matching your query were found.";
+                }
+            } else {
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+            }
+
+            foreach($options as $option) {
+                echo '<option value="' . $option . ' (' . $tagsNumber . ')"></option>';
+            }
+        ?>
         <?php
             $sql = "SELECT name FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
 
@@ -31,7 +51,7 @@
             }
 
             foreach($options as $option) {
-                echo '<option value="' . $option . '"></option>';
+                echo '<option value="' . $option . ' (' . $tagsNumber . ')"></option>';
             }
         ?>
     </datalist>
@@ -139,7 +159,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   echo "<th class='small-padding'>Domaine</th>";
                   echo "<th class='small-padding'>Auteur</th>";
                   echo "<th class='small-padding'>Média</th>";
-                  echo "<th class='small-padding'>Description</th>";
+                  echo "<th class='small-padding width-100'>Description</th>";
                   echo "<th class='star small-padding' data-toggle='tooltip' data-html='true' title='$tooltip'>Avis</th>";
                   echo "<th class='small-padding'>Date de publication</th>";
                   echo "<th class='hidden'>Tags</th>";
@@ -156,7 +176,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               $tagsStr = join(', ', $tags);
 
               echo "<tr>";
-              echo "<td class='center '><span>" . $row['indexDisplayed'] . "</span></td>";
+              echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
               $fieldDesc = explode(' ', $row['fielddesc'], 2);
               // compact mode
               echo "<td class='text-nowrap center domaine no-padding'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
