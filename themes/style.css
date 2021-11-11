@@ -3,13 +3,13 @@
 }
 
 .logo{
-  height: 80px;
+  height: 60px;
   width: 243.2px;
 }
 
 .navbar {
   padding-top: 0%;
-  padding-bottom: 1%;
+  padding-bottom: 0%;
   margin-bottom: 0%;
 }
 
@@ -52,6 +52,10 @@
 
 .svg{
   width:16px;
+}
+
+.button-search-reset{
+  display: inline;
 }
 
 .button-style{
@@ -233,6 +237,13 @@ th{
     width: 120px;
   }
 
+  .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
+    padding:0%;
+  }
+
+  .container-fluid{
+    margin-bottom: 1%;
+  }
 
   h2{
     font-size: 2em;
@@ -264,6 +275,10 @@ th{
 
   .button-style{
     padding: 0.5rem 0.5rem;
+  }
+
+  .button-search-reset{
+    display: block;
   }
 
   #searchBox, .button-style {
@@ -314,26 +329,25 @@ th{
 
 .nav-link {
   color: #055e52 !important;
+  margin: 0%;
 }
-a,
-a:active {
+
+a,a:active {
   color: #055e52;
   text-decoration: none;
 }
-.nav-link:hover,
-.nav-link:focus,
-.nav-link.active {
+
+.nav-link:hover,.nav-link:focus,.nav-link.active {
   color: #022a25 !important;
 }
-a:hover,
-a:focus {
+
+a:hover,a:focus {
   color: #022a25;
 }
 
-
 .small-padding{
-  padding-left: 1% !important;
-  padding-right: 1% !important;
-  padding-top: 1% !important;
-  padding-bottom: 1% !important;
+  padding-left: 0.5% !important;
+  padding-right: 0.5% !important;
+  padding-top: 0.5% !important;
+  padding-bottom: 0.5% !important;
 }
