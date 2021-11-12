@@ -1,3 +1,5 @@
+/* Menu */
+
 #table_id_filter{
   display:none;
 }
@@ -7,11 +9,50 @@
   width: 243.2px;
 }
 
+.svg{
+  width:16px;
+}
+
 .navbar {
   padding-top: 0%;
   padding-bottom: 0%;
   margin-bottom: 0%;
 }
+
+.mastodon{
+  enable-background:new 0 0 512 512;
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.contact{
+  display: inherit;
+}
+
+/* Switch button */
+
+.compact{
+  color:blue !important;
+}
+
+.form-check{
+  margin-left: 1em;
+}
+
+.form-check-input:checked {
+  background-color: blue;
+  border-color: steelblue
+}
+
+.form-switch .form-check-input {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='blue'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:focus {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='blue'/%3e%3c/svg%3e");
+}
+
+
+/* Front page */
 
 #searchBox{
   font-size: 25px;
@@ -50,10 +91,6 @@
   margin-left:10px;
 }
 
-.svg{
-  width:16px;
-}
-
 .button-search-reset{
   display: inline;
 }
@@ -78,27 +115,6 @@
   border-color: #0b668b;
 }
 
-/* Switch button */
-
-.compact{
-  color:blue !important;
-}
-
-.form-check{
-  margin-left: 1em;
-}
-
-.form-check-input:checked {
-  background-color: blue;
-  border-color: steelblue
-}
-
-.form-switch .form-check-input {
-background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='blue'/%3e%3c/svg%3e");
-}
-.form-switch .form-check-input:focus {
-background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='blue'/%3e%3c/svg%3e");
-}
 
 
 table.dataTable thead .sorting{background-image:none !important}
@@ -231,6 +247,10 @@ th{
   display: block;
 }
 
+/* ---  
+      MOBILE VIEW 
+                  ---*/
+
 @media only screen and (max-width: 1000px){
   .page-index{
     font-size: 0.8em;
@@ -240,6 +260,10 @@ th{
     height: 30px;
     width: 120px;
     margin-left:5%;
+  }
+
+  .mastodon{
+    margin-left: 0.2em; 
   }
 
   .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
