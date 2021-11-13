@@ -10,7 +10,7 @@
 
 <div id="content" class="no-padding">
   <div class="center">
-    <input list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()' id="searchBox" />
+    <input class="searchBox desktop" list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
     <datalist id="tags-fields">
       <?php
             $sql = "SELECT idtag, count(idTag) FROM info.Information_tag group by idTag;";
@@ -51,10 +51,11 @@
             }
 
             foreach($options as $option) {
-                echo '<option value="' . $option . ' (' . $tagsNumber . ')"></option>';
+                echo '<option value="' . $option . '"></option>';
             }
         ?>
     </datalist>
+    <input class="searchBox mobile" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
     <div class="button-search-reset">
       <a class="button-style" aria-current="page" href="#">Rechercher</a>
       <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
@@ -95,7 +96,7 @@
         </div>
     </div>
   </div>
-  <div class="center font-size-em0-7 mt-1 desktop">
+  <div class="font-size-em0-7 mt-1 center desktop display-block">
       ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
   </div>
 

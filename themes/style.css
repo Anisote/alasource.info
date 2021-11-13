@@ -54,7 +54,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
 
 /* Front page */
 
-#searchBox{
+.searchBox{
   font-size: 25px;
   background-color: white;
   display: inline-block;
@@ -64,7 +64,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   margin-bottom: 0.5%;
 }
 
-#searchBox::placeholder{
+.searchBox::placeholder{
   color:#05445e;
   opacity: 40%;
 }
@@ -244,7 +244,11 @@ th{
 }
 
 .desktop{
-  display: block;
+  display: inline;
+}
+
+.display-block{
+  display: block
 }
 
 /* ---  
@@ -299,12 +303,16 @@ th{
     margin-left: 0px;
   }
 
-  #searchBox{
+  .searchBox{
     display: inline-block;
     width: 70%;
     margin-left: 12px;
     margin-right: 12px;
     font-size: 1.5em;
+  }
+
+  .searchBox, .button-style {
+    font-size: 1.2em;
   }
 
   .button-style{
@@ -313,10 +321,6 @@ th{
 
   .button-search-reset{
     display: block;
-  }
-
-  #searchBox, .button-style {
-    font-size: 1.2em;
   }
 
   .domaine {
