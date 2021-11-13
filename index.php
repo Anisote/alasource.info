@@ -10,7 +10,8 @@
 
 <div id="content" class="no-padding">
   <div class="center">
-    <input class="searchBox desktop" list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
+    <input id="searchBoxMobile" class="searchBox mobile" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
+    <input id="searchBoxDesktop" class="searchBox desktop" type="search" list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
     <datalist id="tags-fields">
       <?php
             $sql = "SELECT idtag, count(idTag) FROM info.Information_tag group by idTag;";
@@ -55,7 +56,6 @@
             }
         ?>
     </datalist>
-    <input class="searchBox mobile" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
     <div class="button-search-reset">
       <a class="button-style" aria-current="page" href="#">Rechercher</a>
       <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
@@ -447,9 +447,25 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
     }
 
+
+    $('#searchBoxMobile').keyup(function (){
+      $('#searchBoxDesktop').val($(this).val()); 
+    });
+
+    $('#searchBoxDesktop').keyup(function (){
+        $('#searchBoxMobile').val($(this).val());
+    });
+
     function search(){
       var table = $('#table_id').DataTable();
-      var criteria = jQuery.fn.dataTable.ext.type.search.html(document.getElementById("searchBox").value);
+      var inputSearchMobile = document.getElementById("searchBoxMobile").value;
+      var inputSearchDesktop = document.getElementById("searchBoxDesktop").value;
+
+      if(inputSearchMobile != null){
+        var criteria = jQuery.fn.dataTable.ext.type.search.html(inputSearchMobile);
+      }else{
+        var criteria = jQuery.fn.dataTable.ext.type.search.html(inputSearchDesktop);
+      }
 
       table.search(criteria).draw();
     };
@@ -457,7 +473,8 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     function clean(){
       var table = $('#table_id').DataTable();
 
-      document.getElementById("searchBox").value = "";
+      document.getElementById("searchBoxMobile").value = "";
+      document.getElementById("searchBoxDesktop").value = "";
 
       table.search("").draw();
     };
