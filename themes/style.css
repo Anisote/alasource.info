@@ -323,6 +323,14 @@ th{
     display: block;
   }
 
+  .alert-screen-orientation {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    border: 1px dashed;
+    margin-top: 1.5em;
+  }
+
   .domaine {
     font-size: 1.1em;
     padding: 0px;

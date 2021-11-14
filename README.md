@@ -31,7 +31,7 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
   - ~~Display less columns in a small screen resolution by default and create a button to display all column and reverse~~ - 06/10/2021
   - ~~Fix the date column sort when clicking on a date column title~~ - 18/08/2021
   - ~~Fix search bugs with tags with more than one word~~ - 07/11/2021
-  - Switch to full screen and rotate screen on mobile when compact mode is disabled
+  - ~~Switch to full screen and rotate screen on mobile when compact mode is disabled (rotation replaced by an info message)~~ - 14/11/2021
   - Create a rss link
   - Add an explanation video
 - FAQ Panel

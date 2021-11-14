@@ -61,6 +61,8 @@
       <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
     </div>
     <div>
+      <div class="alert alert-info alert-screen-orientation hidden">Pour plus de confort, vous pouvez pivoter l'écran.</div>
+
       <div class="form-check form-switch inline-block">
         <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
         <label class="form-check-label text-success pointer compact" for="compactModeSwitch">Mode compact</label>        
@@ -246,6 +248,24 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     }
   ?>
     <script>
+      function fullScreen(isFullScreen) {
+        if(isFullScreen === undefined) {
+          return document.fullscreenElement;
+        } else {
+          if(isFullScreen) {
+              if(document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+              } else if(document.documentElement.webkitRequestFullScreen) {
+                document.documentElement.webkitRequestFullScreen();
+              }
+          } else if(document.fullscreenElement) {
+            if(document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+          }
+        }
+      }
+
       var _div = document.createElement('div');
       jQuery.fn.dataTable.ext.type.search.html = function(data) {
         _div.innerHTML = data;
@@ -379,8 +399,12 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       } );
       table.column(1).visible(false);
       table.order( [ 0, 'asc' ] ).draw();
-      setCompactMode($(window).width() <= <?= $COMPACT_MODE_TRIGGER_SCREEN_WIDTH ?>);
+      setCompactMode(isMobile());
     } );
+
+    function isMobile() {
+      return $(window).width() <= <?= $COMPACT_MODE_TRIGGER_SCREEN_WIDTH ?>;
+    }
 
     var api;
     function refreshSelect(selectData, others) {
@@ -472,6 +496,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     };
 
     let compactMode = undefined;
+    let fullScreenInfoTimeout;
     function setCompactMode(isCompact) {
       if(isCompact !== compactMode) {
         var table = $('#table_id').DataTable();
@@ -489,8 +514,24 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
           }
         }
 
-        compactMode = isCompact;        
-        document.getElementById('compactModeSwitch').checked = isCompact; 
+        compactMode = isCompact;
+        document.getElementById('compactModeSwitch').checked = isCompact;
+
+        if(isMobile()) {
+          fullScreen(!isCompact);
+
+          const fullScreenInfoEl = document.querySelector('.alert-screen-orientation');
+          clearTimeout(fullScreenInfoTimeout);
+          if(!isCompact) {
+            fullScreenInfoEl.classList.remove('hidden');
+            fullScreenInfoTimeout = setTimeout(() => {
+              fullScreenInfoEl.classList.add('hidden');
+              fullScreenInfoTimeout = undefined;
+            }, 5000)
+          } else {
+            fullScreenInfoEl.classList.add('hidden');
+          }
+        }
       }
     }
     function toggleCompactMode() {
