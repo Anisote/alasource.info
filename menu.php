@@ -14,7 +14,6 @@
     <script src=<?php echo "\"libraries/datatables.min.js?$VERSION\""?>></script>  
     <script src=<?php echo "\"libraries/bootstrap.bundle.min.js?$VERSION\""?>></script>
 
-        
     <!-- Moment.js 2.29.1 -->
     <script src=<?php echo "\"libraries/moment.min.js?$VERSION\""?>></script>
     <script src=<?php echo "\"libraries/datetime-sorting-moment.js?$VERSION\""?>></script>
