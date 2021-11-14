@@ -294,6 +294,10 @@ th{
   .no-padding{
     padding:0% !important;
   }
+
+  .padding-em0-5{
+    padding: 0.5em !important;
+  }
   
   #button{
     margin-left: 0%;

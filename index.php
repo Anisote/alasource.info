@@ -146,7 +146,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               }, $informationTags));
 
               echo "<tr>";
-              echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
+              echo "<td class='center padding-em0-5'><span>" . $row['indexDisplayed'] . "</span></td>";
               echo "<td class='text-nowrap center domaine no-padding'>" . $tagsIconsStr . "</td>";
 
               $authorsDisplayed = "";
@@ -169,9 +169,9 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               echo "<td class='text-nowrap'><span>" . $row['cateMediadesc'] . "</span></td>";
 
               if($row['link'] != ""){
-                echo "<td class='description'><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
+                echo "<td><a href='" . $row['link'] . "' target='_blank' rel='noopener noreferrer nofollow'>" . $row['infodesc'] . "</a></td>";
               }else{
-                echo "<td class='description'>" . $row['infodesc'] . "</td>";
+                echo "<td>" . $row['infodesc'] . "</td>";
               }
 
               if($row['mark'] == 1){
