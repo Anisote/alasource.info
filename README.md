@@ -38,7 +38,7 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
     - Add an explanation video
   - Bugs
     - ~~Search with accents doesn't work anymore~~ - 14/11/2021
-    - The select content doesn't adapt to the number of elements
+    - The select content doesn't adapt to the number of authors
 - FAQ Panel
   - ~~Rewrite the FAQ~~ - 06/11/2021
 - Contact Panel

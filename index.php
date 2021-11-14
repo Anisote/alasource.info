@@ -340,16 +340,17 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   }
 
                   const data = column.order('asc').draw(false).data().unique();
-                  let values = [];
+                  const values = [];
                   for(var i = 0; i < data.length; ++i) {
                     values.push($('<div/>').html(data[i]).text());
                   }
 
                   // useful when multiple author
-                  var columnValues = values
-                    .map(v => v.split(', '))
+                  const columnValues = values
+                    .map(v => v.split(','))
                     .reduce((p, c) => {
-                      for(var item of c) {
+                      for(let item of c) {
+                        item = item && item.trim();
                         if(!p.includes(item)) {
                           p.push(item);
                         }
@@ -363,7 +364,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
                   const domaines = <?= json_encode($domaines) ?>;
 
-                  for(var item of columnValues) {
+                  for(const item of columnValues) {
                     if(item != ""){
                       let nb = undefined;
                       if([ 1, 2 ].includes(column.index())){
@@ -446,7 +447,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         $select: s,
         value: jQuery.fn.dataTable.ext.type.search.html(s.val()),
         dataIndex: selects.indexOf(s),
-        split: selects.indexOf(s) === 2 ? ', ' : undefined
+        split: selects.indexOf(s) === 3 ? ', ' : undefined
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
     }
