@@ -464,7 +464,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       var table = $('#table_id').DataTable();
       console.log("Valeur input : " + input.value)
 
-      table.search(input.value).draw();
+      table.search(jQuery.fn.dataTable.ext.type.search.html(input.value)).draw();
     };
 
     function clean(){

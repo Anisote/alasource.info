@@ -11,29 +11,34 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
   - ~~Add a Mastodon Link~~ - 12/11/2021
   - Resize the datable when the zoom changed
 - Home Panel
-  - ~~When a filter is enable, only displays options in other filters which have data~~
-  - ~~Implement tags~~ - 04/07/2021
-  - ~~Implement released dates about data~~ - 04/07/2021
-  - ~~Displays the tags list when the search box is selected~~ - 04/07/2021
-  - ~~Order the dates from the older to the most recent~~ - 04/07/2021
-  - ~~Improve the search bar in ignoring accent https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data~~ - 04/07/2021
-  - ~~Reduce margin for the small resolutions~~ - 05/07/2021
-  - ~~Fix bug about column filter when a search is done~~ - 12/07/2021
-  - ~~Add a function to create tags in the administration panel~~ - 27/07/2021
-  - ~~Edit fields for an information entry~~ - 04/08/2021
-  - ~~Reorder the search menu tooltip~~ - 22/08/2021
-  - ~~Allow a field to be displayed as a tag~~ - 22/08/2021
-  - ~~Add mark criterias~~ - 03/09/2021
-  - ~~Allow an information to have multiple authors~~ - 07/09/2021
-  - ~~Order authors by alphabetical order~~ - 06/10/2021
-  - ~~Order information by alphabetical order in administration panel~~ - canceled
-  - ~~Fix issue in the admin panel for author with quote~~ - 06/10/2021
-  - ~~Display less columns in a small screen resolution by default and create a button to display all column and reverse~~ - 06/10/2021
-  - ~~Fix the date column sort when clicking on a date column title~~ - 18/08/2021
-  - ~~Fix search bugs with tags with more than one word~~ - 07/11/2021
-  - ~~Switch to full screen and rotate screen on mobile when compact mode is disabled (rotation replaced by an info message)~~ - 14/11/2021
-  - Create a rss link
-  - Add an explanation video
+  - Features
+    - ~~When a filter is enable, only displays options in other filters which have data~~
+    - ~~Implement tags~~ - 04/07/2021
+    - ~~Implement released dates about data~~ - 04/07/2021
+    - ~~Displays the tags list when the search box is selected~~ - 04/07/2021
+    - ~~Order the dates from the older to the most recent~~ - 04/07/2021
+    - ~~Improve the search bar in ignoring accent https://datatables.net/forums/discussion/36473/datatables-search-filter-special-characters-with-html-data~~ - 04/07/2021
+    - ~~Reduce margin for the small resolutions~~ - 05/07/2021
+    - ~~Fix bug about column filter when a search is done~~ - 12/07/2021
+    - ~~Add a function to create tags in the administration panel~~ - 27/07/2021
+    - ~~Edit fields for an information entry~~ - 04/08/2021
+    - ~~Reorder the search menu tooltip~~ - 22/08/2021
+    - ~~Allow a field to be displayed as a tag~~ - 22/08/2021
+    - ~~Add mark criterias~~ - 03/09/2021
+    - ~~Allow an information to have multiple authors~~ - 07/09/2021
+    - ~~Order authors by alphabetical order~~ - 06/10/2021
+    - ~~Order information by alphabetical order in administration panel~~ - canceled
+    - ~~Fix issue in the admin panel for author with quote~~ - 06/10/2021
+    - ~~Display less columns in a small screen resolution by default and create a button to display all column and reverse~~ - 06/10/2021
+    - ~~Fix the date column sort when clicking on a date column title~~ - 18/08/2021
+    - ~~Fix search bugs with tags with more than one word~~ - 07/11/2021
+    - ~~Switch to full screen and rotate screen on mobile when compact mode is disabled (rotation replaced by an info message)~~ - 14/11/2021
+    - ~~Add the number of items by domaine~~ - 14/11/2021
+    - Create a rss link
+    - Add an explanation video
+  - Bugs
+    - ~~Search with accents doesn't work anymore~~ - 14/11/2021
+    - The select content doesn't adapt to the number of elements
 - FAQ Panel
   - ~~Rewrite the FAQ~~ - 06/11/2021
 - Contact Panel
