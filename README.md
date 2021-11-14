@@ -55,7 +55,7 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 |Type|Description|Commit format|
 |----|-----------|-------------|
 |Fix|Fix a bug|Fix ...|
-|Feature|Implementation of a new feature|Add ...|
+|Feature|Implementation of a new feature|Add/Replace ...|
 |Improvement|Improve something|Improve ...|
 |Database|Populate the database|Populate the database( with ...)|
 |Bump|Bump a dependancy|Bump ...|

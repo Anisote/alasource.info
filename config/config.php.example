@@ -12,10 +12,20 @@
   $HCAPTCHA_SECRET = "";
   $HCAPTCHA_VERIFY_URL = "https://hcaptcha.com/siteverify";
 
-
   $BASE_URL = "https://alasource.info";
   $VERSION = file_get_contents('version');
 
-  $COMPACT_MODE_COLUMNS_TO_HIDE = "0, 2, 3, 4, 7";
+  $COLUMNS = Array(
+    'id' => 0,
+    'fieldMobile' => 1,
+    'fieldDesktop' => 2,
+    'author' => 3,
+    'media' => 4,
+    'description' => 5,
+    'marks' => 6,
+    'publishDate' => 7,
+    'tags' => 8,
+  );
+  $COMPACT_MODE_COLUMNS_TO_HIDE = implode(', ', Array($COLUMNS['id'], $COLUMNS['fieldDesktop'], $COLUMNS['author'], $COLUMNS['media'], $COLUMNS['publishDate']));
   $COMPACT_MODE_TRIGGER_SCREEN_WIDTH = 1024;
 ?>

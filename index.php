@@ -94,7 +94,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
 
-  $sqlInformationTag = "SELECT idInformation, name FROM Information_tag NATURAL JOIN Tag;";
+  $sqlInformationTag = "SELECT idInformation, name FROM Information_tag NATURAL JOIN Tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
   $informationTag = Array();
   if($result = mysqli_query($link, $sqlInformationTag)) {
       if(mysqli_num_rows($result) > 0){
@@ -116,16 +116,13 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
   }
 
-  $domaines = Array();
-
   if($result = mysqli_query($link, $sql)){
       if(mysqli_num_rows($result) > 0){
           echo "<table id='table_id' class='display'>";
           echo "<thead>";
               echo "<tr>";
                   echo "<th class='id_th'>ID</th>";
-                  echo "<th class='small-padding'>Dom</th>";
-                  echo "<th class='small-padding'>Domaine</th>";
+                  echo "<th class='small-padding' data-split=' '>Domaine</th>";
                   echo "<th class='small-padding'>Auteur</th>";
                   echo "<th class='small-padding'>Média</th>";
                   echo "<th class='small-padding width-100'>Description</th>";
@@ -143,26 +140,15 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               }
 
               $tagsStr = join(', ', $informationTags);
+              $tagsIconsStr = join(' ', array_map(function($value) {
+                $values = explode(' ', $value);
+                return "<span data-toggle='tooltip' title='$values[1]'>" . $values[0] . "</span>";
+              }, $informationTags));
 
               echo "<tr>";
               echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
-              $fieldDesc = explode(' ', $row['fielddesc'], 2);
-              // compact mode
-              echo "<td class='text-nowrap center domaine no-padding'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
+              echo "<td class='text-nowrap center domaine no-padding'>" . $tagsIconsStr . "</td>";
 
-              $fullField = $fieldDesc[0] . ' ' . $fieldDesc[1];
-              if(empty($domaines[$fullField])) {
-                $domaines[$fullField] = 0;
-              }
-              ++$domaines[$fullField];
-              $domaines[$fieldDesc[0]] = $domaines[$fullField];
-
-              // full mode
-              if(strlen($fieldDesc[1]) > 15){
-                echo "<td class='text-nowrap font-size-em0-7'><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
-              }else{
-                echo "<td class='text-nowrap '><span>" . $fieldDesc[0] . " <div class='field_desc_full'>$fieldDesc[1]</div></span></td>";
-              }
               $authorsDisplayed = "";
               $i = 0;
               foreach ($informationAuthor[$row['idInformation']] as $author ){
@@ -205,7 +191,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 echo "<td class='center text-nowrap'>" . $row['datePublication'] . "</td>";
               }else{
                 echo "<td class='center'></td>";
-              }              
+              }
               echo "<td class='hidden'><span>" . $tagsStr . "</span></td>";
               echo "</tr>";
           }
@@ -262,7 +248,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
             responsive: false,
             "sDom": '<"top"ftrlpi>',
             columnDefs: [{
-                targets: [1,2,4],
+                targets: [<?=$COLUMNS['fieldDesktop']?>, <?=$COLUMNS['media']?>],
                 render: function (data, type, row) {
                   if (type === 'sort') {
                     return data.replace(/.*? /,'');
@@ -271,7 +257,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 }
               },
               { responsivePriority: 1, targets: [<?=$COLUMNS['description']?>, <?=$COLUMNS['marks']?>] },
-              { responsivePriority: 2, targets: [<?=$COLUMNS['fieldMobile']?>, <?=$COLUMNS['fieldDesktop']?>] },
+              { responsivePriority: 2, targets: [<?=$COLUMNS['fieldDesktop']?>] },
               { responsivePriority: 3, targets: [<?=$COLUMNS['media'] ?>] },
               { responsivePriority: 4, targets: [<?=$COLUMNS['author'] ?>] },
               { responsivePriority: 5, targets: [<?=$COLUMNS['publishDate'] ?>] },
@@ -325,6 +311,20 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         refreshDropdowns();
                       })
                   }
+                  else if([ <?=$COLUMNS['fieldDesktop']?> ].includes(column.index())){
+                    select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
+                      .appendTo( $(column.header()) )
+                      .on( 'change', function () {
+                        var val = jQuery.fn.dataTable.ext.type.search.html($.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                        ));
+                        val = val ? val.split(' ')[0] : val;
+                        column
+                          .search( val ? val : '', true, false )
+                          .draw();
+                        refreshDropdowns();
+                      })
+                  }
                   else{
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
@@ -345,9 +345,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                     values.push($('<div/>').html(data[i]).text());
                   }
 
+                  const splitChar = $(column.header()).data('split') || ',';
+
                   // useful when multiple author
                   const columnValues = values
-                    .map(v => v.split(','))
+                    .map(v => v.split(splitChar))
                     .reduce((p, c) => {
                       for(let item of c) {
                         item = item && item.trim();
@@ -358,20 +360,28 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       return p;
                     }, []);
 
+                  const tags = <?= json_encode($tags) ?>;
+
                   if (column.index() == <?=$COLUMNS['author'] ?>){
                     columnValues.sort();
+                  } else if (column.index() == <?=$COLUMNS['fieldDesktop'] ?>){
+                    const getName = (value) => tags.find(tag => tag.name.includes(value)).name.split(' ')[1];
+                    columnValues.sort((a, b) => getName(a).localeCompare(getName(b)));
                   }
 
-                  const domaines = <?= json_encode($domaines) ?>;
-
-                  for(const item of columnValues) {
+                  for(let item of columnValues) {
+                    let optionValue = item;
                     if(item != ""){
                       let nb = undefined;
-                      if([<?=$COLUMNS['fieldMobile']?>, <?=$COLUMNS['fieldDesktop']?> ].includes(column.index())){
-                        nb = domaines[item];
+                      if([ <?=$COLUMNS['fieldDesktop']?> ].includes(column.index())){
+                        const tagInfo = tags.find(tag => tag.name.includes(item));
+                        if(tagInfo) {
+                          nb = tagInfo.count;
+                          item = tagInfo.name;
+                        }
                       }
 
-                      select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + (nb ? ` (${nb})` : '') + '</option>' );
+                      select.append( '<option onclick="event.stopPropagation()" value="' + optionValue + '">' + item.substr(0,35) + (nb ? ` (${nb})` : '') + '</option>' );
                     }
                   }
                 }
@@ -379,7 +389,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
             } );
         }
       } );
-      table.column(1).visible(false);
       table.order( [ 0, 'asc' ] ).draw();
       setCompactMode(isMobile());
     } );
@@ -447,7 +456,10 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         $select: s,
         value: jQuery.fn.dataTable.ext.type.search.html(s.val()),
         dataIndex: selects.indexOf(s),
-        split: selects.indexOf(s) === <?=$COLUMNS['author']?> ? ', ' : undefined
+        split: {
+          [<?=$COLUMNS['author']?>]: ', ',
+          [<?=$COLUMNS['fieldDesktop']?>]: ' '
+        }[selects.indexOf(s)]
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
     }
@@ -486,7 +498,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
         for(const column of columnsToHide) {
           table.column(column).visible(!isCompact);
-          table.column(1).visible(isCompact);
         }
 
         if(!isCompact){
