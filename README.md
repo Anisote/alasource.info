@@ -36,16 +36,17 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
     - ~~Add the number of items by domaine~~ - 14/11/2021
     - Create a rss link
     - Add an explanation video
-    - Order the media select
   - Bugs
     - ~~Search with accents doesn't work anymore~~ - 14/11/2021
     - ~~The author list doesn't contain multiple authors anymore~~ - 14/11/2021
+    - ~~Order the media select~~ - 14/11/2021
 - FAQ Panel
   - ~~Rewrite the FAQ~~ - 06/11/2021
 - Contact Panel
   - ~~Implement hcaptcha in the contact form~~ - 11/07/2021
   - Contact page doesn't work anymore
 - Admin Panel
+  - Add a tag when a field is selected
   - Forbid the addition of an existing author, media or category
   - Fix an issue when inserting of authors without tags in an information
   - Author should be required to add an information
