@@ -36,9 +36,10 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
     - ~~Add the number of items by domaine~~ - 14/11/2021
     - Create a rss link
     - Add an explanation video
+    - Order the media select
   - Bugs
     - ~~Search with accents doesn't work anymore~~ - 14/11/2021
-    - The select content doesn't adapt to the number of authors
+    - ~~The author list doesn't contain multiple authors anymore~~ - 14/11/2021
 - FAQ Panel
   - ~~Rewrite the FAQ~~ - 06/11/2021
 - Contact Panel

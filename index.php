@@ -270,12 +270,12 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   return data;
                 }
               },
-              { responsivePriority: 1, targets: [5, 6] },
-              { responsivePriority: 2, targets: [2] },
-              { responsivePriority: 3, targets: [4] },
-              { responsivePriority: 4, targets: [3] },
-              { responsivePriority: 5, targets: [7] },
-              { responsivePriority: 6, targets: [0] },
+              { responsivePriority: 1, targets: [<?=$COLUMNS['description']?>, <?=$COLUMNS['marks']?>] },
+              { responsivePriority: 2, targets: [<?=$COLUMNS['fieldMobile']?>, <?=$COLUMNS['fieldDesktop']?>] },
+              { responsivePriority: 3, targets: [<?=$COLUMNS['media'] ?>] },
+              { responsivePriority: 4, targets: [<?=$COLUMNS['author'] ?>] },
+              { responsivePriority: 5, targets: [<?=$COLUMNS['publishDate'] ?>] },
+              { responsivePriority: 6, targets: [<?=$COLUMNS['id'] ?>] },
             ],
             "pageLength": 25,
             "language": {
@@ -297,9 +297,9 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               api.columns().every( function () {
                 var column = this;
                 var select;
-                if (column.index() != 0 && column.index() != 5 && column.index() != 7 ){
+                if (column.index() != <?=$COLUMNS['id']?> && column.index() != <?=$COLUMNS['description']?> && column.index() != <?=$COLUMNS['publishDate']?> ){
                   // Disable search by regex for author column
-                  if (column.index() == 3){
+                  if (column.index() == <?=$COLUMNS['author']?>){
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -312,7 +312,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         refreshDropdowns();
                       })
                   }
-                  else if(column.index() == 6){
+                  else if(column.index() == <?=$COLUMNS['marks']?>){
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -358,7 +358,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       return p;
                     }, []);
 
-                  if (column.index() == 3 || column.index() == 4){
+                  if (column.index() == <?=$COLUMNS['author'] ?>){
                     columnValues.sort();
                   }
 
@@ -367,7 +367,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   for(const item of columnValues) {
                     if(item != ""){
                       let nb = undefined;
-                      if([ 1, 2 ].includes(column.index())){
+                      if([<?=$COLUMNS['fieldMobile']?>, <?=$COLUMNS['fieldDesktop']?> ].includes(column.index())){
                         nb = domaines[item];
                       }
 
@@ -447,7 +447,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         $select: s,
         value: jQuery.fn.dataTable.ext.type.search.html(s.val()),
         dataIndex: selects.indexOf(s),
-        split: selects.indexOf(s) === 3 ? ', ' : undefined
+        split: selects.indexOf(s) === <?=$COLUMNS['author']?> ? ', ' : undefined
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
     }
