@@ -320,7 +320,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         ));
                         val = val ? val.split(' ')[0] : val;
                         column
-                          .search( val ? val : '', true, false )
+                          .search( val ? `(^| )${val}($| )` : '', true, false )
                           .draw();
                         refreshDropdowns();
                       })
