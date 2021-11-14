@@ -10,8 +10,8 @@
 
 <div id="content" class="no-padding">
   <div class="center">
-    <input id="searchBoxMobile" class="searchBox mobile" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
-    <input id="searchBoxDesktop" class="searchBox desktop" type="search" list="tags-fields" type="search" placeholder="Cliquez ici" aria-label="Rechercher" oninput='search()'/>
+    <input id="searchBoxMobile" class="searchBox mobile" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput='search(this)'/>
+    <input id="searchBoxDesktop" class="searchBox desktop" type="search" list="tags-fields" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput='search(this)'/>
     <datalist id="tags-fields">
       <?php
             $sql = "SELECT idtag, count(idTag) FROM info.Information_tag group by idTag;";
@@ -448,26 +448,18 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     }
 
 
-    $('#searchBoxMobile').keyup(function (){
-      $('#searchBoxDesktop').val($(this).val()); 
-    });
+    function search(input){
 
-    $('#searchBoxDesktop').keyup(function (){
-        $('#searchBoxMobile').val($(this).val());
-    });
-
-    function search(){
-      var table = $('#table_id').DataTable();
-      var inputSearchMobile = document.getElementById("searchBoxMobile").value;
-      var inputSearchDesktop = document.getElementById("searchBoxDesktop").value;
-
-      if(inputSearchMobile != null){
-        var criteria = jQuery.fn.dataTable.ext.type.search.html(inputSearchMobile);
+      if(input.id == 'searchBoxMobile'){
+        $('#searchBoxDesktop').val($(input).val()); 
       }else{
-        var criteria = jQuery.fn.dataTable.ext.type.search.html(inputSearchDesktop);
+        $('#searchBoxMobile').val($(input).val());
       }
 
-      table.search(criteria).draw();
+      var table = $('#table_id').DataTable();
+      console.log("Valeur input : " + input.value)
+
+      table.search(input.value).draw();
     };
 
     function clean(){
