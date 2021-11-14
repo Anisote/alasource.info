@@ -53,3 +53,7 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 |Improvement|Improve something|Improve ...|
 |Database|Populate the database|Populate the database( with ...)|
 |Bump|Bump a dependancy|Bump ...|
+
+## Sitemap
+
+It is generated from the sitemap.php file. Every new page should be added in this file.

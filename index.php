@@ -14,46 +14,25 @@
     <input id="searchBoxDesktop" class="searchBox desktop" type="search" list="tags-fields" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput='search(this)'/>
     <datalist id="tags-fields">
       <?php
-            $sql = "SELECT idtag, count(idTag) FROM info.Information_tag group by idTag;";
-
-            $options = Array();
-            if($result = mysqli_query($link, $sql)) {
-                if(mysqli_num_rows($result) > 0){
+          $sqlInformationTag = "SELECT idTag, name, count(idTag) as tagCount FROM info.Information_tag NATURAL JOIN Tag GROUP BY idTag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
+          $tags = Array();
+          if($result = mysqli_query($link, $sqlInformationTag)) {
+              if(mysqli_num_rows($result) > 0){
+                  while($row = mysqli_fetch_array($result)) {
+                      $tags[] = Array('name' => $row['name'], 'id' => $row['idTag'], 'count' => $row['tagCount']);
+                  }
                   
-                    
-                    mysqli_free_result($result);
-                } else {
-                    echo "No records matching your query were found.";
-                }
-            } else {
-                echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-            }
+                  mysqli_free_result($result);
+              } else {
+                  echo "No records matching your query were found.";
+              }
+          } else {
+              echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+          }
 
-            foreach($options as $option) {
-                echo '<option value="' . $option . ' (' . $tagsNumber . ')"></option>';
-            }
-        ?>
-        <?php
-            $sql = "SELECT name FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
-
-            $options = Array();
-            if($result = mysqli_query($link, $sql)) {
-                if(mysqli_num_rows($result) > 0){
-                    while($row = mysqli_fetch_array($result)) {
-                        $options[] = $row['name'];
-                    }
-                    
-                    mysqli_free_result($result);
-                } else {
-                    echo "No records matching your query were found.";
-                }
-            } else {
-                echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-            }
-
-            foreach($options as $option) {
-                echo '<option value="' . $option . '"></option>';
-            }
+          foreach($tags as $tagEntry) {
+            echo '<option value="' . $tagEntry['name'] . '">' . $tagEntry['count'] . ' élément' . ($tagEntry['count'] > 1 ? 's' : '') . '</option>';
+          }
         ?>
     </datalist>
     <div class="button-search-reset">
@@ -69,25 +48,10 @@
       </div>
 
       <?php
-          $sqlInformationTag = "SELECT name FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
-          $tags = Array();
-          if($result = mysqli_query($link, $sqlInformationTag)) {
-              if(mysqli_num_rows($result) > 0){
-                  while($row = mysqli_fetch_array($result)) {
-                      $tags[] = $row['name'];
-                  }
-                  
-                  mysqli_free_result($result);
-              } else {
-                  echo "No records matching your query were found.";
-              }
-          } else {
-              echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-          }
 
           $tagsPopover = "";
           foreach($tags as $tag){
-            $tagsPopover = $tagsPopover . $tag . "<br/>";
+            $tagsPopover = $tagsPopover . $tag['name'] . "<br/>";
           }
         ?>
         <div id=informationButtonDomaines  data-bs-html="true" data-bs-toggle="popover" title="Domaines" data-bs-placement="bottom" data-bs-content="<?php  echo($tagsPopover) ?>" >
@@ -152,6 +116,8 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
   }
 
+  $domaines = Array();
+
   if($result = mysqli_query($link, $sql)){
       if(mysqli_num_rows($result) > 0){
           echo "<table id='table_id' class='display'>";
@@ -171,18 +137,25 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
          echo "<tbody>";
           while($row = mysqli_fetch_array($result)){
               $id = $row['idInformation'];
-              $tags = isset($informationTag[$id]) ? $informationTag[$id] : NULL;
-              if(empty($tags)) {
-                  $tags = Array();
+              $informationTags = isset($informationTag[$id]) ? $informationTag[$id] : NULL;
+              if(empty($informationTags)) {
+                  $informationTags = Array();
               }
 
-              $tagsStr = join(', ', $tags);
+              $tagsStr = join(', ', $informationTags);
 
               echo "<tr>";
               echo "<td class='center'><span>" . $row['indexDisplayed'] . "</span></td>";
               $fieldDesc = explode(' ', $row['fielddesc'], 2);
               // compact mode
               echo "<td class='text-nowrap center domaine no-padding'><span data-toggle='tooltip' title='$fieldDesc[1]'>" . $fieldDesc[0] . "</span></td>";
+
+              $fullField = $fieldDesc[0] . ' ' . $fieldDesc[1];
+              if(empty($domaines[$fullField])) {
+                $domaines[$fullField] = 0;
+              }
+              ++$domaines[$fullField];
+              $domaines[$fieldDesc[0]] = $domaines[$fullField];
 
               // full mode
               if(strlen($fieldDesc[1]) > 15){
@@ -203,7 +176,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
               if(strlen($authorsDisplayed) > 50){
                 echo "<td><span class='font-size-em0-7'>" . $authorsDisplayed . "</span></td>";
-              }else{              
+              }else{
                 echo "<td><span>" . $authorsDisplayed . "</span></td>";
               }
 
@@ -247,41 +220,41 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
   ?>
-    <script>
-      function fullScreen(isFullScreen) {
-        if(isFullScreen === undefined) {
-          return document.fullscreenElement;
-        } else {
-          if(isFullScreen) {
-              if(document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-              } else if(document.documentElement.webkitRequestFullScreen) {
-                document.documentElement.webkitRequestFullScreen();
-              }
-          } else if(document.fullscreenElement) {
-            if(document.exitFullscreen) {
-              document.exitFullscreen();
+  <script>
+    function fullScreen(isFullScreen) {
+      if(isFullScreen === undefined) {
+        return document.fullscreenElement;
+      } else {
+        if(isFullScreen) {
+            if(document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen();
+            } else if(document.documentElement.webkitRequestFullScreen) {
+              document.documentElement.webkitRequestFullScreen();
             }
+        } else if(document.fullscreenElement) {
+          if(document.exitFullscreen) {
+            document.exitFullscreen();
           }
         }
       }
+    }
 
-      var _div = document.createElement('div');
-      jQuery.fn.dataTable.ext.type.search.html = function(data) {
-        _div.innerHTML = data;
-        return (_div.textContent ? _div.textContent : _div.innerText)
-          .replace(/[áÁàÀâÂäÄãÃåÅæÆ]/g, 'a')
-          .replace(/[çÇ]/g, 'c')
-          .replace(/[éÉèÈêÊëË]/g, 'e')
-          .replace(/[íÍìÌîÎïÏîĩĨĬĭ]/g, 'i')
-          .replace(/[ñÑ]/g, 'n')
-          .replace(/[óÓòÒôÔöÖœŒ]/g, 'o')
-          .replace(/[ß]/g, 's')
-          .replace(/[úÚùÙûÛüÜ]/g, 'u')
-          .replace(/[ýÝŷŶŸÿ]/g, 'y');
-      }
+    var _div = document.createElement('div');
+    jQuery.fn.dataTable.ext.type.search.html = function(data) {
+      _div.innerHTML = data;
+      return (_div.textContent ? _div.textContent : _div.innerText)
+        .replace(/[áÁàÀâÂäÄãÃåÅæÆ]/g, 'a')
+        .replace(/[çÇ]/g, 'c')
+        .replace(/[éÉèÈêÊëË]/g, 'e')
+        .replace(/[íÍìÌîÎïÏîĩĨĬĭ]/g, 'i')
+        .replace(/[ñÑ]/g, 'n')
+        .replace(/[óÓòÒôÔöÖœŒ]/g, 'o')
+        .replace(/[ß]/g, 's')
+        .replace(/[úÚùÙûÛüÜ]/g, 'u')
+        .replace(/[ýÝŷŶŸÿ]/g, 'y');
+    }
 
-      $(document).ready(function() {
+    $(document).ready(function() {
       $.fn.dataTable.moment( 'DD/MM/YYYY');
 
       var table = $('#table_id').DataTable({
@@ -351,7 +324,8 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                           .draw();
                         refreshDropdowns();
                       })
-                  }else{
+                  }
+                  else{
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -387,9 +361,16 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                     columnValues.sort();
                   }
 
+                  const domaines = <?= json_encode($domaines) ?>;
+
                   for(var item of columnValues) {
                     if(item != ""){
-                      select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + '</option>' );
+                      let nb = undefined;
+                      if([ 1, 2 ].includes(column.index())){
+                        nb = domaines[item];
+                      }
+
+                      select.append( '<option onclick="event.stopPropagation()" value="' + item + '">' + item.substr(0,35) + (nb ? ` (${nb})` : '') + '</option>' );
                     }
                   }
                 }
@@ -416,7 +397,6 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         } else {
           dataValue = [dataValue];
         }
-        console.log(o.value);
         return !o.value || dataValue.includes(o.value)
       }));
       var $options = $select.children('option');
@@ -473,7 +453,8 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
 
     function search(input){
-
+      input = input || $('#searchBoxDesktop')[0];
+      
       if(input.id == 'searchBoxMobile'){
         $('#searchBoxDesktop').val($(input).val()); 
       }else{
@@ -524,6 +505,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
           clearTimeout(fullScreenInfoTimeout);
           if(!isCompact) {
             fullScreenInfoEl.classList.remove('hidden');
+            fullScreenInfoEl.onclick = () => {
+              fullScreenInfoEl.classList.add('hidden');
+              clearTimeout(fullScreenInfoTimeout);
+              fullScreenInfoTimeout = undefined;
+            }
             fullScreenInfoTimeout = setTimeout(() => {
               fullScreenInfoEl.classList.add('hidden');
               fullScreenInfoTimeout = undefined;

@@ -329,6 +329,7 @@ th{
     z-index: 1;
     border: 1px dashed;
     margin-top: 1.5em;
+    cursor: pointer;
   }
 
   .domaine {
