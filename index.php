@@ -40,7 +40,7 @@
         ?>
     </datalist>
     <div class="button-search-reset">
-      <a class="button-style" aria-current="page" href="#">Rechercher</a>
+      <a class="button-style desktop" aria-current="page" href="#">Rechercher</a>
       <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
     </div>
     <div class="helpers">
