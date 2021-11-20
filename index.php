@@ -181,17 +181,17 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                 echo "<td>" . $row['infodesc'] . "</td>";
               }
 
-              if($row['mark'] == 1){
-                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐&nbsp;⭐</td>";
+              if ($row['mark'] == 1){
+                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐</td>";
               }
               if ($row['mark'] == 2){
-                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐</td>";
-              }
-              if ($row['mark'] == 3){
                 echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐</td>";
               }
-              if ($row['mark'] == 4){
-                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐</td>";
+              if ($row['mark'] == 3){
+                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐</td>";
+              }
+              if($row['mark'] == 4){
+                echo "<td class='center star no-padding' data-toggle='tooltip' title='$tooltip'>⭐&nbsp;⭐&nbsp;⭐&nbsp;⭐</td>";
               }
                   
               if($row['datePublication'] != "00/00/0000"){
