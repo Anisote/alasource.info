@@ -1,5 +1,5 @@
 
-		<footer>
+		<footer id="footer">
 			<div class="center paddingBot-5">							
 				<a href="contact.php">Contact</a>
 				<a href="https://mastodon.tedomum.net/@anisote">

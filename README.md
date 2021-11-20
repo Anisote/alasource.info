@@ -34,8 +34,9 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
     - ~~Fix search bugs with tags with more than one word~~ - 07/11/2021
     - ~~Switch to full screen and rotate screen on mobile when compact mode is disabled (rotation replaced by an info message)~~ - 14/11/2021
     - ~~Add the number of items by domaine~~ - 14/11/2021
+    - ~~Add an explanation video~~ - 20/11/2021
+    - Add explanation videos for all displayed (mobile & compact)
     - Create a rss link
-    - Add an explanation video
   - Bugs
     - ~~Search with accents doesn't work anymore~~ - 14/11/2021
     - ~~The author list doesn't contain multiple authors anymore~~ - 14/11/2021
