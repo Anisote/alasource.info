@@ -246,7 +246,7 @@ th{
 }
 
 #button{
-  display: inline;
+  display: inline-block;
 }
 
 .mobile{
@@ -254,7 +254,7 @@ th{
 }
 
 .desktop{
-  display: inline;
+  display: inline-block;
 }
 
 .display-block{
