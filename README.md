@@ -37,10 +37,15 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
     - ~~Add an explanation video~~ - 20/11/2021
     - Add explanation videos for all displayed (mobile & compact)
     - Create a rss link
+    - Display domaine information when click on the icon
   - Bugs
     - ~~Search with accents doesn't work anymore~~ - 14/11/2021
     - ~~The author list doesn't contain multiple authors anymore~~ - 14/11/2021
     - ~~Order the media select~~ - 14/11/2021
+    - When click on the video, close tooltip panel
+    - When the video is over, close the video
+    - When click in the space, the tooltip should be closed
+    - When click on a domain, it sould select it in the display and close it
 - FAQ Panel
   - ~~Rewrite the FAQ~~ - 06/11/2021
 - Contact Panel

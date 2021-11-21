@@ -8,71 +8,72 @@
 ⭐ : Intéressant';
 ?>
 
+
 <div id="content" class="no-padding">
-  <div id="tutorial" class="center">
-    <video id="tutorial-video" fullScreen onclick="manageVideoTutorial()">
-    <source src="themes/tutorial.mp4" type="video/mp4">
-  </div>
-  <div id= "searchfields" class="center">
-    <input id="searchBoxMobile" class="searchBox mobile" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput='search(this)'/>
-    <input id="searchBoxDesktop" class="searchBox desktop" type="search" list="tags-fields" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput='search(this)'/>
-    <datalist id="tags-fields">
-      <?php
-          $sqlInformationTag = "SELECT idTag, name, count(idTag) as tagCount FROM info.Information_tag NATURAL JOIN Tag GROUP BY idTag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
-          $tags = Array();
-          if($result = mysqli_query($link, $sqlInformationTag)) {
-              if(mysqli_num_rows($result) > 0){
-                  while($row = mysqli_fetch_array($result)) {
-                      $tags[] = Array('name' => $row['name'], 'id' => $row['idTag'], 'count' => $row['tagCount']);
-                  }
-                  
-                  mysqli_free_result($result);
-              } else {
-                  echo "No records matching your query were found.";
-              }
-          } else {
-              echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-          }
-
-          foreach($tags as $tagEntry) {
-            echo '<option value="' . $tagEntry['name'] . '">' . $tagEntry['count'] . ' élément' . ($tagEntry['count'] > 1 ? 's' : '') . '</option>';
-          }
-        ?>
-    </datalist>
-    <div class="button-search-reset">
-      <a class="button-style desktop" aria-current="page" href="#">Rechercher</a>
-      <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
+  <div>
+    <div id="tutorial" class="center">
+      <video id="tutorial-video" fullScreen onclick="manageVideoTutorial()">
+      <source src="themes/tutorial.mp4" type="video/mp4">
     </div>
-    <div class="helpers">
-      <div class="alert alert-info alert-screen-orientation hidden">Pour plus de confort, vous pouvez pivoter l'écran.</div>
+    <div id="searchfields" class="center">
+      <input id="searchBoxMobile" class="searchBox mobile" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput='search(this)'/>
+      <input id="searchBoxDesktop" class="searchBox desktop" type="search" list="tags-fields" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput='search(this)'/>
+      <datalist id="tags-fields">
+        <?php
+            $sqlInformationTag = "SELECT idTag, name, count(idTag) as tagCount FROM info.Information_tag NATURAL JOIN Tag GROUP BY idTag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
+            $tags = Array();
+            if($result = mysqli_query($link, $sqlInformationTag)) {
+                if(mysqli_num_rows($result) > 0){
+                    while($row = mysqli_fetch_array($result)) {
+                        $tags[] = Array('name' => $row['name'], 'id' => $row['idTag'], 'count' => $row['tagCount']);
+                    }
+                    
+                    mysqli_free_result($result);
+                } else {
+                    echo "No records matching your query were found.";
+                }
+            } else {
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+            }
 
-      <div class="form-check form-switch inline-block" class="informationButton">
-        <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
-        <label class="form-check-label text-success pointer compact" for="compactModeSwitch">Mode compact</label>        
+            foreach($tags as $tagEntry) {
+              echo '<option value="' . $tagEntry['name'] . '">' . $tagEntry['count'] . ' élément' . ($tagEntry['count'] > 1 ? 's' : '') . '</option>';
+            }
+          ?>
+      </datalist>
+      <div class="button-search-reset">
+        <a class="button-style desktop" aria-current="page" href="#">Rechercher</a>
+        <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
       </div>
+      <div class="helpers">
+        <div class="alert alert-info alert-screen-orientation hidden">Pour plus de confort, vous pouvez pivoter l'écran.</div>
 
-      <?php
-
+        <div class="form-check form-switch inline-block" class="informationButton">
+          <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
+          <label class="form-check-label text-success pointer compact" for="compactModeSwitch">Mode compact</label>        
+        </div>
+        <?php
           $tagsPopover = "";
           foreach($tags as $tag){
             $tagsPopover = $tagsPopover . $tag['name'] . "<br/>";
           }
         ?>
-        <div id=informationButtonDomaines class="informationButton" data-bs-html="true" data-bs-toggle="popover" title="Domaines" data-bs-placement="bottom" data-bs-content="<?php  echo($tagsPopover) ?>" >
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372s372 166.6 372 372s-166.6 372-372 372z" fill="currentColor"/><path d="M464 336a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" fill="currentColor"/></svg> Domaines 
+        <div id=informationButtonDomaines class="informationButton" data-trigger="focus"  data-bs-html="true" data-bs-toggle="popover" title="Domaines" data-bs-placement="bottom" data-bs-content="<?php  echo($tagsPopover) ?>" >
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372s372 166.6 372 372s-166.6 372-372 372z" fill="currentColor"/><path d="M464 336a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" fill="currentColor"/></svg> Domaines 
         </div>
-        <div id=informationButtonMarks  class="informationButton" data-bs-html="true" data-bs-toggle="popover" title="Avis" data-bs-placement="bottom" data-bs-content="⭐⭐⭐⭐ Exceptionnel<br/>⭐⭐⭐ Extrêmement intéressant<br/>⭐⭐ Très intéressant<br/>⭐ Intéressant" >          
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372s372 166.6 372 372s-166.6 372-372 372z" fill="currentColor"/><path d="M464 336a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" fill="currentColor"/></svg> Avis
+        <div id=informationButtonMarks  class="informationButton"data-trigger="focus" data-bs-html="true" data-bs-toggle="popover" title="Avis" data-bs-placement="bottom" data-bs-content="⭐⭐⭐⭐ Exceptionnel<br/>⭐⭐⭐ Extrêmement intéressant<br/>⭐⭐ Très intéressant<br/>⭐ Intéressant" >          
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372s372 166.6 372 372s-166.6 372-372 372z" fill="currentColor"/><path d="M464 336a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" fill="currentColor"/></svg> Avis
         </div>
         <div id=informationButtonHelp class="informationButton" onclick="manageVideoTutorial()" >
           <svg viewBox="0 0 512 512" class="pointer svg" aria-hidden="true"data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4096 4096"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"></path></svg> Aide 
         </div>
-
-    <div class="font-size-em0-7 mt-1 center desktop display-block">
-        ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
+        <div class="font-size-em0-7 mt-1 center desktop display-block">
+            ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
+        </div>
+      </div>
     </div>
   </div>
-
+  
   <?php
 
   $sql = "SELECT idInformation, indexDisplayed, Information.description as infodesc, Tag.name as fielddesc, CategoryMedia.description as cateMediadesc,link, mark, DATE_FORMAT(release_date, '%d/%m/%Y') as datePublication, DATE_FORMAT(insert_date, '%d/%m/%Y') as dateAjout FROM Information
@@ -575,6 +576,14 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
       return new bootstrap.Popover(popoverTriggerEl)
+    });
+
+    // Disable tooltip when clicking outside
+    $('html').on('click', function (e) {
+    $('[data-bs-toggle=popover]').each(function () {
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
     });
     </script>
 
