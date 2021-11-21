@@ -585,6 +585,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
             $(this).popover('hide');
         }
     });
+  });
     </script>
 
 </div>
