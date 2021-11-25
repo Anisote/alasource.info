@@ -1,6 +1,8 @@
 
 # alasource.info
 
+[![GitHub Super-Linter](https://github.com/Anisote/alasource.info/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 This is the Git repository of [https://alasource.info](https://alasource.info/).
 
 ## TODO list
