@@ -8,11 +8,68 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 
 ## TODO list
 
+Features required for version 1 : 
+
+- Global
+- Home Panel
+  - Features
+    - Add explanation videos for all displayed (mobile & compact)
+    - Sparkle help button some seconds when the website is displayed
+    - Sort stars in the other way
+    - Display the compact mode information message at the bottom of the website
+  - Bugs
+    - When the video is over, close the video
+    - Compact mode information message has a padding
+- FAQ Panel
+- Contact Panel
+  - Contact page doesn't work anymore
+- Mentions légales
+  - Mentions légales doesn't work anymore
+- Admin Panel
+  - Add a tag when a field is selected
+  - Forbid the addition of an existing author, media or category
+  - Fix an issue when inserting of authors without tags in an information
+  - Author should be required to add an information
+
+Features required for version 2 :
+
+- Global
+  - Resize the datable when the zoom changed
+- Home Panel
+  - Features
+    - Create a rss link
+    - Display domaine information when click on the icon (mobile)
+    - When click on a domain, it sould select it in the display and close it
+    - Give the possibility to see the langage of an article | choose the langague of informations you want to see
+    - Switch the top bar to the bottom and reduce size
+    - Change the logo
+  - Bugs
+    - When the video is over, close the video
+    - Compact mode information message has a padding
+- FAQ Panel
+- Contact Panel
+- Mentions légales
+- Admin Panel
+
+## Commit format
+
+|Type|Description|Commit format|
+|----|-----------|-------------|
+|Fix|Fix a bug|Fix ...|
+|Feature|Implementation of a new feature|Add/Replace ...|
+|Improvement|Improve something|Improve ...|
+|Database|Populate the database|Populate the database( with ...)|
+|Bump|Bump a dependancy|Bump ...|
+
+## Sitemap
+
+It is generated from the sitemap.php file. Every new page should be added in this file.
+
+## History
 - Global
   - ~~Implement a footer with the Github link~~
   - ~~Add a robots.txt file with a sitemap.xml~~ - 04/07/2021
   - ~~Add a Mastodon Link~~ - 12/11/2021
-  - Resize the datable when the zoom changed
 - Home Panel
   - Features
     - ~~When a filter is enable, only displays options in other filters which have data~~
@@ -38,38 +95,14 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
     - ~~Switch to full screen and rotate screen on mobile when compact mode is disabled (rotation replaced by an info message)~~ - 14/11/2021
     - ~~Add the number of items by domaine~~ - 14/11/2021
     - ~~Add an explanation video~~ - 20/11/2021
-    - Add explanation videos for all displayed (mobile & compact)
-    - Create a rss link
-    - Display domaine information when click on the icon
   - Bugs
     - ~~Search with accents doesn't work anymore~~ - 14/11/2021
     - ~~The author list doesn't contain multiple authors anymore~~ - 14/11/2021
     - ~~Order the media select~~ - 14/11/2021
-    - When click on the video, close tooltip panel
-    - When the video is over, close the video
-    - When click in the space, the tooltip should be closed
-    - When click on a domain, it sould select it in the display and close it
+    - ~~When click on the video, close tooltip panel~~ - 14/11/2021
+    - ~~When click in the space, the tooltip should be closed~~ - 14/11/2021
 - FAQ Panel
   - ~~Rewrite the FAQ~~ - 06/11/2021
 - Contact Panel
   - ~~Implement hcaptcha in the contact form~~ - 11/07/2021
-  - Contact page doesn't work anymore
 - Admin Panel
-  - Add a tag when a field is selected
-  - Forbid the addition of an existing author, media or category
-  - Fix an issue when inserting of authors without tags in an information
-  - Author should be required to add an information
-
-## Commit format
-
-|Type|Description|Commit format|
-|----|-----------|-------------|
-|Fix|Fix a bug|Fix ...|
-|Feature|Implementation of a new feature|Add/Replace ...|
-|Improvement|Improve something|Improve ...|
-|Database|Populate the database|Populate the database( with ...)|
-|Bump|Bump a dependancy|Bump ...|
-
-## Sitemap
-
-It is generated from the sitemap.php file. Every new page should be added in this file.
