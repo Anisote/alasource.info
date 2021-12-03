@@ -43,6 +43,7 @@ Features required for version 2 :
     - Give the possibility to see the langage of an article | choose the langague of informations you want to see
     - Switch the top bar to the bottom and reduce size
     - Change the logo
+    - Display alternative links for sources
   - Bugs
     - When the video is over, close the video
     - Compact mode information message has a padding
