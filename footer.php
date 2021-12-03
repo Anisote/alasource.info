@@ -7,7 +7,7 @@
 				</a> | 
 				<a href="mentionslegales.php">Mentions légales</a>
 				<p id="update-website">
-					Dernière mise-à-jour du site : <?= date("d/m/Y", filemtime("contact.php")) ?>
+					Dernière mise-à-jour des données : <?= date("d/m/Y", filemtime("scripts/database.sql")) ?>
 				</p>
 			</div>
 		</footer>
