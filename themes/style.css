@@ -260,6 +260,13 @@ th{
   display: block
 }
 
+#update-website{
+  font-size: 0.75em;
+  float: right;
+  margin-top: 0.75em;
+  margin-bottom: 0;
+}
+
 /* ---  
       MOBILE VIEW 
                   ---*/
@@ -387,6 +394,13 @@ th{
 
   .page-contact .control-btns {
     text-align: center;
+    }
+
+  #update-website{
+    font-size: 0.75em;
+    float: right;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 

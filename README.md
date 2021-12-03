@@ -8,11 +8,12 @@ This is the Git repository of [https://alasource.info](https://alasource.info/).
 
 ## TODO list
 
-Features required for version 1 : 
+Features required for version 1 :
 
 - Global
 - Home Panel
   - Features
+    - ~~Add a text about the update date at the bottom of the website~~ - 03/12/2021
     - Add explanation videos for all displayed (mobile & compact)
     - Sparkle help button some seconds when the website is displayed
     - Sort stars in the other way
