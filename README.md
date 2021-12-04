@@ -27,7 +27,7 @@ Features required for version 1 :
 - Mentions légales
   - Mentions légales doesn't work anymore
 - Admin Panel
-  - Add a tag when a field is selected
+  - ~~Add a tag when a field is selected~~ - 04/12/2021
   - Forbid the addition of an existing author, media or category
   - Fix an issue when inserting of authors without tags in an information
   - Author should be required to add an information
@@ -68,6 +68,7 @@ Features required for version 2 :
 It is generated from the sitemap.php file. Every new page should be added in this file.
 
 ## History
+
 - Global
   - ~~Implement a footer with the Github link~~
   - ~~Add a robots.txt file with a sitemap.xml~~ - 04/07/2021

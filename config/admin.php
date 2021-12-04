@@ -155,6 +155,7 @@
 					$success = false;
 				} else {
 					$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $_POST["fieldDescription"] . "')";
+					$result = mysqli_query($link, $sql);
 					for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
 						$tagId = $_POST['tagName' . $i];
 
@@ -235,6 +236,7 @@
 						$success = false;
 					} else {
 						$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $_POST["fieldDescription"] . "')";
+						$result = mysqli_query($link, $sql);
 
 						for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
 							$tagId = $_POST['tagName' . $i];
