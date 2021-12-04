@@ -338,7 +338,11 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       })
                   }
 
-                  const data = column.order('asc').draw(false).data().unique();
+                  if (column.index() == <?=$COLUMNS['marks'] ?>){
+                    data = column.order('des').draw(false).data().unique();
+                  }else{
+                    data = column.order('asc').draw(false).data().unique();
+                  }
                   const values = [];
                   for(var i = 0; i < data.length; ++i) {
                     values.push($('<div/>').html(data[i]).text());
