@@ -25,7 +25,7 @@ Features required for version 1 :
   - Mentions légales doesn't work anymore
 - Admin Panel
   - ~~Add a tag when a field is selected~~ - 04/12/2021
-  - Forbid the addition of an existing author, media or category
+  - ~~Forbid the addition of an existing author, media or category~~ - 04/12/2021
   - Fix an issue when inserting of authors without tags in an information
   - ~~Author should be required to add an information~~ - 04/12/2021
 

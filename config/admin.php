@@ -5,6 +5,8 @@
 	$NB_TAG_MAX = 5;
 	$NB_AUTHOR_MAX = 10;
 
+
+
 	function error($msg) {
 		echo("<p class='alert-danger alert'>" . $msg . "</p>");
 	}
@@ -19,9 +21,12 @@
 		echo "<p class='alert-success alert'><b>Requête SQL réussie !</b></p>";
 	}
 
-
 	function displayWarning() {
 		echo "<p class='alert-warning alert'><b>Aucune requête SQL n'a été executée - Données manquantes !</b></p>";
+	}
+
+	function displayWarningDataAlreadyInsert() {
+		echo "<p class='alert-warning alert'><b>Aucune requête SQL n'a été executée - Donnée déjà présente en bdd !</b></p>";
 	}
 
 	function execPrepareStmt($sql, $params) {
@@ -307,17 +312,26 @@
 		if (!empty($_POST['name'])) {
 			$missingValues = false;
 
-			var_dump($_POST);
-			
-			$result = execPrepareStmt(
-				"INSERT INTO info.Author (name) VALUES (?)",
-				[ "s", $_POST['name'] ]
-			);
-						
-			if ($result === false) {
-				displayError();
-			}else{
-				displaySuccess();
+			$sql = "SELECT * FROM info.Author;";
+			$result = mysqli_query($link, $sql);
+
+			$authors = [];
+			while ($row = mysqli_fetch_array($result)) {
+				$authors[] = $row['name'];
+			}
+
+			if(! in_array($_POST['name'], $authors)){
+				$result = execPrepareStmt(
+					"INSERT INTO info.Author (name) VALUES (?)",
+					[ "s", $_POST['name'] ]
+				);				
+				if ($result === false) {
+					displayError();
+				}else{
+					displaySuccess();
+				}
+			}else {
+				displayWarningDataAlreadyInsert();
 			}
 		}
 
@@ -325,15 +339,26 @@
 		if (!empty($_POST['typedemedia_description'])) {
 			$missingValues = false;
 
-			$result = execPrepareStmt(
-				"INSERT INTO info.CategoryMedia (description) VALUES (?)",
-				[ "s", $_POST['typedemedia_description'] ]
-			);
-						
-			if ($result === false) {
-				displayError();
-			}else{
-				displaySuccess();
+			$sql = "SELECT * FROM CategoryMedia ORDER BY description ASC";
+			$result = mysqli_query($link, $sql);
+
+			$medias = [];
+			while ($row = mysqli_fetch_array($result)) {
+				$medias[] = $row['description'];
+			}
+
+			if(! in_array($_POST['typedemedia_description'], $medias)){
+				$result = execPrepareStmt(
+					"INSERT INTO info.CategoryMedia (description) VALUES (?)",
+					[ "s", $_POST['typedemedia_description'] ]
+				);					
+				if ($result === false) {
+					displayError();
+				}else{
+					displaySuccess();
+				}
+			}else {
+				displayWarningDataAlreadyInsert();
 			}
 		}
 
@@ -341,13 +366,26 @@
 		if (!empty($_POST['tag_name'])) {
 			$missingValues = false;
 
-			$result = execPrepareStmt(
-				"INSERT INTO info.Tag (name) VALUES (?)",
-				[ "s", $_POST['tag_name'] ]
-			);
-						
-			if ($result === false) {
-				displayError();
+			$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
+			$result = mysqli_query($link, $sql);
+
+			$tags = [];
+			while ($row = mysqli_fetch_array($result)) {
+				$tags[] = $row['name'];
+			}
+
+			if(! in_array($_POST['tag_name'], $tags)){
+				$result = execPrepareStmt(
+					"INSERT INTO info.Tag (name) VALUES (?)",
+					[ "s", $_POST['tag_name'] ]
+				);							
+				if ($result === false) {
+					displayError();
+				}else{
+					displaySuccess();
+				}
+			}else {
+				displayWarningDataAlreadyInsert();
 			}
 		}
 
@@ -642,7 +680,6 @@
 		<div class="row">
 			<div class="col">
 				<h2>Ajoût d'un tag</h2>
-
 				<p>
 					<form action="" method="post">
 						<label for="tag_name">Nom :&nbsp;</label>
