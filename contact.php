@@ -84,7 +84,7 @@
 			         
 			        $retval = mail ($to,$subject,$message,$header);
 
-			        if( $retval == true ) {
+			        if($retval) {
 						echo "Merci pour votre message !";
 			        }else {
 			            echo "Erreur dans l'envois du message.";

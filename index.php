@@ -13,7 +13,7 @@
   <div class="alert alert-info alert-screen-orientation fixed-bottom  hidden">Pour plus de confort, vous pouvez pivoter l'écran.</div>
   <div>
     <div id="tutorial" class="center">
-      <video id="tutorial-video" fullScreen onclick="manageVideoTutorial()" onended="manageVideoTutorial()">
+      <video id="tutorial-video" fullScreen muted onclick="manageVideoTutorial()" onended="manageVideoTutorial()">
       <source src="themes/tutorial.mp4" type="video/mp4">
     </div>
     <div id="searchfields" class="center">

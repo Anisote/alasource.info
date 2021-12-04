@@ -186,7 +186,7 @@ blockquote::after {
   right  : 0.5rem;
 }
 
-blockquote i {
+blockquote em {
   display   : block;
   font-size : 0.8em;
   text-align: right;

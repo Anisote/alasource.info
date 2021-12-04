@@ -15,6 +15,8 @@
   $BASE_URL = "https://alasource.info";
   $VERSION = file_get_contents('version');
 
+  $CONTACT_EMAIL = "email@email.com";
+
   $COLUMNS = Array(
     'id' => 0,
     'fieldMobile' => 1,

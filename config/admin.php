@@ -8,7 +8,7 @@
 
 
 	function error($msg) {
-		echo("<p class='alert-danger alert'>" . $msg . "</p>");
+		echo "<p class='alert-danger alert'>" . $msg . "</p>";
 	}
 
 	function displayError() {
@@ -135,8 +135,8 @@
 			if ($action === 'insertInformation') {
 				
 				$sql = "SELECT max(indexDisplayed) as indexDisplayed FROM info.Information;";
-				if($result = mysqli_query($link, $sql)) {
-					if(mysqli_num_rows($result) > 0){
+				$result = mysqli_query($link, $sql);
+				if(mysqli_num_rows($result) > 0) {
 						while($row = mysqli_fetch_array($result)) {
 							$indexDisplayed = $row['indexDisplayed'];
 						}						

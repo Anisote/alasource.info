@@ -13,10 +13,10 @@ Features required for version 1 :
 - Global
 - Home Panel
   - Features
-    - ~~Add a text about the update date at the bottom of the website~~ - 03/12/2021
+    - ~~Add a text about the update date at the bottom of the website~~ - 04/12/2021
     - Add explanation videos for all displayed (mobile & compact)
-    - ~~Sparkle help button some seconds when the website is displayed~~ - 03/12/2021
-    - ~~Sort select option stars in the other way~~ - 03/12/2021
+    - ~~Sparkle help button some seconds when the website is displayed~~ - 04/12/2021
+    - ~~Sort select option stars in the other way~~ - 04/12/2021
     - ~~Display the compact mode information message at the bottom of the website~~ - 04/12/2021
 - FAQ Panel
 - Contact Panel

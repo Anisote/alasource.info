@@ -8,13 +8,13 @@
     <blockquote>
       Parce qu'il est vital d'avoir des informations d'excellente qualité afin de mieux comprendre le monde qui nous entoure et de prendre les bonnes décisions. 
       J'ai créé ce site afin de vous partager les noms des contenus qui m'ont enrichi intellectuellement et m'ont fait voir les choses différemment. 
-      J'espère qu'ils vous seront aussi profitables qu'à moi.<i>Anisote</i>
+      J'espère qu'ils vous seront aussi profitables qu'à moi.<em>Anisote</em>
     </blockquote>
   </p>
   
   <h2>Le contenu du site</h2>
   <p>
-    <b>Pourquoi est-ce qu’une source apparaît ici ?</b></br>
+    <strong>Pourquoi est-ce qu’une source apparaît ici ?</strong></br>
 
     Pour figurer ici, une source répond à un ou plusieurs des critères ci-dessous : 
     <ul>
@@ -23,21 +23,21 @@
         <li>Expertise de l'auteur reconnue par ses pairs</li>
     </ul>
 
-    <b>Quand est-ce que le site est mis à jour ?</b></br>
+    <strong>Quand est-ce que le site est mis à jour ?</strong></br>
 
     Le site est mis à jour au fil de l'eau.</br></br>
 
-    <b>Un contenu que j'estime très bon n’est pas présent, est-ce normal ?</b></br>
+    <strong>Un contenu que j'estime très bon n’est pas présent, est-ce normal ?</strong></br>
 
     Oui, je n'ai malheureusement que peu de temps à accorder à ce site. N'hésitez pas à me transmettre des liens vers des sources de bonne qualité. 
     Si je partage votre avis, elles figureront probablement ici.</br></br>
 
-    <b>Un contenu ou un auteur avec lequel je suis en désaccord est présent ici. Est-ce normal ?</b></br>
+    <strong>Un contenu ou un auteur avec lequel je suis en désaccord est présent ici. Est-ce normal ?</strong></br>
     
     Oui, c'est également le cas pour moi mais être en désaccord ne veut pas dire que ce n'est pas intéressant. 
     De plus, cela fait évoluer la compréhension du sujet.</br></br>
 
-    <b>Un contenu de mauvaise qualité est présent ici. Que puis-je faire pour le faire supprimer ?</b></br>
+    <strong>Un contenu de mauvaise qualité est présent ici. Que puis-je faire pour le faire supprimer ?</strong></br>
 
     Vous pouvez m'envoyer un contenu de meilleure qualité. Si je partage votre avis, je n'hésiterai pas à mettre à jour la liste, ce qui permettra à tous d'améliorer sa compréhension du sujet.
 
@@ -47,11 +47,11 @@
   <h2>L'auteur</h2>
   
   <p>
-    <b>Qui suis-je ?</b></br>
+    <strong>Qui suis-je ?</strong></br>
 
     Je suis une personne d’une trentaine d’année, je vis en France et je publie sous pseudonymat.</br></br>
 
-    <b>Pourquoi est-ce que je fais ce site ?</b></br>
+    <strong>Pourquoi est-ce que je fais ce site ?</strong></br>
 
     Je fais ce site pour plusieurs raisons :     
     
@@ -63,7 +63,7 @@
         <li>Permettre à tous de mieux comprendre certains sujets complexes en ayant en leur disposition des sources d'excellentes qualités</li>
     </ul>
 
-    <b>Pourquoi avoir choisir le pseudonyme Anisote ?</b></br>
+    <strong>Pourquoi avoir choisir le pseudonyme Anisote ?</strong></br>
 
     C’est une référence à l’Anisote de l’Érable et j’aimais bien le fait qu’il y ait la sonorité “sote” dedans.
   </p>
