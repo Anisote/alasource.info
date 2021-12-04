@@ -18,9 +18,6 @@ Features required for version 1 :
     - Sparkle help button some seconds when the website is displayed
     - Sort stars in the other way
     - Display the compact mode information message at the bottom of the website
-  - Bugs
-    - When the video is over, close the video
-    - Compact mode information message has a padding
 - FAQ Panel
 - Contact Panel
   - Contact page doesn't work anymore
@@ -32,26 +29,29 @@ Features required for version 1 :
   - Fix an issue when inserting of authors without tags in an information
   - Author should be required to add an information
 
+  - Bugs
+    - When the video is over, close the video
+    - Compact mode information message has a padding
+
 Features required for version 2 :
 
-- Global
-  - Resize the datable when the zoom changed
 - Home Panel
   - Features
     - Create a rss link
     - Display domaine information when click on the icon (mobile)
-    - When click on a domain, it sould select it in the display and close it
+    - ~~When click on a domain, it sould select it in the display and close it~~ - discarded
     - Give the possibility to see the langage of an article | choose the langague of informations you want to see
     - Switch the top bar to the bottom and reduce size
     - Change the logo
     - Display alternative links for sources
-  - Bugs
-    - When the video is over, close the video
-    - Compact mode information message has a padding
 - FAQ Panel
 - Contact Panel
 - Mentions légales
 - Admin Panel
+
+One day maybe :
+- Global
+  - Resize the datable when the zoom changed
 
 ## Commit format
 
