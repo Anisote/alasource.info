@@ -87,6 +87,17 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
 #informationButtonHelp{
   color:palevioletred;
   text-decoration: blink;
+  animation-name: informationButtonHelp;
+  animation-duration: 5s;
+}
+
+@keyframes informationButtonHelp {
+  from {
+    transform: translateX(+128%);
+  }
+  to { 
+    transform: translateX(0);
+  }
 }
 
 #tutorial{

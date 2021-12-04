@@ -15,14 +15,14 @@ Features required for version 1 :
   - Features
     - ~~Add a text about the update date at the bottom of the website~~ - 03/12/2021
     - Add explanation videos for all displayed (mobile & compact)
-    - Sparkle help button some seconds when the website is displayed
+    - ~~Sparkle help button some seconds when the website is displayed~~ - 03/12/2021
     - Sort stars in the other way
     - ~~Display the compact mode information message at the bottom of the website~~ - 04/12/2021
 - FAQ Panel
 - Contact Panel
   - Contact page doesn't work anymore
 - Mentions légales
-  - Mentions légales doesn't work anymore
+  - ~~Mentions légales doesn't work anymore~~ - 04/12/2021
 - Admin Panel
   - ~~Add a tag when a field is selected~~ - 04/12/2021
   - ~~Forbid the addition of an existing author, media or category~~ - 04/12/2021
