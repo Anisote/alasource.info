@@ -116,8 +116,17 @@
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$action = $_POST['action'];
 
+		$authorNotEmpty = false;
+		for ($i = 1; $i <= $NB_AUTHOR_MAX; $i++) {
+			if (!empty($_POST['authorName' . $i]))
+			{
+				$authorNotEmpty = true;
+				break;
+			}
+		}
+
 		// Ajout d'une information
-		if (!empty($_POST['description']) && !empty($_POST['fieldDescription']) && !empty($_POST['release_date'])) {
+		if (!empty($_POST['description']) && !empty($_POST['fieldDescription']) && !empty($_POST['release_date']) && $authorNotEmpty) {
 			if ($action === 'insertInformation') {
 				
 				$sql = "SELECT max(indexDisplayed) as indexDisplayed FROM info.Information;";
