@@ -355,6 +355,7 @@ th{
     margin-top: 1.5em;
     cursor: pointer;
     vertical-align: bottom;
+    text-align: center;
   }
 
   .domaine {

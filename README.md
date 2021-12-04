@@ -30,8 +30,8 @@ Features required for version 1 :
   - ~~Author should be required to add an information~~ - 04/12/2021
 
   - Bugs
-    - When the video is over, close the video
-    - Compact mode information message has a padding
+    - ~~When the video is over, close the video~~ - 04/12/2021
+    - ~~Compact mode information message has a padding~~ - 04/12/2021
 
 Features required for version 2 :
 
