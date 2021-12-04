@@ -10,6 +10,7 @@
 
 
 <div id="content" class="no-padding">
+  <div class="alert alert-info alert-screen-orientation fixed-bottom  hidden">Pour plus de confort, vous pouvez pivoter l'écran.</div>
   <div>
     <div id="tutorial" class="center">
       <video id="tutorial-video" fullScreen onclick="manageVideoTutorial()">
@@ -46,7 +47,6 @@
         <a class="button-style" onclick='clean();' aria-current="page">Reset</a>
       </div>
       <div class="helpers">
-        <div class="alert alert-info alert-screen-orientation hidden">Pour plus de confort, vous pouvez pivoter l'écran.</div>
 
         <div class="form-check form-switch inline-block" class="informationButton">
           <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
