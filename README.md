@@ -20,7 +20,7 @@ Features required for version 1 :
     - ~~Display the compact mode information message at the bottom of the website~~ - 04/12/2021
 - FAQ Panel
 - Contact Panel
-  - Contact page doesn't work anymore
+  - ~~Contact page doesn't work anymore~~ - 04/12/2021
 - Mentions légales
   - ~~Mentions légales doesn't work anymore~~ - 04/12/2021
 - Admin Panel

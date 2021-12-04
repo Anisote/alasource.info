@@ -75,10 +75,10 @@
 				$message = htmlspecialchars($_POST['message']);
 				
 				if (isset($name, $website, $description, $message, )) {	
-					$to = "contact@alasource.info";
+					$to = "$CONTACT_EMAIL";
 			        $subject = "Formulaire de contact - $description\n";
 			                  
-			        $header = "From:contact@alasource.info\r\n";
+			        $header = "From:$CONTACT_EMAIL\r\n";
 			        $header .= "MIME-Version: 1.0\r\n";
 			        $header .= "Content-type: text/html\r\n";
 			         

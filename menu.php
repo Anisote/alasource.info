@@ -22,6 +22,8 @@
 
     <link rel="stylesheet" type="text/css" defer href=<?php echo "\"libraries/bootstrap.min.css?$VERSION\""?>/>
     <link rel="stylesheet" type="text/css" href=<?php echo "\"themes/style.css?$VERSION\""?>/>
+
+    <script src="https://js.hcaptcha.com/1/api.js?hl=fr" async defer></script>
     
     <meta name="description" content="Alasource.info est un site qui référence uniquement les contenus que l'auteur juge intéressant et de qualité.">
     <link rel="canonical" href="https://alasource.info">
