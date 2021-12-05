@@ -201,7 +201,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
           }
           echo "</tbody>";
           echo "</table>";
-          // Free result set
+          
           mysqli_free_result($result);
       } else{
           echo "No records matching your query were found.";
