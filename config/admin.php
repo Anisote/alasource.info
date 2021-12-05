@@ -54,7 +54,7 @@
 		array_unshift($keys, $idKey);
 
 		$deleteType = $table;
-		if (isset($_POST['delete-type']) && $_POST['delete-type'] === $deleteType) {
+		if (isset($_POST['delete-type']) AND $_POST['delete-type'] === $deleteType) {
 			$deleteId = $_POST['delete-id'];
 
 
@@ -131,7 +131,7 @@
 		}
 
 		// Ajout d'une information
-		if (!empty($_POST['description']) && !empty($_POST['fieldDescription']) && !empty($_POST['release_date']) && $authorNotEmpty) {
+		if (!empty($_POST['description']) AND !empty($_POST['fieldDescription']) AND !empty($_POST['release_date']) AND $authorNotEmpty) {
 			if ($action === 'insertInformation') {
 				
 				$sql = "SELECT max(indexDisplayed) as indexDisplayed FROM info.Information;";
@@ -188,7 +188,6 @@
 
 						if ($authorId) {
 							$sql = "INSERT INTO info.Information_author (idInformation, idAuthor) VALUES (?,?)";
-							var_dump($sql);
 							
 							$statement = mysqli_prepare($link, $sql);
 							$request = mysqli_stmt_bind_param($statement,
@@ -253,9 +252,9 @@
 
 						for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
 							$tagId = $_POST['tagName' . $i];
-
 							$result = true;
-							if ($tagId) {
+							if (!is_null($tagId) AND !empty($tagId) AND ($tagID !== $_POST["fieldDescription"])) {
+								echo "a";
 								$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $tagId . "')";
 								$result = mysqli_query($link, $sql);
 							}
