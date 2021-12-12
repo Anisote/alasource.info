@@ -50,6 +50,24 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
 
 /* Front page */
 
+#searchfields{
+  margin-bottom: 0.5em;
+}
+
+#searchfields > label {
+  position: relative;
+}
+
+#searchfields > label::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 25 25' fill-rule='evenodd'%3E%3Cpath d='M16.036 18.455l2.404-2.405 5.586 5.587-2.404 2.404zM8.5 2C12.1 2 15 4.9 15 8.5S12.1 15 8.5 15 2 12.1 2 8.5 4.9 2 8.5 2zm0-2C3.8 0 0 3.8 0 8.5S3.8 17 8.5 17 17 13.2 17 8.5 13.2 0 8.5 0zM15 16a1 1 0 1 1 2 0 1 1 0 1 1-2 0'%3E%3C/path%3E%3C/svg%3E") center / contain no-repeat;
+}
+
 .searchBox{
   font-size: 25px;
   background-color: white;
@@ -57,7 +75,8 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   border-radius: .25rem;
   border: 1px solid #0b668b;
   padding: .375rem .75rem;
-  margin-bottom: 0.5%;
+  padding-left: 1.5em;
+  vertical-align: middle;
 }
 
 .searchBox::placeholder{
@@ -120,16 +139,23 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   display: inline;
 }
 
+.xcross{
+  width:0.75em;
+}
+
 .button-style{
   cursor:pointer;
+  vertical-align: middle;
   font-size: 25px;
   border: #05445e;
+  border-color: #055e52;
   border-style: solid;
+  border-width: 0.1em;
   color: white;
   background-color: #05445e;
   line-height: 1;
   display: inline-block;
-  padding: .5rem 1rem;
+  padding: .25em .5em;
   text-decoration: none;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
@@ -350,7 +376,7 @@ th{
     display: inline-block;
     width: 60%;
     margin-left: 0.25em;
-    margin-right: 0.25em;
+    margin-right: 0.1em;
     font-size: 1.5em;
   }
 
@@ -359,7 +385,7 @@ th{
   }
 
   .button-style{
-    padding: 0.5rem 0.5rem;
+    padding: 0.45em 0.45em;
   }
 
   .button-search-reset{

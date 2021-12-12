@@ -3,27 +3,25 @@
 ?><!DOCTYPE html>
 <html lang="fr">
 <head>
-    <base href="<?php echo $BASE_URL ?>">
+    <base href="<?php echo BASE_URL ?>">
 
     <link rel="shortcut icon" type="image/ico" href="themes/favicon.ico"/>
     <a rel="me" href="https://mastodon.tedomum.net/@anisote"></a>
 
     <meta name="viewport" content="width=device-width">
     
-    <script src=<?php echo "\"libraries/jquery.min.js?$VERSION\""?>></script>  
-    <script src=<?php echo "\"libraries/datatables.min.js?$VERSION\""?>></script>  
-    <script src=<?php echo "\"libraries/bootstrap.bundle.min.js?$VERSION\""?>></script>
+    <script src=<?php echo "\"libraries/jquery.min.js?" . VERSION . "\""?>></script>  
+    <script src=<?php echo "\"libraries/datatables.min.js?" . VERSION . "\""?>></script>  
+    <script src=<?php echo "\"libraries/bootstrap.bundle.min.js?" . VERSION . "\""?>></script>
 
     <!-- Moment.js 2.29.1 -->
-    <script src=<?php echo "\"libraries/moment.min.js?$VERSION\""?>></script>
-    <script src=<?php echo "\"libraries/datetime-sorting-moment.js?$VERSION\""?>></script>
+    <script src=<?php echo "\"libraries/moment.min.js?" . VERSION . "\""?>></script>
+    <script src=<?php echo "\"libraries/datetime-sorting-moment.js?" . VERSION . "\""?>></script>
 
-    <link rel="stylesheet" type="text/css" href=<?php echo "\"libraries/datatables.min.css?$VERSION\""?>/>
+    <link rel="stylesheet" type="text/css" href=<?php echo "\"libraries/datatables.min.css?" . VERSION . "\""?>/>
 
-    <link rel="stylesheet" type="text/css" defer href=<?php echo "\"libraries/bootstrap.min.css?$VERSION\""?>/>
-    <link rel="stylesheet" type="text/css" href=<?php echo "\"themes/style.css?$VERSION\""?>/>
-
-    <script src="https://js.hcaptcha.com/1/api.js?hl=fr" async defer rel="noopener noreferrer nofollow"></script>
+    <link rel="stylesheet" type="text/css" defer href=<?php echo "\"libraries/bootstrap.min.css?" . VERSION . "\""?>/>
+    <link rel="stylesheet" type="text/css" href=<?php echo "\"themes/style.css?" . VERSION . "\""?>/>
     
     <meta name="description" content="Alasource.info est un site qui référence uniquement les contenus que l'auteur juge intéressant et de qualité.">
     <link rel="canonical" href="https://alasource.info">

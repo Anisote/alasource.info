@@ -35,7 +35,7 @@
 		<p>Message :<br/><textarea required name="message" value="<?php echo $display['message']; ?>" rows="8" cols="90" maxlength="350"><?php echo $display['message']; ?></textarea></p>
 
 		<p class="control-btns">
-			<button class="h-captcha button-style" data-sitekey="<?php echo $HCAPTCHA_SITEKEY; ?>" data-callback="onSubmit" >Envoyer</button>
+			<button class="h-captcha button-style" data-sitekey="<?php echo HCAPTCHA_SITEKEY; ?>" data-callback="onSubmit" >Envoyer</button>
 
 			<button class="button-style" type="reset">Effacer les champs</button>
 		</p>
@@ -51,13 +51,13 @@
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
 			$hcaptchaData = array(
-				"secret" => $HCAPTCHA_SECRET,
+				"secret" => HCAPTCHA_SECRET,
 			 	"response" => $_POST['h-captcha-response']
 			);
 
 			$hcaptchaRequest = curl_init();
 
-			curl_setopt($hcaptchaRequest, CURLOPT_URL, $HCAPTCHA_VERIFY_URL);
+			curl_setopt($hcaptchaRequest, CURLOPT_URL, HCAPTCHA_VERIFY_URL);
 			curl_setopt($hcaptchaRequest, CURLOPT_POST, TRUE);
 			curl_setopt($hcaptchaRequest, CURLOPT_POSTFIELDS, http_build_query($hcaptchaData));
 			curl_setopt($hcaptchaRequest, CURLOPT_RETURNTRANSFER, TRUE);
@@ -75,10 +75,10 @@
 				$message = htmlspecialchars($_POST['message']);
 				
 				if (isset($name, $website, $description, $message, )) {	
-					$to = "$CONTACT_EMAIL";
+					$to = CONTACT_EMAIL;
 			        $subject = "Formulaire de contact - $description\n";
 			                  
-			        $header = "From:$CONTACT_EMAIL\r\n";
+			        $header = "From:" . CONTACT_EMAIL . "\r\n";
 			        $header .= "MIME-Version: 1.0\r\n";
 			        $header .= "Content-type: text/html\r\n";
 			         
@@ -100,6 +100,8 @@
 		}
 	?>
 </div>
+
+<script src="https://js.hcaptcha.com/1/api.js?hl=fr" async defer rel="noopener noreferrer nofollow"></script>
 <?php
 	require_once('footer.php');
 ?>

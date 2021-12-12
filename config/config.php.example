@@ -1,33 +1,35 @@
 <?php
-  $strHostName = "localhost";
-  $strDbName = "info";
+
+  define("strHostName", "localhost");
+  define("strDbName", "info");
   // User which has the right to select on the database
-  $strUserName = "";
-  $strPassword = "";
+  define("strUserName", "");
+  define("strPassword", "");
   // User which has the right to create and drop the database
-  $strAdminName = "";
-  $strAdminPassword = "";
+  define("strAdminName", "");
+  define("strAdminPassword", "");
 
-  $HCAPTCHA_SITEKEY = "";
-  $HCAPTCHA_SECRET = "";
-  $HCAPTCHA_VERIFY_URL = "https://hcaptcha.com/siteverify";
+  define("HCAPTCHA_SITEKEY", "");
+  define("HCAPTCHA_SECRET", "");
+  define("HCAPTCHA_VERIFY_URL", "https://hcaptcha.com/siteverify");
 
-  $BASE_URL = "https://alasource.info";
-  $VERSION = file_get_contents('version');
+  define("BASE_URL", "https://alasource.info");
+  define("VERSION", file_get_contents('version'));
 
-  $CONTACT_EMAIL = "email@email.com";
+  define("CONTACT_EMAIL", "email@email.com");
 
-  $COLUMNS = Array(
+  define("COLUMNS", Array(
     'id' => 0,
-    'fieldMobile' => 1,
-    'fieldDesktop' => 2,
-    'author' => 3,
-    'media' => 4,
-    'description' => 5,
-    'marks' => 6,
-    'publishDate' => 7,
-    'tags' => 8,
-  );
-  $COMPACT_MODE_COLUMNS_TO_HIDE = implode(', ', Array($COLUMNS['id'], $COLUMNS['fieldDesktop'], $COLUMNS['author'], $COLUMNS['media'], $COLUMNS['publishDate']));
-  $COMPACT_MODE_TRIGGER_SCREEN_WIDTH = 1024;
+    'fieldDesktop' => 1,
+    'author' => 2,
+    'media' => 3,
+    'description' => 4,
+    'marks' => 5,
+    'publishDate' => 6,
+    'tags' => 7,
+  ));
+  define("COMPACT_MODE_COLUMNS_TO_HIDE", implode(', ', Array(COLUMNS['id'], COLUMNS['author'], COLUMNS['media'], COLUMNS['publishDate'])));
+  define("COMPACT_MODE_TRIGGER_SCREEN_WIDTH", 1024);
+
+  define("DEBUG", false);
 ?>

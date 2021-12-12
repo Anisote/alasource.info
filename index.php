@@ -13,12 +13,16 @@
   <div>
     <div id="tutorial" class="center">
       <video id="tutorial-video" fullscreen muted onclick="manageVideoTutorial()" onended="manageVideoTutorial()">
-        <source src="themes/tutorial.mp4" type="video/mp4">
+        <source src="themes/mobile.mp4" type="video/mp4">
       </video>
     </div>
     <div id="searchfields" class="center">
-      <input id="searchBoxMobile" class="searchBox mobile" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput="search(this)"/>
-      <input id="searchBoxDesktop" class="searchBox desktop" type="search" list="tags-fields" placeholder="Critères de recherches" aria-label="Rechercher" oninput="search(this)" autofocus="autofocus" />
+      <label class="mobile">
+        <input id="searchBoxMobile" class="searchBox" data-html="true" type="search" placeholder="Critères de recherches" aria-label="Rechercher" oninput="search(this)"/>
+      </label>
+      <label class="desktop">
+        <input id="searchBoxDesktop" class="searchBox" type="search" list="tags-fields" placeholder="Critères de recherches" aria-label="Rechercher" oninput="search(this)" autofocus="autofocus" />
+      </label>
       <datalist id="tags-fields">
         <?php
             $sqlInformationTag = "SELECT idTag, name, count(idTag) as tagCount FROM info.Information_tag NATURAL JOIN Tag GROUP BY idTag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
@@ -42,30 +46,27 @@
             }
           ?>
       </datalist>
-      <div class="button-search-reset">
-        <a class="button-style desktop" aria-current="page" href="#">Rechercher</a>
-        <a class="button-style" onclick="clean();" aria-current="page">Reset</a>
-      </div>
-      <div class="helpers">
+      <a class="button-style" onclick="clean();" aria-current="page">Reset</a>
+    </div>
+    <div class="helpers center">
 
-        <div class="form-check form-switch inline-block informationButton">
-          <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
-          <label class="form-check-label text-success pointer compact" for="compactModeSwitch">Mode compact</label>        
-        </div>
-        <div id="informationButtonMarks" class="informationButton" data-trigger="focus" data-bs-html="true" data-bs-toggle="popover" title="Avis" data-bs-placement="bottom" data-bs-content="⭐⭐⭐⭐ Exceptionnel<br/>⭐⭐⭐ Extrêmement intéressant<br/>⭐⭐ Très intéressant<br/>⭐ Intéressant" >          
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveaspectratio="xMidYMid meet" viewbox="0 0 1024 1024">
-            <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372s372 166.6 372 372s-166.6 372-372 372z" fill="currentColor"/>
-            <path d="M464 336a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" fill="currentColor"/>
-          </svg> Avis
-        </div>
-        <div id="informationButtonHelp" class="informationButton" onclick="manageVideoTutorial()">
-          <svg  id="help-svg" viewbox="0 0 512 512" class="pointer svg svg-inline--fa fa-info-circle fa-w-4" aria-hidden="true" data-prefix="fas" data-icon="info-circle"  role="img" xmlns="http://www.w3.org/2000/svg">
-            <path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"/>
-          </svg> Aide 
-        </div>
-        <div class="font-size-em0-7 mt-1 center desktop display-block">
-            ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
-        </div>
+      <div class="form-check form-switch inline-block informationButton">
+        <input class="form-check-input" type="checkbox" onchange="toggleCompactMode()" role="switch" id="compactModeSwitch">
+        <label class="form-check-label text-success pointer compact" for="compactModeSwitch">Mode compact</label>        
+      </div>
+      <div id="informationButtonMarks" class="informationButton" data-trigger="focus" data-bs-html="true" data-bs-toggle="popover" title="Avis" data-bs-placement="bottom" data-bs-content="⭐⭐⭐⭐ Exceptionnel<br/>⭐⭐⭐ Extrêmement intéressant<br/>⭐⭐ Très intéressant<br/>⭐ Intéressant" >          
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveaspectratio="xMidYMid meet" viewbox="0 0 1024 1024">
+          <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372s372 166.6 372 372s-166.6 372-372 372z" fill="currentColor"/>
+          <path d="M464 336a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" fill="currentColor"/>
+        </svg> Avis
+      </div>
+      <div id="informationButtonHelp" class="informationButton" onclick="manageVideoTutorial()">
+        <svg  id="help-svg" viewbox="0 0 512 512" class="pointer svg svg-inline--fa fa-info-circle fa-w-4" aria-hidden="true" data-prefix="fas" data-icon="info-circle"  role="img" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"/>
+        </svg> Aide 
+      </div>
+      <div class="font-size-em0-7 mt-1 center desktop display-block">
+          ⭐⭐⭐⭐ Exceptionnel &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐⭐ Extrêmement intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐⭐ Très intéressant &nbsp;&nbsp;-&nbsp;&nbsp; ⭐ Intéressant
       </div>
     </div>
   </div>
@@ -252,7 +253,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
             responsive: false,
             "sDom": '<"top"ftrlpi>',
             columnDefs: [{
-                targets: [<?=$COLUMNS['fieldDesktop']?>, <?=$COLUMNS['media']?>],
+                targets: [<?=COLUMNS['fieldDesktop']?>, <?=COLUMNS['media']?>],
                 render: function (data, type, row) {
                   if (type === 'sort') {
                     return data.replace(/.*? /,'');
@@ -260,12 +261,12 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                   return data;
                 }
               },
-              { responsivePriority: 1, targets: [<?=$COLUMNS['description']?>, <?=$COLUMNS['marks']?>] },
-              { responsivePriority: 2, targets: [<?=$COLUMNS['fieldDesktop']?>] },
-              { responsivePriority: 3, targets: [<?=$COLUMNS['media'] ?>] },
-              { responsivePriority: 4, targets: [<?=$COLUMNS['author'] ?>] },
-              { responsivePriority: 5, targets: [<?=$COLUMNS['publishDate'] ?>] },
-              { responsivePriority: 6, targets: [<?=$COLUMNS['id'] ?>] },
+              { responsivePriority: 1, targets: [<?=COLUMNS['description']?>, <?=COLUMNS['marks']?>] },
+              { responsivePriority: 2, targets: [<?=COLUMNS['fieldDesktop']?>] },
+              { responsivePriority: 3, targets: [<?=COLUMNS['media'] ?>] },
+              { responsivePriority: 4, targets: [<?=COLUMNS['author'] ?>] },
+              { responsivePriority: 5, targets: [<?=COLUMNS['publishDate'] ?>] },
+              { responsivePriority: 6, targets: [<?=COLUMNS['id'] ?>] },
             ],
             "pageLength": 25,
             "language": {
@@ -287,9 +288,9 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
               api.columns().every( function () {
                 var column = this;
                 var select;
-                if (column.index() != <?=$COLUMNS['id']?> && column.index() != <?=$COLUMNS['description']?> && column.index() != <?=$COLUMNS['publishDate']?> ){
+                if (column.index() != <?=COLUMNS['id']?> && column.index() != <?=COLUMNS['description']?> && column.index() != <?=COLUMNS['publishDate']?> ){
                   // Disable search by regex for author column
-                  if (column.index() == <?=$COLUMNS['author']?>){
+                  if (column.index() == <?=COLUMNS['author']?>){
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -302,7 +303,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         refreshDropdowns();
                       })
                   }
-                  else if(column.index() == <?=$COLUMNS['marks']?>){
+                  else if(column.index() == <?=COLUMNS['marks']?>){
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -315,7 +316,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                         refreshDropdowns();
                       })
                   }
-                  else if([ <?=$COLUMNS['fieldDesktop']?> ].includes(column.index())){
+                  else if([ <?=COLUMNS['fieldDesktop']?> ].includes(column.index())){
                     select = $('<select class="select-filter" onclick="event.stopPropagation();"><option value=""></option></select>')
                       .appendTo( $(column.header()) )
                       .on( 'change', function () {
@@ -343,7 +344,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                       })
                   }
 
-                  if (column.index() == <?=$COLUMNS['marks'] ?>){
+                  if (column.index() == <?=COLUMNS['marks'] ?>){
                     data = column.order('des').draw(false).data().unique();
                   }else{
                     data = column.order('asc').draw(false).data().unique();
@@ -370,9 +371,9 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
 
                   const tags = <?= json_encode($tags) ?>;
 
-                  if (column.index() == <?=$COLUMNS['author'] ?>){
+                  if (column.index() == <?=COLUMNS['author'] ?>){
                     columnValues.sort();
-                  } else if (column.index() == <?=$COLUMNS['fieldDesktop'] ?>){
+                  } else if (column.index() == <?=COLUMNS['fieldDesktop'] ?>){
                     const getName = (value) => tags.find(tag => tag.name.includes(value)).name.split(' ')[1];
                     columnValues.sort((a, b) => getName(a).localeCompare(getName(b)));
                   }
@@ -381,7 +382,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
                     let optionValue = item;
                     if(item != ""){
                       let nb = undefined;
-                      if([ <?=$COLUMNS['fieldDesktop']?> ].includes(column.index())){
+                      if([ <?=COLUMNS['fieldDesktop']?> ].includes(column.index())){
                         const tagInfo = tags.find(tag => tag.name.includes(item));
                         if(tagInfo) {
                           nb = tagInfo.count;
@@ -402,7 +403,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     } );
 
     function isMobile() {
-      return $(window).width() <= <?= $COMPACT_MODE_TRIGGER_SCREEN_WIDTH ?>;
+      return $(window).width() <= <?= COMPACT_MODE_TRIGGER_SCREEN_WIDTH ?>;
     }
 
     var api;
@@ -465,21 +466,19 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
         value: jQuery.fn.dataTable.ext.type.search.html(s.val()),
         dataIndex: selects.indexOf(s),
         split: {
-          [<?=$COLUMNS['author']?>]: ', ',
-          [<?=$COLUMNS['fieldDesktop']?>]: ' '
+          [<?=COLUMNS['author']?>]: ', ',
+          [<?=COLUMNS['fieldDesktop']?>]: ' '
         }[selects.indexOf(s)]
       }))
       selects.filter(s => s).forEach(s => refreshSelect(selectsData.find(d => d.$select === s), selectsData.filter(d => d.$select !== s)))
     }
 
 
-    function search(input){
-      input = input || $('#searchBoxDesktop')[0];
-      
+    function search(input){      
       if(input.id == 'searchBoxMobile'){
-        $('#searchBoxDesktop').val($(input).val()); 
+        document.getElementById('searchBoxDesktop').value = input.value; 
       }else{
-        $('#searchBoxMobile').val($(input).val());
+        document.getElementById('searchBoxMobile').value = input.value; 
       }
 
       var table = $('#table_id').DataTable();
@@ -494,7 +493,20 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
       document.getElementById("searchBoxMobile").value = "";
       document.getElementById("searchBoxDesktop").value = "";
 
-      table.search("").draw();
+      var selects = document.getElementsByClassName("select-filter");
+
+      var refresh = false;
+      Array.from(selects).forEach((p) => {
+          if(p.value != ''){
+            p.value = '';
+            refresh = true;
+          }
+      });
+      table.search('').columns().search('').draw();
+
+      if(refresh){
+        refreshDropdowns();
+      }
     };
 
     let compactMode = undefined;
@@ -502,7 +514,7 @@ if($result = mysqli_query($link, $sqlInformationAuthor)) {
     function setCompactMode(isCompact) {
       if(isCompact !== compactMode) {
         var table = $('#table_id').DataTable();
-        var columnsToHide = [ <?= $COMPACT_MODE_COLUMNS_TO_HIDE ?> ];
+        var columnsToHide = [ <?= COMPACT_MODE_COLUMNS_TO_HIDE ?> ];
 
         for(const column of columnsToHide) {
           table.column(column).visible(!isCompact);

@@ -14,10 +14,11 @@ Features required for version 1 :
 - Home Panel
   - Features
     - ~~Add a text about the update date at the bottom of the website~~ - 04/12/2021
-    - Add explanation videos for all displayed (mobile & compact)
     - ~~Sparkle help button some seconds when the website is displayed~~ - 04/12/2021
     - ~~Sort select option stars in the other way~~ - 04/12/2021
     - ~~Display the compact mode information message at the bottom of the website~~ - 04/12/2021
+    - Add explanation videos for ~~all~~ mobile displayed (mobile & compact) - 12/12/2021
+    - ~~The reset button clean data in the select column~~ - 12/12/2021
 - FAQ Panel
 - Contact Panel
   - ~~Contact page doesn't work anymore~~ - 04/12/2021
@@ -26,28 +27,40 @@ Features required for version 1 :
 - Admin Panel
   - ~~Add a tag when a field is selected~~ - 04/12/2021
   - ~~Forbid the addition of an existing author, media or category~~ - 04/12/2021
-  - Fix an issue when inserting authors without tags in an information
   - ~~Author should be required to add an information~~ - 04/12/2021
+  - ~~Set a "Non saisi" value when an author, media or tag is deleted~~ - 12/12/2021
 
   - Bugs
     - ~~When the video is over, close the video~~ - 04/12/2021
     - ~~Compact mode information message has a padding~~ - 04/12/2021
+    - ~~Fix an issue when inserting authors without tags in an information~~ - 12/12/2021
 
-Features required for version 2 :
+Version 1.1: Focus on **Web and Mobile design and user experience**
 
 - Home Panel
-  - Features
-    - Create a rss link
-    - Display domaine information when click on the icon (mobile)
-    - ~~When click on a domain, it sould select it in the display and close it~~ - discarded
-    - Give the possibility to see the langage of an article | choose the langague of informations you want to see
-    - Switch the top bar to the bottom and reduce size
-    - Change the logo
-    - Display alternative links for sources
-- FAQ Panel
-- Contact Panel
-- Mentions légales
-- Admin Panel
+  - Change the logo
+  - Improve the color theme
+  - Desktop
+    - Improve the top bar design:
+      - Fix the th header at the **top** in activating the responsive mode and add the input search in it
+      - Delete "avis", "compact mode" and "aide" in the desktop device
+  - Mobile
+    - Improve the top bar design:
+      - Switch the top bar to the bottom and reduce size
+      - Fix the th header at the **bottom** in activating the responsive mode and add the input search in it
+    - Put the compact mode information message at the middle of the screen and blink it
+  
+Version 1.2: Focus on **adding new features**
+
+- Home Panel
+  - Give the possibility to choose the langages for articles with a toggle panel and a hidden column
+  - Display alternative links for sources
+
+Version 1.3: Focus on **improving performance**
+
+- Improvement of the performance of the dynamic construction of select
+- Improvement of the performance on the mobile first display
+- Improvement of the code quality
 
 One day maybe :
 

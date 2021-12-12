@@ -2,10 +2,9 @@
 	require_once('../config.php');
 	require_once('../menu.php');
 
-	$NB_TAG_MAX = 5;
-	$NB_AUTHOR_MAX = 10;
-
-
+	define("NB_TAG_MAX", 5);
+	define("NB_AUTHOR_MAX", 10);
+	define("NON_SAISI_VALUE", 1000);
 
 	function error($msg) {
 		echo "<p class='alert-danger alert'>" . $msg . "</p>";
@@ -29,15 +28,21 @@
 		echo "<p class='alert-warning alert'><b>Aucune requête SQL n'a été executée - Donnée déjà présente en bdd !</b></p>";
 	}
 
+	if(DEBUG){
+		echo "<pre>", var_dump($_POST), "</pre>";
+	}
+
 	function execPrepareStmt($sql, $params) {
 		global $link;
 
-		var_dump($sql, $params);
+		if(DEBUG){
+			echo "<pre>", var_dump($sql, $params), "</pre>";
+		}		
 
 		$statement = mysqli_prepare($link, $sql);
 
 		mysqli_stmt_bind_param($statement, ...$params);
-		
+
 		$result = mysqli_stmt_execute($statement);
 	
 		mysqli_stmt_close($statement);
@@ -61,9 +66,8 @@
 			if( $idKey == 'idInformation'){
 				$sqlDelete = "DELETE FROM Information_tag WHERE " . $idKey . " = " . $deleteId;
 				$result = mysqli_query($link, $sqlDelete);
-				$missingValues = false;
 
-				if ($result === false) {
+				if (!$result) {
 					displayError();
 				} else {
 					displaySuccess();
@@ -71,28 +75,118 @@
 
 				$sqlDelete = "DELETE FROM Information_author WHERE " . $idKey . " = " . $deleteId;
 				$result = mysqli_query($link, $sqlDelete);
-				$missingValues = false;
 
-				if ($result === false) {
+				if (!$result) {
 					displayError();
 				} else {
 					displaySuccess();
 				}
 			}
 
-			$sqlDelete = "DELETE FROM " . $table . " WHERE " . $idKey . " = " . $deleteId;
-			$result = mysqli_query($link, $sqlDelete);
-			$missingValues = false;
+			if($table == 'Author'){
+				$sql = "SELECT idAuthor FROM info.Information_author where idAuthor = " . NON_SAISI_VALUE . ";";
+				$result = mysqli_query($link, $sql);
+				
+				if(is_null(mysqli_fetch_array($result))){
+					$result = execPrepareStmt(
+						"UPDATE Information_author SET idAuthor = " . NON_SAISI_VALUE . " WHERE " . $idKey . " = ?",
+						[
+							"i", $deleteId
+						]
+					);
+				}else{
+					$result = execPrepareStmt(
+						"DELETE FROM Information_author WHERE idAuthor = ?;",
+						[
+							"i", $deleteId
+						]
+					);
+				}
+	
+				var_dump($result);
+				if ($result) {
+					displaySuccess();
+				} else {
+					displayError();
+				}
+			}
 
-			if ($result === false) {
+			if($table == 'CategoryMedia'){
+				$result = execPrepareStmt(
+					"UPDATE Information SET categoryMedia = " . NON_SAISI_VALUE . " WHERE categoryMedia = ?",
+					[
+						"i", $deleteId
+					]
+				);
+	
+				if ($result) {
+					displaySuccess();
+				} else {
+					displayError();
+				}
+			}
+
+			if($table == 'Tag'){				
+				$result = execPrepareStmt(
+					"UPDATE Information SET field = " . NON_SAISI_VALUE . " WHERE field = ?",
+					[
+						"i", $deleteId
+					]
+				);
+	
+				if ($result) {
+					displaySuccess();
+				} else {
+					displayError();
+				}
+
+				$sql = "SELECT idTag FROM info.Information_tag where idTag = " . NON_SAISI_VALUE . ";";
+				$result = mysqli_query($link, $sql);
+				
+				if(is_null(mysqli_fetch_array($result))){
+					$result = execPrepareStmt(
+						"UPDATE Information_tag SET idTag = " . NON_SAISI_VALUE . " WHERE idTag = ?",
+						[
+							"i", $deleteId
+						]
+					);
+				}else{
+					$result = execPrepareStmt(
+						"DELETE FROM Information_tag WHERE idTag = ?;",
+						[
+							"i", $deleteId
+						]
+					);
+				}
+				$missingValues = false;
+
+				if ($result) {
+					displaySuccess();
+				} else {
+					displayError();
+				}
+			}
+
+			$result = execPrepareStmt(
+				"DELETE FROM " . $table . " WHERE " . $idKey . " = ?",
+				[
+					"i", $deleteId
+				]
+			);
+
+			if (!$result) {
 				displayError();
 			} else {
 				displaySuccess();
 			}
 		}
+	}
 
+	function generateDeleteTable($table, $idKey, $keys, $tableClass = '') {
+		global $link;
 		$sql = "SELECT * FROM " . $table;
 		$result = mysqli_query($link, $sql);
+		$deleteType = $table;
 
 		echo "<div><table class='deleteTables " . $tableClass . "'>";
 		echo "<thead><tr>";
@@ -122,14 +216,22 @@
 		$action = $_POST['action'];
 
 		$authorNotEmpty = false;
-		for ($i = 1; $i <= $NB_AUTHOR_MAX; $i++) {
-			if (!empty($_POST['authorName' . $i]))
+		for ($i = 1; $i <= NB_AUTHOR_MAX; $i++) {
+			if (!is_null($_POST['authorName' . $i]))
 			{
 				$authorNotEmpty = true;
 				break;
 			}
 		}
 
+		$fieldDescriptionNotEmpty = false;
+
+
+		listDelete("Information", "idInformation", Array("description"), "deleteTableInformation");
+		listDelete("CategoryMedia", "idCategoryMedia", Array("description"));
+		listDelete("Author", "idAuthor", Array("name"));
+		listDelete("Tag", "idTag", Array("name"));
+		
 		// Ajout d'une information
 		if (!empty($_POST['description']) AND !empty($_POST['fieldDescription']) AND !empty($_POST['release_date']) AND $authorNotEmpty) {
 			if ($action === 'insertInformation') {
@@ -163,27 +265,26 @@
 				$idInformation = mysqli_insert_id($link);
 
 				$success = true;
-				if ($result === false) {
+				if (!$result) {
 					displayError();
 					$success = false;
 				} else {
 					$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $_POST["fieldDescription"] . "')";
 					$result = mysqli_query($link, $sql);
-					for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
+					for ($i = 1; $i <= NB_TAG_MAX; ++$i) {
 						$tagId = $_POST['tagName' . $i];
 
 						if ($tagId) {
 							$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $tagId . "')";
-							var_dump($sql);
 							$result = mysqli_query($link, $sql);
 
-							if ($result === false) {
+							if (!$result) {
 								displayError();
 								$success = false;
 							}
 						}
 					}
-					for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+					for ($i = 1; $i <= NB_AUTHOR_MAX; ++$i) {
 						$authorId = $_POST['authorName' . $i];
 
 						if ($authorId) {
@@ -200,7 +301,7 @@
 						
 							mysqli_stmt_close($statement);
 
-							if ($result === false) {
+							if (!$result) {
 								displayError();
 								$success = false;
 							}
@@ -229,66 +330,77 @@
 				);
 
 				$success = true;
-				if ($result === false) {
+				if (!$result) {
 					displayError();
 					$success = false;
 				} else {
-					$sql = "DELETE FROM info.Information_tag WHERE idInformation = ?;";
-
-					$statement = mysqli_prepare($link, $sql);
-					mysqli_stmt_bind_param($statement,
-						"i",
-						$idInformation
+					$result = execPrepareStmt(
+						"DELETE FROM info.Information_tag WHERE idInformation = ?;",
+						[
+							"i",
+							$idInformation
+						]
 					);
-					$result = mysqli_stmt_execute($statement);
-					mysqli_stmt_close($statement);
 
-					if ($result === false) {
+					if (!$result) {
 						displayError();
 						$success = false;
 					} else {
-						$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $_POST["fieldDescription"] . "')";
-						$result = mysqli_query($link, $sql);
+						$result = execPrepareStmt(
+							"INSERT INTO info.Information_tag (idInformation, idTag) VALUES (?, ?)",
+							[
+								"ii",
+								$idInformation,
+								$_POST["fieldDescription"]
+							]
+						);
 
-						for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
+						for ($i = 1; $i <= NB_TAG_MAX; ++$i) {
 							$tagId = $_POST['tagName' . $i];
 							$result = true;
-							if (!is_null($tagId) AND !empty($tagId) AND ($tagID !== $_POST["fieldDescription"])) {
-								echo "a";
-								$sql = "INSERT INTO info.Information_tag (idInformation, idTag)	VALUES ('" . $idInformation . "', '" . $tagId . "')";
-								$result = mysqli_query($link, $sql);
+							if (!is_null($tagId) AND !empty($tagId) AND $tagId !== $_POST["fieldDescription"]) {									
+								$result = execPrepareStmt(							
+								"INSERT INTO info.Information_tag (idInformation, idTag) VALUES (?, ?)",
+								[
+									"ii",
+									$idInformation,
+									$tagId
+								]
+								);
 							}
 
-							if ($result === false) {
+							if (!$result) {
 								displayError();
 								$success = false;
 							}
 						}
-						if($success === true){
-							$sql = "DELETE FROM info.Information_author WHERE idInformation = ?;";
-
-							$statement = mysqli_prepare($link, $sql);
-							mysqli_stmt_bind_param($statement,
-								"i",
-								$idInformation
+						if($success){
+							$result = execPrepareStmt(							
+								"DELETE FROM info.Information_author WHERE idInformation = ?;",
+								[
+									"i",
+									$idInformation
+								]
 							);
-							$result = mysqli_stmt_execute($statement);
-							mysqli_stmt_close($statement);
 		
-							if ($result === false) {
+							if (!$result) {
 								displayError();
 								$success = false;
 							} else {			
-								for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+								for ($i = 1; $i <= NB_AUTHOR_MAX; ++$i) {
 									$authorId = $_POST['authorName' . $i];
-									var_dump($authorId);
 		
 									if ($authorId) {
-										$sql = "INSERT INTO info.Information_author (idInformation, idAuthor)	VALUES ('" . $idInformation . "', '" . $authorId . "')";
-										var_dump($sql);
-										$result = mysqli_query($link, $sql);
+										$result = execPrepareStmt(
+											"INSERT INTO info.Information_author (idInformation, idAuthor) VALUES (?, ?)",
+											[
+												"ii",
+												$idInformation,
+												$authorId,
+											]
+										);
 		
-										if ($result === false) {
+										if (!$result) {
 											displayError();
 											$success = false;
 										}
@@ -323,7 +435,7 @@
 					"INSERT INTO info.Author (name) VALUES (?)",
 					[ "s", $_POST['name'] ]
 				);				
-				if ($result === false) {
+				if (!$result) {
 					displayError();
 				}else{
 					displaySuccess();
@@ -350,7 +462,7 @@
 					"INSERT INTO info.CategoryMedia (description) VALUES (?)",
 					[ "s", $_POST['typedemedia_description'] ]
 				);					
-				if ($result === false) {
+				if (!$result) {
 					displayError();
 				}else{
 					displaySuccess();
@@ -377,7 +489,7 @@
 					"INSERT INTO info.Tag (name) VALUES (?)",
 					[ "s", $_POST['tag_name'] ]
 				);							
-				if ($result === false) {
+				if (!$result) {
 					displayError();
 				}else{
 					displaySuccess();
@@ -407,7 +519,7 @@
 		updateValue('release_date', j.infoReleaseDate);
 		updateValue('idInformation', idInformation);
 
-		for(var k = 0; k < <?php echo $NB_TAG_MAX; ?>; k++){
+		for(var k = 0; k < <?php echo NB_TAG_MAX; ?>; k++){
 			updateValue('tagName' + (k+1), "")
 		}
 
@@ -417,7 +529,7 @@
 			);
 		}
 
-		for(var k = 0; k < <?php echo $NB_AUTHOR_MAX; ?>; k++){
+		for(var k = 0; k < <?php echo NB_AUTHOR_MAX; ?>; k++){
 			updateValue('authorName' + (k+1), "")
 		}
 
@@ -476,7 +588,7 @@
 							while ($row = mysqli_fetch_array($result)) {
 								$authorArray[] = Array("id" => $row['idAuthor'], "name" => $row['name']);
 							}
-							for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+							for ($i = 1; $i <= NB_AUTHOR_MAX; ++$i) {
 								echo "<br><label for='authorName" . $i . "'>Author " . $i . ": &nbsp;</label>";
 								echo "<select class='small_th' name='authorName" . $i . "'>";
 								echo "<option value=''></option>";
@@ -501,7 +613,7 @@
 							while ($row = mysqli_fetch_array($result)) {
 								$tagArray[] = Array("id" => $row['idTag'], "name" => $row['name']);
 							}
-							for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
+							for ($i = 1; $i <= NB_TAG_MAX; ++$i) {
 								echo "<br><label for='tagName" . $i . "'>Tag " . $i . ": &nbsp;</label>";
 								echo "<select name='tagName" . $i . "'>";
 								echo "<option value=''></option>";
@@ -549,7 +661,7 @@
 									'infoReleaseDate' => $row['release_date']
 								);
 							}
-							echo "</select>";
+							echo "</select><br>";
 
 							$jsEncodedSelectInformationUpdate = json_encode($informationArray);
 
@@ -559,8 +671,8 @@
 						?>						
 
 						<label for="description">Description :&nbsp;</label>
-						<input type="text" id="description" name="description">
-						<br><label for="link">Lien :&nbsp;</label>
+						<input type="text" id="description" name="description"><br>
+						<label for="link">Lien :&nbsp;</label>
 						<input type="text" id="link" name="link">
 						<?php
 							$sql = "SELECT * FROM Tag as tag ORDER BY REGEXP_REPLACE(name,'^[^a-zA-Z]+? ', '') ASC;";
@@ -593,7 +705,7 @@
 							while ($row = mysqli_fetch_array($result)) {
 								$authorArray[] = Array("id" => $row['idAuthor'], "name" => $row['name']);
 							}
-							for ($i = 1; $i <= $NB_AUTHOR_MAX; ++$i) {
+							for ($i = 1; $i <= NB_AUTHOR_MAX; ++$i) {
 								echo "<br><label for='authorName" . $i . "'>Author " . $i . ": &nbsp;</label>";
 								echo "<select class='small_th' name='authorName" . $i . "'>";
 								echo "<option value=''></option>";
@@ -620,7 +732,7 @@
 							while ($row = mysqli_fetch_array($result)) {
 								$tagArray[] = Array("id" => $row['idTag'], "name" => $row['name']);
 							}
-							for ($i = 1; $i <= $NB_TAG_MAX; ++$i) {
+							for ($i = 1; $i <= NB_TAG_MAX; ++$i) {
 								echo "<br><label for='tagName" . $i . "'>Tag " . $i . ": &nbsp;</label>";
 								echo "<select name='tagName" . $i . "'>";
 								echo "<option value=''></option>";
@@ -640,7 +752,7 @@
 			</div>
 			<div class="col">
 				<h2>Suppression d'une information</h2>
-				<?php listDelete("Information", "idInformation", Array("description"), "deleteTableInformation"); ?>
+				<?php generateDeleteTable("Information", "idInformation", Array("description"), "deleteTableInformation"); ?>
 			</div>
 		</div>
 		<div class="row">
@@ -656,7 +768,7 @@
 			</div>
 			<div class="col">
 			  	<h2>Suppression d'un auteur</h2>
-				<?php listDelete("Author", "idAuthor", Array("name")); ?>
+				<?php generateDeleteTable("Author", "idAuthor", Array("name")); ?>
 			</div>
 		</div>
 		<div class="row">
@@ -672,7 +784,7 @@
 			</div>
 			<div class="col">
 				<h2>Suppression d'un type de média</h2>
-				<?php listDelete("CategoryMedia", "idCategoryMedia", Array("description")); ?>
+				<?php generateDeleteTable("CategoryMedia", "idCategoryMedia", Array("description")); ?>
 			</div>
 		</div>
 		<div class="row">
@@ -688,7 +800,7 @@
 			</div>
 			<div class="col">
 				<h2>Suppression d'un tag</h2>
-				<?php listDelete("Tag", "idTag", Array("name")); ?>
+				<?php generateDeleteTable("Tag", "idTag", Array("name")); ?>
 			</div>
 		</div>
 	</div>
